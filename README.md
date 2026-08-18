@@ -1,0 +1,2 @@
+# J26-DS-330-AI-Based-Robotic-Interactive-System-for-Mathematical-Assessment-
+A research project that develops an AI-based robotic learning system for primary school mathematics. The system combines physical cube-based activities, computer vision, a robotic arm, student behavior tracking, machine learning, and learning analytics to assess mathematical performance and identify dyscalculia-like learning difficulty patterns.
