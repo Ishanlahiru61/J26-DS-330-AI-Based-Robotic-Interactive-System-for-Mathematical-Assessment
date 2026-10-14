@@ -1,0 +1,7 @@
+priority,rule_id,condition,action,reason_code
+1,FB-01,Eligible same-skill Tier A other than immediately previous activity,Select deterministic lowest activity_id,SAME_SKILL_TIER_A
+2,FB-02,Previously successful eligible foundational activity outside cooldown,Select deterministic lowest activity_id,PRIOR_SUCCESS_FOUNDATION
+3,FB-03,Eligible Tier A activity that is a prerequisite of another eligible candidate,Select deterministic lowest activity_id,PREREQUISITE_ACTIVITY
+4,FB-04,Eligible grade-appropriate counting or comparison Tier A activity,Select deterministic lowest activity_id,GRADE_APPROPRIATE_BASELINE
+5,FB-05,Any other curriculum-eligible Tier A activity,Select deterministic lowest activity_id,CURRICULUM_SAFE_TIER_A
+6,FB-06,No safe eligible activity,Return no activity and request teacher selection,HUMAN_SELECTION_REQUIRED
