@@ -1,0 +1,31 @@
+
+# Python environments and cache
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Original and processed research datasets
+*.parquet
+*.duckdb
+*.csv.gz
+
+# Private or generated runtime data
+*.db
+*.sqlite
+*.sqlite3
+*.jsonl
+data/*
+!data/fixtures/
+!data/fixtures/**
+
+# Model binaries (manifest remains tracked)
+*.joblib
+*.pkl
+
+# Secrets and temporary files
+.env
+.streamlit/secrets.toml
+.DS_Store
+Thumbs.db
