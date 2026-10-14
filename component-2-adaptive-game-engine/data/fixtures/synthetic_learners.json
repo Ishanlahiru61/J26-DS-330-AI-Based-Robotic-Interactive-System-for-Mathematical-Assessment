@@ -1,0 +1,6 @@
+[
+  {"learner_id":"DEMO_001","display_name":"Cold start","grade":3,"scenario":"no history"},
+  {"learner_id":"DEMO_002","display_name":"Strong history","grade":3,"scenario":"Tier B evidence in counting and comparison"},
+  {"learner_id":"DEMO_003","display_name":"Needs reinforcement","grade":3,"scenario":"repeated comparison errors"},
+  {"learner_id":"DEMO_004","display_name":"Uneven profile","grade":4,"scenario":"mixed cross-area evidence"}
+]

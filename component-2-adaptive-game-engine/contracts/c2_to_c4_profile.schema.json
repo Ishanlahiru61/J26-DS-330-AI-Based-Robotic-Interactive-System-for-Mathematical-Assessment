@@ -1,0 +1,15 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"c2_to_c4_profile.schema.json",
+  "title":"Component 2 learner profile export",
+  "type":"object",
+  "required":["schema_version","scoring_policy_version","exported_at","learner_id","source_component","profile","semantics"],
+  "properties":{
+    "schema_version":{"const":"C2_TO_C4_v1.0.0"},
+    "learner_id":{"type":"string","minLength":1},
+    "session_id":{"type":["string","null"]},
+    "profile":{"type":"object","required":["skills","areas","profile_policy"]},
+    "semantics":{"type":"object","properties":{"not_a_diagnosis":{"const":true}}}
+  },
+  "additionalProperties":true
+}
