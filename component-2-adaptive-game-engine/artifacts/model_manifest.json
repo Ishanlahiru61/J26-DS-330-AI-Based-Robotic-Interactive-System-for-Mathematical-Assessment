@@ -1,0 +1,12 @@
+{
+  "manifest_version":"1.0.0",
+  "model_identity":"H2_GB_RT_OFF_v1",
+  "purpose":"First-attempt correctness probability for supported ASSISTments observations only",
+  "local_robot_ranking_authorized":false,
+  "external_workspace_relative_artifacts":[
+    {"path":"03_Experimental_Modeling/models/gradient_boosting/H2_GB_RT_OFF_v1.json","bytes":2165039,"sha256":"d14c7051e3babb04ff604c0d7363abb8cdac9429015ef3393d2526daf819b26e"},
+    {"path":"03_Experimental_Modeling/models/preprocessors/step3_h2_rt_on_preprocessor_v1.joblib","bytes":209120,"sha256":"ccca56b31d896770aa2a5f7ffa99662c7b05c04443c7f3c5acd5415879a94f8d","portability_note":"Requires __main__.RTStats compatibility shim"},
+    {"path":"03_Experimental_Modeling/models/calibration/H2_GB_RT_OFF_platt_v1.joblib","bytes":567,"sha256":"bfd8998aac872445b10faab07310e2d01117578f25ee879e6afc9f42f5f635ca"}
+  ],
+  "verified_example":{"problem_log_id":139863777,"split":"test","y_true":0,"fresh_probability":0.6981496423483683,"saved_probability":0.6981496214866638,"absolute_difference":2.086170447945789e-8,"tolerance":2e-6,"status":"PASS"}
+}
