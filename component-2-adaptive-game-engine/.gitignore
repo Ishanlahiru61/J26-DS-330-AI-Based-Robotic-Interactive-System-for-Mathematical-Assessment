@@ -1,10 +1,12 @@
 
-# Python
+# Python environments and cache
 .venv/
 venv/
 __pycache__/
 *.py[cod]
 .pytest_cache/
+.mypy_cache/
+.ruff_cache/
 
 # Large datasets and generated research files
 *.parquet
@@ -17,14 +19,26 @@ __pycache__/
 *.sqlite
 *.sqlite3
 *.jsonl
+*.log
 
 # Model binaries
 *.joblib
 *.pkl
 *.ubj
 
-# Secrets and temporary files
+# Secrets and local configuration
 .env
+.env.*
+!.env.example
 .streamlit/secrets.toml
+
+# IDE and editor files
+.vscode/
+.idea/
+
+# OS and temporary files
 .DS_Store
 Thumbs.db
+*.tmp
+*.bak
+*~
