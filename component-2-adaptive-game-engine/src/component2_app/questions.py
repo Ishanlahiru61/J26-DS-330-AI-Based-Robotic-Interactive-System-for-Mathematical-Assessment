@@ -3,6 +3,7 @@ from __future__ import annotations
 import random
 import uuid
 from dataclasses import asdict, dataclass
+from recommendation_engine.curriculum import grade_support, curriculum_details
 
 
 @dataclass(frozen=True)
@@ -30,7 +31,11 @@ class QuestionFactory:
     """Creates robot-safe questions. Correct answers remain private to C1."""
 
     @staticmethod
-    def generate(game_type: str, tier: str, seed: int | str | None = None) -> Question:
+    def generate(game_type: str, tier: str, seed: int | str | None = None, grade: int | None = None) -> Question:
+        if tier not in {'Tier A', 'Tier B'}:
+            raise ValueError('Unknown tier')
+        if grade is not None and not grade_support(game_type, tier, grade):
+            raise ValueError('QUESTION_CURRICULUM_NOT_SUPPORTED')
         rng = random.Random(seed)
         hard = tier == "Tier B"
         cubes: tuple[int, ...]
@@ -70,7 +75,8 @@ class QuestionFactory:
             if hard:
                 a = rng.randint(5, 9); b = rng.randint(max(2, 11 - a), 9)
             else:
-                a = rng.randint(1, 5); b = rng.randint(1, min(5, 10 - a))
+                ceiling = 6 if grade == 1 else 10
+                a = rng.randint(1, 5); b = rng.randint(1, min(5, ceiling - a))
             answer = a + b; cubes = (a, b)
             prompt = f"Add {a} and {b}. How many altogether? Place that many colored cubes."
             action = f"Present numbered addends {a} and {b}; speak the addition instruction"
@@ -103,4 +109,6 @@ class QuestionFactory:
             raise ValueError(f"Unknown game_type: {game_type}")
         if len(cubes) > 2 or any(not 0 <= x <= 9 for x in cubes) or not 1 <= answer <= 25:
             raise AssertionError("Question violates the two-cube hardware contract")
+        if grade is not None:
+            meta['curriculum'] = curriculum_details(game_type, tier, grade)
         return Question(str(uuid.uuid4()), game_type, tier, prompt, cubes, answer, action, meta)

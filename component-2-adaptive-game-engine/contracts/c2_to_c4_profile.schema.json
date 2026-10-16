@@ -5,11 +5,21 @@
   "type":"object",
   "required":["schema_version","scoring_policy_version","exported_at","learner_id","source_component","profile","semantics"],
   "properties":{
-    "schema_version":{"const":"C2_TO_C4_v1.0.0"},
+    "schema_version":{"const":"C2_TO_C4_v2.0.0"},
     "learner_id":{"type":"string","minLength":1},
     "session_id":{"type":["string","null"]},
-    "profile":{"type":"object","required":["skills","areas","profile_policy"]},
+    "profile":{"type":"object","required":["grade","skills","areas","profile_policy","coverage","data_quality","area_mapping_version"],
+      "properties":{
+        "grade":{"type":"integer","minimum":1,"maximum":5},
+        "skills":{"type":"array","minItems":8,"maxItems":8,"items":{"$ref":"#/$defs/summary"}},
+        "areas":{"type":"array","minItems":4,"maxItems":4,"items":{"allOf":[{"$ref":"#/$defs/summary"},{"required":["area_id","coverage_status","applicable_skills"],"properties":{"area_id":{"enum":["A1","A2","A3","A4"]},"coverage_status":{"enum":["NOT_APPLICABLE","NOT_ASSESSED","PARTIAL","COMPLETE"]}}}]}}
+      }},
     "semantics":{"type":"object","properties":{"not_a_diagnosis":{"const":true}}}
   },
+  "$defs":{"summary":{"type":"object","required":["attempts","correct","incorrect","accuracy_percent","status","tier_breakdown","recent_attempts"],"properties":{
+    "attempts":{"type":"integer","minimum":0},"correct":{"type":"integer","minimum":0},"incorrect":{"type":"integer","minimum":0},
+    "accuracy_percent":{"type":["number","null"],"minimum":0,"maximum":100},
+    "status":{"enum":["NOT_ASSESSED","ASSESSED"]},"tier_breakdown":{"type":"object","required":["Tier A","Tier B"]}
+  }}},
   "additionalProperties":true
 }

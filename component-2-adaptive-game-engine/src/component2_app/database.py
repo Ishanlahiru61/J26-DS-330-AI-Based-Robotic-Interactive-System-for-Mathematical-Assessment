@@ -42,9 +42,12 @@ class Database:
             db.executescript(MIGRATION_PATH.read_text(encoding="utf-8"))
 
     def upsert_learner(self, learner_id: str, display_name: str, grade: int, synthetic: bool = False) -> None:
-        if not learner_id.strip() or not 1 <= grade <= 5:
+        if not isinstance(learner_id, str) or not learner_id.strip() or type(grade) is not int or not 1 <= grade <= 5:
             raise IntegrationError("INVALID_LEARNER", "learner id and grade 1-5 are required")
         with self.connect() as db:
+            previous = db.execute('SELECT grade FROM learners WHERE learner_id=?', (learner_id,)).fetchone()
+            if previous and previous['grade'] != grade and db.execute("SELECT 1 FROM sessions WHERE learner_id=? AND status IN ('ACTIVE','PAUSED')", (learner_id,)).fetchone():
+                raise IntegrationError('ACTIVE_SESSION_GRADE_CHANGE', 'End the current session before changing grade')
             db.execute("INSERT INTO learners VALUES(?,?,?,?,?) ON CONFLICT(learner_id) DO UPDATE SET display_name=excluded.display_name,grade=excluded.grade", (learner_id, display_name, grade, int(synthetic), now_iso()))
             for game in GAME_ORDER:
                 db.execute("INSERT OR IGNORE INTO skill_profiles VALUES(?,?,?,?,?,?,?,?)", (learner_id, game, GAME_TO_AREA[game], 0, 0, None, None, now_iso()))
@@ -79,6 +82,10 @@ class Database:
 
     def set_session_status(self, session_id: str, status: str) -> None:
         if status not in {"ACTIVE", "PAUSED", "ENDED"}: raise ValueError(status)
+        if status == 'ENDED':
+            active = self.active_question(session_id)
+            if active:
+                self.record_non_scoring(session_id, active['question_id'], 'UNANSWERED')
         stamp = now_iso()
         with self.connect() as db:
             db.execute("UPDATE sessions SET status=?,updated_at=?,ended_at=CASE WHEN ?='ENDED' THEN ? ELSE ended_at END WHERE session_id=?", (status, stamp, status, stamp, session_id))
@@ -86,48 +93,83 @@ class Database:
 
     def history(self, learner_id: str) -> list[dict]:
         with self.connect() as db:
-            rows = db.execute("SELECT event_id,learner_id,activity_id,correct,attempt_count,timestamp FROM interactions WHERE learner_id=? AND validation_status='VALID' AND attempt_count=1 ORDER BY timestamp,event_id", (learner_id,)).fetchall()
-        return [dict(r) for r in rows]
+            rows = db.execute("SELECT i.*,q.game_type,q.tier FROM interactions i JOIN question_instances q USING(question_id) WHERE i.learner_id=? AND i.validation_status='VALID' AND i.attempt_count=1 AND i.correct IN (0,1)", (learner_id,)).fetchall()
+        cutoff = datetime.now(timezone.utc)
+        safe = []
+        for row in rows:
+            try:
+                stamp = parse_timestamp(row['timestamp'])
+            except IntegrationError:
+                continue
+            if stamp <= cutoff:
+                safe.append(dict(row))
+        return sorted(safe, key=lambda r: (parse_timestamp(r['timestamp']), r['event_id']))
 
     def recent_game_history(self, learner_id: str) -> list[dict]:
-        with self.connect() as db:
-            rows = db.execute("SELECT q.game_type,i.correct,i.timestamp FROM interactions i JOIN question_instances q ON q.question_id=i.question_id WHERE i.learner_id=? AND i.validation_status='VALID' AND i.attempt_count=1 ORDER BY i.timestamp", (learner_id,)).fetchall()
-        return [dict(r) for r in rows]
+        return [{k: row[k] for k in ('game_type', 'correct', 'timestamp')} for row in self.history(learner_id)]
 
     def profiles(self, learner_id: str) -> list[dict]:
-        with self.connect() as db:
-            rows = db.execute("SELECT * FROM skill_profiles WHERE learner_id=?", (learner_id,)).fetchall()
-        return sorted((dict(r) for r in rows), key=lambda r: GAME_ORDER.index(r["game_type"]))
+        history = self.history(learner_id)
+        result = []
+        for game in GAME_ORDER:
+            rows = [r for r in history if r['game_type'] == game]
+            n, correct = len(rows), sum(r['correct'] for r in rows)
+            result.append({'learner_id': learner_id, 'game_type': game, 'area': GAME_TO_AREA[game],
+                           'valid_interactions': n, 'correct_interactions': correct,
+                           'skill_index': 100 * correct / n if n else None,
+                           'last_assessed_at': rows[-1]['timestamp'] if n else None})
+        return result
 
     def active_question(self, session_id: str) -> dict | None:
         with self.connect() as db:
             row = db.execute("SELECT q.*,r.payload_json AS recommendation_payload FROM question_instances q JOIN recommendations r USING(recommendation_id) WHERE q.session_id=? AND q.status='ACTIVE'", (session_id,)).fetchone()
         return dict(row) if row else None
 
-    def save_task(self, session_id: str, recommendation: dict, question) -> dict:
-        rid, stamp = str(uuid.uuid4()), now_iso()
+    def save_task(self, session_id: str, recommendation: dict, question, timestamp: str | None = None) -> dict:
+        rid, stamp = str(uuid.uuid4()), timestamp or now_iso()
         with self.connect() as db:
             db.execute("INSERT INTO recommendations VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)", (rid, session_id, recommendation["learner_id"], recommendation["recommended_activity_id"], recommendation["game_type"], recommendation["area"], recommendation["tier"], recommendation["recommendation_mode"], recommendation["reason_code"], recommendation.get("fallback_level"), recommendation["policy_version"], stamp, json.dumps(recommendation, sort_keys=True)))
             db.execute("INSERT INTO question_instances VALUES(?,?,?,?,?,?,?,?,?,?,?,?)", (question.question_id, rid, session_id, recommendation["recommended_activity_id"], question.game_type, question.tier, question.prompt, json.dumps(question.public_robot_task(), sort_keys=True), question.expected_answer, "ACTIVE", stamp, None))
         return {"recommendation_id": rid, "question_id": question.question_id, "robot_task": question.public_robot_task(), "recommendation": recommendation}
 
-    def record_answer(self, session_id: str, question_id: str, answer: int, event_id: str | None = None, response_ms: int | None = None, timestamp: str | None = None) -> dict:
+    def record_answer(self, session_id: str, question_id: str, answer: int | None, event_id: str | None = None, response_ms: int | None = None, timestamp: str | None = None, *, validated_correctness: int | None = None, c1_context: dict | None = None) -> dict:
         stamp, eid = timestamp or now_iso(), event_id or str(uuid.uuid4())
         with self.connect() as db:
+            db.execute('BEGIN IMMEDIATE')
             existing = db.execute("SELECT payload_json FROM interactions WHERE event_id=?", (eid,)).fetchone()
             if existing:
                 payload = json.loads(existing[0])
-                if payload.get("session_id") == session_id and payload.get("question_id") == question_id and payload.get("answer") == answer:
+                if payload.get("session_id") == session_id and payload.get("question_id") == question_id and payload.get("answer") == answer and (validated_correctness is None or payload['correct'] == validated_correctness) and payload.get('c1_context') == c1_context:
                     return {"status":"duplicate_ignored","event_id":eid,"correct":payload["correct"]}
                 raise IntegrationError("DUPLICATE_EVENT", "event_id already exists with a different payload")
             session = db.execute("SELECT * FROM sessions WHERE session_id=?", (session_id,)).fetchone()
             if not session or session["status"] != "ACTIVE": raise IntegrationError("INVALID_SESSION", "session is not active")
             q = db.execute("SELECT * FROM question_instances WHERE question_id=? AND session_id=?", (question_id, session_id)).fetchone()
             if not q or q["status"] != "ACTIVE": raise IntegrationError("INVALID_QUESTION", "question is not active")
-            if isinstance(answer, bool) or not isinstance(answer, int) or not 0 <= answer <= 25: raise IntegrationError("INVALID_ANSWER", "detected answer-cube count must be an integer from 0 to 25")
-            correct = int(answer == q["expected_answer"])
+            if validated_correctness is None:
+                if type(answer) is not int or not 0 <= answer <= 25: raise IntegrationError("INVALID_ANSWER", "detected answer-cube count must be an integer from 0 to 25")
+                correct = int(answer == q['expected_answer'])
+            else:
+                if type(validated_correctness) is not int or validated_correctness not in (0, 1):
+                    raise IntegrationError('INVALID_CORRECTNESS', 'correctness must be integer 0 or 1')
+                correct = validated_correctness
+                if not c1_context or c1_context.get('learner_id') != session['learner_id'] or c1_context.get('activity_id') != q['activity_id']:
+                    raise IntegrationError('C1_CONTEXT_MISMATCH', 'learner and activity must match the issued question')
+            if response_ms is not None and (type(response_ms) is not int or response_ms < 0):
+                raise IntegrationError('INVALID_RESPONSE_TIME', 'optional response_ms must be a nonnegative integer')
+            instant = parse_timestamp(stamp)
+            if instant > datetime.now(timezone.utc):
+                raise IntegrationError('FUTURE_EVENT', 'response timestamp cannot be in the future')
+            if instant < parse_timestamp(q['created_at']):
+                raise IntegrationError('PRE_QUESTION_EVENT', 'response predates question presentation')
+            prior = db.execute('SELECT timestamp FROM interactions WHERE learner_id=?', (session['learner_id'],)).fetchall()
+            if any(instant < parse_timestamp(r['timestamp']) for r in prior):
+                raise IntegrationError('NON_CHRONOLOGICAL_EVENT', 'response predates learner history')
+            stamp = instant.astimezone(timezone.utc).isoformat()
             event = validate_event({"event_id":eid,"learner_id":session["learner_id"],"activity_id":q["activity_id"],"correct":correct,"attempt_count":1,"timestamp":stamp}, allow_retry=False)
-            payload = {**event,"session_id":session_id,"question_id":question_id,"answer":answer,"response_ms":response_ms}
+            learner_grade = db.execute('SELECT grade FROM learners WHERE learner_id=?', (session['learner_id'],)).fetchone()[0]
+            payload = {**event,"session_id":session_id,"question_id":question_id,"answer":answer,"response_ms":response_ms,
+                       'grade': learner_grade, 'tier': q['tier'], 'game_type': q['game_type'], 'c1_context': c1_context}
             db.execute("INSERT INTO interactions VALUES(?,?,?,?,?,?,?,?,?,?,?,?)", (eid, session_id, question_id, event["learner_id"], event["activity_id"], answer, correct, 1, event["timestamp"], response_ms, "VALID", json.dumps(payload, sort_keys=True)))
             db.execute("UPDATE question_instances SET status='ANSWERED',answered_at=? WHERE question_id=?", (event["timestamp"], question_id))
             db.execute("UPDATE skill_profiles SET valid_interactions=valid_interactions+1,correct_interactions=correct_interactions+?,skill_index=100.0*(correct_interactions+?)/(valid_interactions+1),last_assessed_at=?,updated_at=? WHERE learner_id=? AND game_type=?", (correct, correct, event["timestamp"], event["timestamp"], event["learner_id"], q["game_type"]))
@@ -164,7 +206,7 @@ class Database:
         all_correct = [(game, 1) for game in GAME_ORDER for _ in range(3)]
         patterns = {
             "DEMO_002": all_correct,
-            "DEMO_003": all_correct + [("COMPARISON",0)] * 3,
+            "DEMO_003": all_correct + [("COMPARISON",0)] * 3 + [('COUNTING',1)],
             "DEMO_004": [(game, int(game in {"COUNTING","PLACE_VALUE","ADDITION","MULTIPLICATION"})) for game in GAME_ORDER for _ in range(3)],
         }
         base = datetime.now(timezone.utc) - timedelta(days=1)
@@ -175,7 +217,7 @@ class Database:
                 recommendation = {"learner_id":lid,"recommended_activity_id":activity,"game_type":game,"area":GAME_TO_AREA[game],"tier":"Tier A","recommendation_mode":"SEED","reason_code":"SYNTHETIC_FIXTURE","fallback_level":None,"policy_version":"fixture-v1"}
                 from .questions import QuestionFactory
                 q = QuestionFactory.generate(game, "Tier A", f"{lid}-{index}")
-                self.save_task(session["session_id"], recommendation, q)
+                self.save_task(session["session_id"], recommendation, q, timestamp=(base + timedelta(minutes=index)).isoformat())
                 answer = q.expected_answer if outcome else (q.expected_answer % 25) + 1
                 self.record_answer(session["session_id"], q.question_id, answer, timestamp=(base + timedelta(minutes=index)).isoformat())
             self.set_session_status(session["session_id"], "ENDED")

@@ -16,8 +16,8 @@ VERSIONS = {
     "preprocessing_version": "step3_h2_preprocessor_v1",
     "calibration_version": "H2_GB_RT_OFF_platt_v1",
     "curriculum_version": "NIE_G1-G5_2026-09-28",
-    "activity_catalog_version": "c2_eight_game_catalog_v1.0.0",
-    "recommendation_policy_version": "STEP4_POLICY_v1.0.0+COVERAGE_v1",
+    "activity_catalog_version": "c2_eight_game_catalog_v2",
+    "recommendation_policy_version": "C2_COVERAGE_PROGRESS_v2",
 }
 
 

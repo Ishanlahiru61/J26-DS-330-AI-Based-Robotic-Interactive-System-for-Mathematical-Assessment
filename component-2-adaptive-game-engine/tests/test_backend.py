@@ -115,18 +115,20 @@ class BackendTests(unittest.TestCase):
     def test_zero_evidence_is_null(self):
         profile = self.service.profile("DEMO_001")
         self.assertTrue(all(x["skill_index"] is None and x["confidence"] == "UNASSESSED" for x in profile["skills"]))
-        self.assertTrue(all(x["area_index"] is None and x["status"] == "PARTIAL" for x in profile["areas"]))
+        self.assertTrue(all(x["area_index"] is None and x["status"] == "NOT_ASSESSED" for x in profile["areas"]))
 
-    def test_area_summary_requires_both_games(self):
+    def test_area_summary_reports_observed_accuracy_with_partial_coverage(self):
         session = self.service.start_or_resume("DEMO_001")
         task = self.service.next_task(session["session_id"], 1)
         self.service.submit(session["session_id"], task["question_id"], self._expected(task["question_id"]))
         area = next(x for x in self.service.profile("DEMO_001")["areas"] if x["area"] == "Number sense")
-        self.assertEqual(area["status"], "PARTIAL"); self.assertIsNone(area["area_index"])
+        self.assertEqual(area['coverage_status'], 'PARTIAL')
+        self.assertEqual(area['area_index'], 100.0)
+        self.assertEqual(area['attempts'], 1)
 
     def test_c4_export_is_versioned_and_nonclinical(self):
         payload = self.service.export_c4("DEMO_001")
-        self.assertEqual(payload["schema_version"], "C2_TO_C4_v1.0.0")
+        self.assertEqual(payload["schema_version"], "C2_TO_C4_v2.0.0")
         self.assertTrue(payload["semantics"]["not_a_diagnosis"])
         self.assertEqual(len(payload["profile"]["skills"]), 8)
         self.assertEqual(len(payload["profile"]["areas"]), 4)
@@ -144,7 +146,7 @@ class BackendTests(unittest.TestCase):
             self.service.submit(session["session_id"], task["question_id"], self._expected(task["question_id"]))
         self.assertEqual(seen, set(GAME_ORDER))
 
-    def test_catalog_has_two_tiers_for_eight_games_and_four_two_game_areas(self):
+    def test_catalog_has_two_tiers_and_requested_operational_area_mapping(self):
         games = {}
         for row in self.service.catalog: games.setdefault(row["game_type"], set()).add(row["tier"])
         self.assertEqual(set(games), set(GAME_ORDER))
@@ -152,7 +154,8 @@ class BackendTests(unittest.TestCase):
         area_games = {}
         for row in self.service.catalog: area_games.setdefault(row["area"], set()).add(row["game_type"])
         self.assertEqual(len(area_games), 4)
-        self.assertTrue(all(len(values) == 2 for values in area_games.values()))
+        self.assertEqual(area_games['Number sense'], {'COUNTING', 'COMPARISON', 'ORDERING'})
+        self.assertEqual(area_games['Number relationships'], {'PLACE_VALUE'})
 
     def test_mock_c1_returns_versioned_validated_event(self):
         session = self.service.start_or_resume("DEMO_001")

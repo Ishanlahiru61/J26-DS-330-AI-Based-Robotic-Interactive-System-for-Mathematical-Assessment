@@ -16,8 +16,8 @@ def recent_outcomes_for_skill(state, skill: str) -> tuple[int, ...]:
 def tier_b_evidence(state, skill: str) -> bool:
     """Conservative project heuristic: exposure plus repeated evidence, never one response."""
     settings = load_policy_settings()
-    exposures = int(state.prior_skill_exposures.get(skill, 0))
-    correct = int(state.prior_skill_correct.get(skill, 0))
+    exposures = int(state.tier_a_exposures.get(skill, 0))
+    correct = int(state.tier_a_correct.get(skill, 0))
     window = int(settings["tier_b_recent_window"])
     recent = recent_outcomes_for_skill(state, skill)[-window:]
     return (

@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 GAME_ORDER = ("COUNTING", "COMPARISON", "ORDERING", "PLACE_VALUE", "ADDITION", "SUBTRACTION", "MULTIPLICATION", "DIVISION")
-GAME_TO_AREA = {"COUNTING":"Number sense","COMPARISON":"Number sense","ORDERING":"Number relationships","PLACE_VALUE":"Number relationships","ADDITION":"Arithmetic calculation","SUBTRACTION":"Arithmetic calculation","MULTIPLICATION":"Multiplicative reasoning","DIVISION":"Multiplicative reasoning"}
+GAME_TO_AREA = {"COUNTING":"Number sense","COMPARISON":"Number sense","ORDERING":"Number sense","PLACE_VALUE":"Number relationships","ADDITION":"Arithmetic calculation","SUBTRACTION":"Arithmetic calculation","MULTIPLICATION":"Multiplicative reasoning","DIVISION":"Multiplicative reasoning"}
+AREA_IDS = {'Number sense': 'A1', 'Number relationships': 'A2',
+            'Arithmetic calculation': 'A3', 'Multiplicative reasoning': 'A4'}
 GAME_TO_SKILL = {"COUNTING":"Counting / subitizing","COMPARISON":"Quantity comparison","ORDERING":"Ordering / sequencing","PLACE_VALUE":"Place value / building","ADDITION":"Addition","SUBTRACTION":"Subtraction","MULTIPLICATION":"Multiplication / grouping","DIVISION":"Division / sharing"}
 
 
@@ -24,5 +26,12 @@ def choose_game(profiles: list[dict], eligible_games: set[str], recent: list[dic
         if event["game_type"] in error_counts and not event["correct"]: error_counts[event["game_type"]] += 1
     max_errors = max(error_counts.values())
     if max_errors >= 2:
-        return min((g for g in candidates if error_counts[g] == max_errors), key=GAME_ORDER.index), "REPEATED_ERROR_REINFORCEMENT"
+        # Bound reinforcement to two consecutive questions so other areas remain sampled.
+        repeated = recent[-2:]
+        choices = [g for g in candidates if not (len(repeated) == 2 and all(e['game_type'] == g for e in repeated))]
+        if choices:
+            worst = max(error_counts[g] for g in choices)
+            if worst >= 2:
+                return min((g for g in choices if error_counts[g] == worst), key=GAME_ORDER.index), 'REPEATED_ERROR_REINFORCEMENT'
+            return min(choices, key=lambda g: (by_game[g].get('last_assessed_at') or '', GAME_ORDER.index(g))), 'COVERAGE_REINFORCEMENT_BREAK'
     return min(candidates, key=lambda g: (by_game[g].get("last_assessed_at") or "", GAME_ORDER.index(g))), "LEAST_RECENTLY_ASSESSED"

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from .progression_rules import tier_b_evidence
+from .curriculum import grade_support
 
 
 def curriculum_eligible(candidate: dict, state) -> tuple[bool, str]:
@@ -12,6 +13,8 @@ def curriculum_eligible(candidate: dict, state) -> tuple[bool, str]:
         return False, "MISSING_CURRICULUM_TRACE"
     if not candidate["grade_min"] <= state.current_grade <= candidate["grade_max"]:
         return False, "GRADE_NOT_SUPPORTED"
+    if not grade_support(candidate.get('game_type'), candidate['tier'], state.current_grade):
+        return False, 'QUESTION_CURRICULUM_NOT_SUPPORTED'
     if candidate["robot_suitability"].lower() not in {"yes", "high", "very good", "excellent"}:
         return False, "ROBOT_UNSUITABLE"
     if candidate["physical_cube_suitability"].lower() not in {"yes", "high", "very good", "excellent"}:

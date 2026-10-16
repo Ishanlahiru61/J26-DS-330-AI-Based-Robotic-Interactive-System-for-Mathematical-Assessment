@@ -1,10 +1,10 @@
 {
-  "version": "C2_EIGHT_GAME_v1.0.0",
+  "version": "C2_EIGHT_GAME_v2.0.0",
   "hardware_contract": {"numbered_cube_count": 2, "single_digit_default": true, "answer_cube_min": 1, "answer_cube_max": 25},
   "games": [
     {"game_type":"COUNTING","area":"Number sense","skill":"Counting / subitizing"},
     {"game_type":"COMPARISON","area":"Number sense","skill":"Quantity comparison"},
-    {"game_type":"ORDERING","area":"Number relationships","skill":"Ordering / sequencing"},
+    {"game_type":"ORDERING","area":"Number sense","skill":"Ordering / sequencing"},
     {"game_type":"PLACE_VALUE","area":"Number relationships","skill":"Place value / building"},
     {"game_type":"ADDITION","area":"Arithmetic calculation","skill":"Addition"},
     {"game_type":"SUBTRACTION","area":"Arithmetic calculation","skill":"Subtraction"},

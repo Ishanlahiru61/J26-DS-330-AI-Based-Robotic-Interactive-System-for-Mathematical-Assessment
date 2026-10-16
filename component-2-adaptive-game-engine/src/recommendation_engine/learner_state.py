@@ -16,6 +16,8 @@ class LearnerState:
     recent_skill_outcomes_by_skill: dict[str, tuple[int, ...]] = field(default_factory=dict)
     prior_skill_exposures: dict[str, int] = field(default_factory=dict)
     prior_skill_correct: dict[str, int] = field(default_factory=dict)
+    tier_a_exposures: dict[str, int] = field(default_factory=dict)
+    tier_a_correct: dict[str, int] = field(default_factory=dict)
     recent_streak: int = 0
     history_availability: bool = False
     skill_history_availability: bool = False

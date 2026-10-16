@@ -18,6 +18,8 @@ def select_fallback(eligible: list[dict], state) -> tuple[dict | None, str]:
         return sorted(choices, key=lambda c: c["activity_id"])[0], "SAME_SKILL_TIER_A_REINFORCEMENT"
     if nonrepeat:
         return sorted(nonrepeat, key=lambda c: c["activity_id"])[0], "SAME_SKILL_TIER_A"
+    if same_skill_a:
+        return sorted(same_skill_a, key=lambda c: c['activity_id'])[0], 'SAME_SKILL_TIER_A'
     previous = [c for c in eligible if c["activity_id"] in state.successfully_attempted_activities and c["activity_id"] != state.last_activity]
     if previous:
         return sorted(previous, key=lambda c: c["activity_id"])[0], "PRIOR_SUCCESS_FOUNDATION"
