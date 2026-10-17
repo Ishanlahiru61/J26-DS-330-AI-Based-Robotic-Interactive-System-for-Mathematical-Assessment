@@ -1,0 +1,13 @@
+{
+  "policy_version": "C2_ADAPTIVE_ASSESSMENT_v1",
+  "local_state_model_version": "LOCAL_BETA_BERNOULLI_v1",
+  "minimum_skill_observations": 3,
+  "minimum_model_observations": 2,
+  "beta_prior_alpha": 1.0,
+  "beta_prior_beta": 1.0,
+  "advance_probability_threshold": 0.75,
+  "reinforce_probability_threshold": 0.40,
+  "maximum_consecutive_same_game": 4,
+  "maximum_total_interactions": 48,
+  "status": "educational design heuristics for functional PP1 feasibility; not clinically or prospectively validated"
+}

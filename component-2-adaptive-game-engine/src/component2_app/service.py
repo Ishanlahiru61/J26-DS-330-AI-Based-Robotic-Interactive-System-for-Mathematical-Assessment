@@ -10,8 +10,9 @@ from pathlib import Path
 from recommendation_engine.curriculum_filter import generate_candidates
 from recommendation_engine.learner_state import make_learner_state
 from recommendation_engine.recommender import RecommendationEngine
-from .coverage import GAME_ORDER, GAME_TO_AREA, GAME_TO_SKILL, AREA_IDS, choose_game
+from .coverage import GAME_ORDER, GAME_TO_AREA, GAME_TO_SKILL, AREA_IDS, choose_adaptive_focus
 from recommendation_engine.curriculum import grade_support, curriculum_details
+from recommendation_engine.local_state_model import load_adaptive_settings
 from integration_ready.errors import IntegrationError
 from integration_ready.event_store import validate_event
 from .database import Database, now_iso
@@ -38,6 +39,49 @@ class Component2Service:
 
     def end(self, session_id: str) -> None:
         self.db.set_session_status(session_id, "ENDED")
+
+    def assessment_status(self, learner_id: str) -> dict:
+        learner = self.db.learner(learner_id)
+        grade = learner["grade"]
+        settings = load_adaptive_settings()
+        applicable = sorted({c["game_type"] for c in self.engine.catalog
+                             if c["active"] and c["grade_min"] <= grade <= c["grade_max"]
+                             and c["tier"] == "Tier A" and grade_support(c["game_type"], c["tier"], grade)})
+        profiles = {p["game_type"]: p for p in self.db.profiles(learner_id)}
+        minimum = int(settings["minimum_skill_observations"])
+        skills = [{"game_type": game,
+                   "valid_interactions": int(profiles.get(game, {}).get("valid_interactions", 0)),
+                   "minimum_required": minimum,
+                   "evidence_status": "SUFFICIENT" if int(profiles.get(game, {}).get("valid_interactions", 0)) >= minimum else "INSUFFICIENT"}
+                  for game in applicable]
+        total = len(self.db.history(learner_id))
+        complete = bool(skills) and all(row["evidence_status"] == "SUFFICIENT" for row in skills)
+        stopped = total >= int(settings["maximum_total_interactions"])
+        return {
+            "status": "COMPLETE" if complete else ("STOPPED_MAX_INTERACTIONS" if stopped else "IN_PROGRESS"),
+            "minimum_observations_per_skill": minimum,
+            "maximum_total_interactions": int(settings["maximum_total_interactions"]),
+            "total_valid_interactions": total,
+            "applicable_games": applicable,
+            "skills": skills,
+            "areas_requiring_further_assessment": sorted({GAME_TO_AREA[row["game_type"]] for row in skills if row["evidence_status"] == "INSUFFICIENT"}),
+            "stopping_rule": "all grade-applicable games meet minimum evidence, or the maximum interaction safeguard is reached",
+        }
+
+    def _terminal_task(self, learner: dict, session_id: str, status: dict, reason: str) -> dict:
+        return {"question_id": None, "robot_task": None, "recommendation": {
+            "learner_id": learner["learner_id"], "session_id": session_id,
+            "recommended_activity_id": None, "recommendation_mode": "NO_ELIGIBLE_ACTIVITY" if status["status"] == "IN_PROGRESS" else ("ASSESSMENT_COMPLETE" if status["status"] == "COMPLETE" else "ASSESSMENT_STOPPED"),
+            "decision_type": "COMPLETE" if status["status"] == "COMPLETE" else "STOP",
+            "reason_code": reason, "grade": learner["grade"], "game_type": None,
+            "area": None, "area_id": None, "project_skill": None, "tier": None,
+            "fallback_level": None, "abstained": True, "abstention_reason": reason,
+            "history_count": status["total_valid_interactions"], "created_at": now_iso(),
+            "predicted_probability": None, "curriculum_eligible": False,
+            "assessment_status": status,
+            "decision_trace": {"eligible_candidates": [], "excluded_candidates": [],
+                               "decision_type": "COMPLETE" if status["status"] == "COMPLETE" else "STOP",
+                               "pathway": "ASSESSMENT_COMPLETE", "fallback_reason": reason}}}
 
     def _state(self, learner_id: str, grade: int, current_skill: str):
         history = self.db.history(learner_id)
@@ -73,38 +117,48 @@ class Component2Service:
         if active:
             return {"question_id":active["question_id"],"robot_task":json.loads(active["robot_task_json"]),"recommendation":json.loads(active["recommendation_payload"]),"resumed":True}
         learner = self.db.learner(session["learner_id"])
+        status = self.assessment_status(learner["learner_id"])
+        if status["status"] != "IN_PROGRESS":
+            self.db.set_session_status(session_id, "ENDED")
+            return self._terminal_task(learner, session_id, status, status["status"])
         base = self._state(learner["learner_id"], learner["grade"], "Counting / subitizing")
-        eligible, _ = generate_candidates(self.engine.catalog, base)
+        eligible, filtered = generate_candidates(self.engine.catalog, base)
         eligible_games = {c["game_type"] for c in eligible}
         if not eligible_games:
-            return {'question_id': None, 'robot_task': None, 'recommendation': {
-                'learner_id': learner['learner_id'], 'recommended_activity_id': None,
-                'recommendation_mode': 'HUMAN_REVIEW_REQUIRED', 'reason_code': 'NO_ELIGIBLE_CANDIDATE',
-                'grade': learner['grade'], 'game_type': None, 'area': None, 'area_id': None,
-                'project_skill': None, 'tier': None, 'fallback_level': 'HUMAN_SELECTION_REQUIRED',
-                'abstained': True, 'abstention_reason': 'NO_ELIGIBLE_CANDIDATE',
-                'history_count': base.prior_interaction_count, 'created_at': now_iso(),
-                'predicted_probability': None, 'curriculum_eligible': False}}
-        game, coverage_reason = choose_game(self.db.profiles(learner["learner_id"]), eligible_games, self.db.recent_game_history(learner["learner_id"]))
+            return self._terminal_task(learner, session_id, status, "NO_ELIGIBLE_CANDIDATE")
+        recent = self.db.recent_game_history(learner["learner_id"])
+        adaptive = choose_adaptive_focus(self.db.profiles(learner["learner_id"]), eligible, recent, base)
+        game = adaptive["game_type"]
+        if not game:
+            updated = self.assessment_status(learner["learner_id"])
+            if adaptive["decision_type"] == "COMPLETE":
+                updated["status"] = "COMPLETE"
+            self.db.set_session_status(session_id, "ENDED")
+            return self._terminal_task(learner, session_id, updated, adaptive["reason_code"])
         state = self._state(learner["learner_id"], learner["grade"], GAME_TO_SKILL[game])
-        raw = self.engine.recommend_next_activity(state)
+        candidates, blocked = generate_candidates(self.engine.catalog, state)
+        focused = [c for c in candidates if c["game_type"] == game]
+        coverage_blocked = [{**c, "filter_reason": "ADAPTIVE_FOCUS_OTHER_GAME"} for c in candidates if c["game_type"] != game]
+        adaptive["model_output"] = adaptive.get("model_output") or None
+        raw = self.engine.recommend_next_activity(state, eligible_candidates=focused,
+            filtered_candidates=blocked + coverage_blocked, adaptive_decision=adaptive)
         selected = self.lookup.get(raw["candidate_activity_id"] or "")
         if not selected or selected["game_type"] != game:
-            candidates, _ = generate_candidates(self.engine.catalog, state)
-            safe = sorted((c for c in candidates if c["game_type"] == game and c["tier"] == "Tier A"), key=lambda c:c["activity_id"])
-            if not safe: raise ValueError("No curriculum-safe activity for selected game")
-            selected = safe[0]
+            raise ValueError("Adaptive engine did not return a curriculum-safe focused activity")
         recommendation = {
-            "learner_id":learner["learner_id"], "recommended_activity_id":selected["activity_id"],
+            "learner_id":learner["learner_id"], "session_id": session_id, "recommended_activity_id":selected["activity_id"],
             "activity_name":selected["activity_name"], "game_type":game, "area":GAME_TO_AREA[game], "project_skill":selected["project_skill"],
-            "tier":selected["tier"], "recommendation_mode":"RULE_BASED_FALLBACK", "reason_code":coverage_reason,
-            "policy_transition_reason":raw["reason_code"], "fallback_level":raw["fallback_rule"], "abstained":True,
-            "abstention_reason":raw["abstention_reason"] or "LEARNED_RANKING_UNAVAILABLE", "predicted_probability":None,
-            "model_support_status":"separate_research_path", "history_count":raw["history_count"],
-            "policy_version":"C2_COVERAGE_PROGRESS_v2", "catalog_version":"c2_eight_game_catalog_v2",
+            "tier":selected["tier"], "recommendation_mode":raw["recommendation_mode"], "decision_type":raw["decision_type"], "reason_code":raw["reason_code"],
+            "policy_transition_reason":raw["reason_code"], "fallback_level":raw["fallback_rule"], "abstained":raw["abstained"],
+            "abstention_reason":raw["abstention_reason"], "predicted_probability":raw["predicted_probability"],
+            "model_support_status":raw["model_support_status"], "model_version": raw["model_version"],
+            "research_model_version": raw["research_model_version"], "model_provenance": raw["model_provenance"],
+            "history_count":raw["history_count"],
+            "policy_version":"C2_ADAPTIVE_ASSESSMENT_v1", "catalog_version":"c2_eight_game_catalog_v2",
             "grade": learner["grade"], "area_id": AREA_IDS[GAME_TO_AREA[game]],
             "curriculum_eligible": True, "curriculum": curriculum_details(game, selected['tier'], learner['grade']),
             "eligible_candidate_ids": raw['eligible_candidate_ids'], "filtered_candidates": raw['filtered_candidates'],
+            "decision_trace": raw["decision_trace"], "assessment_status": status,
             "created_at":now_iso(),
         }
         question = QuestionFactory.generate(game, selected["tier"], seed if seed is not None else str(uuid.uuid4()), grade=learner["grade"])
@@ -206,13 +260,18 @@ class Component2Service:
                              'excluded_valid_events': quality.get('VALID', 0)-len(history),
                              'response_time_used_for_adaptation': False},
             'area_mapping_version': 'C2_OPERATIONAL_AREAS_v2',
+            'assessment': self.assessment_status(learner_id),
+            'recommendation_history': self.db.recommendation_history(learner_id),
             'profile_policy': '100 * correct / valid first-attempt count; area accuracy pooled by attempts; unassessed is null; counts are not clinical confidence',
         }
 
     def export_c4(self, learner_id: str, session_id: str | None = None) -> dict:
         if session_id and self.db.session(session_id)['learner_id'] != learner_id:
             raise IntegrationError('SESSION_LEARNER_MISMATCH', 'export session belongs to another learner')
-        payload = {"schema_version":"C2_TO_C4_v2.0.0","scoring_policy_version":"C2_DESCRIPTIVE_INDEX_v2.0.0","exported_at":now_iso(),"learner_id":learner_id,"session_id":session_id,"source_component":"C2","profile":self.profile(learner_id),"semantics":{"null_index":"not assessed","confidence":"evidence counts only; no clinical cutoffs","not_a_diagnosis":True}}
+        profile = self.profile(learner_id)
+        if session_id:
+            profile['assessment']['session_status'] = self.db.session(session_id)['status']
+        payload = {"schema_version":"C2_TO_C4_v2.0.0","scoring_policy_version":"C2_DESCRIPTIVE_INDEX_v2.0.0","exported_at":now_iso(),"learner_id":learner_id,"session_id":session_id,"source_component":"C2","profile":profile,"semantics":{"null_index":"not assessed","confidence":"evidence counts only; no clinical cutoffs","not_a_diagnosis":True,"experimental_local_model":"LOCAL_BETA_BERNOULLI_v1 is unvalidated for real children"}}
         with self.db.connect() as db:
             db.execute("INSERT INTO profile_exports VALUES(?,?,?,?,?,?)", (str(uuid.uuid4()),learner_id,session_id,payload["exported_at"],payload["schema_version"],json.dumps(payload,sort_keys=True)))
         return payload

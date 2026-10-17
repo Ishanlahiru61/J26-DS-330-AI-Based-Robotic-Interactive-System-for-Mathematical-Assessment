@@ -19,10 +19,13 @@ def render(service) -> None:
         st.session_state.task = service.next_task(session_id)
     task = st.session_state.task
     if task['robot_task'] is None:
-        st.warning('No eligible activity. Researcher review is required.')
+        if task['recommendation']['recommendation_mode'] == 'ASSESSMENT_COMPLETE':
+            st.success('The grade-applicable minimum assessment evidence is complete.')
+        else:
+            st.warning('No activity is currently available. Researcher review is required.')
         st.json(task['recommendation'])
         return
-    st.caption(f"Grade {task['recommendation']['grade']} • {task['recommendation']['tier']} • {task['recommendation']['reason_code']}")
+    st.caption(f"Grade {task['recommendation']['grade']} • {task['recommendation']['tier']} • {task['recommendation']['decision_type']} • {task['recommendation']['reason_code']}")
     public = MockRobot().present(task["robot_task"])
     st.subheader(public["prompt"])
     if public["game_type"] == "PLACE_VALUE":

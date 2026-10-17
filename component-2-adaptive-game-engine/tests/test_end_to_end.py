@@ -50,21 +50,26 @@ class IntegratedWorkflowTests(unittest.TestCase):
                 self.service.db.upsert_learner(lid, lid, grade)
                 sid = self.service.start_or_resume(lid)['session_id']
                 seen = set()
-                for i in range(36):
+                for i in range(48):
                     task = self.service.next_task(sid, i)
+                    if task['question_id'] is None:
+                        self.assertEqual(task['recommendation']['recommendation_mode'],'ASSESSMENT_COMPLETE')
+                        break
                     rec = task['recommendation']
                     if i == 0:
                         self.assertEqual((rec['game_type'], rec['tier']), ('COUNTING','Tier A'))
                     self.assertTrue(grade_support(rec['game_type'], rec['tier'], grade))
                     self.assertTrue(rec['curriculum_eligible'])
-                    self.assertIsNone(rec['predicted_probability'])
                     self.assertEqual(rec['history_count'], i)
                     seen.add(rec['game_type'])
                     self.service.submit(sid, task['question_id'], self.expected(task))
+                else:
+                    self.fail('assessment did not terminate')
                 expected = set(GAME_ORDER) - ({'PLACE_VALUE','MULTIPLICATION','DIVISION'} if grade == 1 else {'MULTIPLICATION','DIVISION'} if grade == 2 else set())
                 self.assertEqual(seen, expected)
                 profile = self.service.profile(lid)
-                self.assertEqual(sum(s['attempts'] for s in profile['skills']), 36)
+                self.assertEqual(sum(s['attempts'] for s in profile['skills']), i)
+                self.assertEqual(profile['assessment']['status'],'COMPLETE')
                 self.assertTrue(all(a['coverage_status'] in {'COMPLETE','NOT_APPLICABLE'} for a in profile['areas']))
 
     def test_grade_one_addition_never_exceeds_six(self):
@@ -99,10 +104,12 @@ class IntegratedWorkflowTests(unittest.TestCase):
         self.assertIn('PREREQUISITE_REQUIRED',{x['filter_reason'] for x in blocked})
 
     def test_tier_b_requires_tier_a_evidence_and_recent_success(self):
-        self.answer(); self.answer(); self.answer()
+        self.answer(); self.answer()
         state=self.service._state('L',1,'Counting / subitizing')
-        # First two events are counting, then a newly eligible skill: not enough A evidence.
         self.assertFalse(tier_b_evidence(state,'Counting / subitizing'))
+        self.answer()
+        state=self.service._state('L',1,'Counting / subitizing')
+        self.assertTrue(tier_b_evidence(state,'Counting / subitizing'))
         from recommendation_engine.learner_state import make_learner_state
         base=dict(learner_id='T',current_grade=3,current_skill_context='Addition',
                   prior_skill_exposures={'Addition':10},prior_skill_correct={'Addition':10},
@@ -113,7 +120,10 @@ class IntegratedWorkflowTests(unittest.TestCase):
     def test_repeated_errors_do_not_starve_other_games(self):
         seen=set()
         for _ in range(40):
-            seen.add(self.answer(False)['recommendation']['game_type'])
+            task=self.service.next_task(self.sid)
+            if task['question_id'] is None: break
+            seen.add(task['recommendation']['game_type'])
+            self.service.submit(self.sid,task['question_id'],0)
         self.assertEqual(seen,{'COUNTING','COMPARISON','ORDERING','ADDITION','SUBTRACTION'})
         profiles=[{'game_type':g,'valid_interactions':5,'last_assessed_at':'2020'} for g in GAME_ORDER]
         recent=[{'game_type':'COUNTING','correct':0}]*12
@@ -123,7 +133,7 @@ class IntegratedWorkflowTests(unittest.TestCase):
         self.service.engine.catalog=[]
         task=self.service.next_task(self.sid)
         self.assertIsNone(task['robot_task'])
-        self.assertEqual(task['recommendation']['recommendation_mode'],'HUMAN_REVIEW_REQUIRED')
+        self.assertEqual(task['recommendation']['recommendation_mode'],'NO_ELIGIBLE_ACTIVITY')
 
     def test_external_c1_and_ui_share_history_writer(self):
         task=self.service.next_task(self.sid)
@@ -167,7 +177,7 @@ class IntegratedWorkflowTests(unittest.TestCase):
         self.assertEqual(self.service.db.history('L'),[])
 
     def test_profile_counts_weighted_areas_tiers_and_schema(self):
-        for i in range(16):
+        for i in range(12):
             self.answer(correct=i%3!=0)
         p=self.service.profile('L')
         history=self.service.db.history('L')

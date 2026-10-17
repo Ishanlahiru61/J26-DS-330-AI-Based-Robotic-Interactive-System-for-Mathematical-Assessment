@@ -53,7 +53,8 @@ class BackendTests(unittest.TestCase):
         task = self.service.next_task(session["session_id"], 3)
         self.assertEqual(task["recommendation"]["game_type"], "COMPARISON")
         self.assertEqual(task["recommendation"]["tier"], "Tier A")
-        self.assertEqual(task["recommendation"]["reason_code"], "REPEATED_ERROR_REINFORCEMENT")
+        self.assertEqual(task["recommendation"]["reason_code"], "MODEL_SUPPORTED_FOUNDATION_REINFORCEMENT")
+        self.assertEqual(task["recommendation"]["decision_type"], "REINFORCE")
 
     def test_active_question_is_resumed_not_duplicated(self):
         session = self.service.start_or_resume("DEMO_001")
@@ -140,10 +141,15 @@ class BackendTests(unittest.TestCase):
     def test_coverage_reaches_all_eight_games_without_bypassing_prerequisites(self):
         self.service.db.upsert_learner("COVERAGE", "Coverage learner", 3, True)
         session = self.service.start_or_resume("COVERAGE"); seen = set()
-        for index in range(32):
+        for index in range(48):
             task = self.service.next_task(session["session_id"], index)
+            if task["question_id"] is None:
+                self.assertEqual(task["recommendation"]["recommendation_mode"], "ASSESSMENT_COMPLETE")
+                break
             seen.add(task["recommendation"]["game_type"])
             self.service.submit(session["session_id"], task["question_id"], self._expected(task["question_id"]))
+        else:
+            self.fail("assessment did not stop")
         self.assertEqual(seen, set(GAME_ORDER))
 
     def test_catalog_has_two_tiers_and_requested_operational_area_mapping(self):

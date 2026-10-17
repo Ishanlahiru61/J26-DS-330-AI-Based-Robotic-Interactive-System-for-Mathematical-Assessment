@@ -30,17 +30,25 @@ def main():
                 service.db.upsert_learner(lid,lid,grade,True)
                 sid=service.start_or_resume(lid)['session_id']
                 trace=[]
-                for index in range(36):
+                terminal=None
+                for index in range(48):
                     task=service.next_task(sid,index)
+                    if task['question_id'] is None:
+                        terminal=task['recommendation']
+                        break
                     with service.db.connect() as db:
                         answer=db.execute('SELECT expected_answer FROM question_instances WHERE question_id=?',(task['question_id'],)).fetchone()[0]
                     response=service.submit(sid,task['question_id'],answer if index%5 else 0)
                     trace.append({'recommendation':task['recommendation'],'question':task['robot_task'],'response':response})
+                if terminal is None or terminal['recommendation_mode'] != 'ASSESSMENT_COMPLETE':
+                    raise RuntimeError(f'Grade {grade} demonstration did not complete')
                 profile=service.export_c4(lid,sid)
                 (OUTPUT/f'grade_{grade}_recommendation.json').write_text(json.dumps(trace[-1]['recommendation'],indent=2),encoding='utf-8')
                 (OUTPUT/f'grade_{grade}_c4_profile.json').write_text(json.dumps(profile,indent=2),encoding='utf-8')
                 (OUTPUT/f'grade_{grade}_workflow.json').write_text(json.dumps(trace,indent=2),encoding='utf-8')
-                demos.append({'grade':grade,'responses':36,'games_seen':sorted({r['recommendation']['game_type'] for r in trace}),
+                demos.append({'grade':grade,'responses':len(trace),'terminal_mode':terminal['recommendation_mode'],
+                              'experimental_model_decisions':sum(r['recommendation']['recommendation_mode']=='EXPERIMENTAL_MODEL_ASSISTED' for r in trace),
+                              'games_seen':sorted({r['recommendation']['game_type'] for r in trace}),
                               'areas':[{k:a[k] for k in ('area_id','attempts','coverage_status')} for a in profile['profile']['areas']]})
             report['demonstrations']=demos
     (OUTPUT/'verification_summary.json').write_text(json.dumps(report,indent=2),encoding='utf-8')

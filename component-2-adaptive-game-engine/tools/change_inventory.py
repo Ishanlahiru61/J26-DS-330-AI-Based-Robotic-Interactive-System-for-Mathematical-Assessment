@@ -25,10 +25,6 @@ else:
     changed = {'new': sorted(new.keys()-old.keys()),
                'modified': sorted(k for k in old.keys() & new.keys() if old[k] != new[k]),
                'removed': sorted(old.keys()-new.keys())}
-    # This helper was created to capture the baseline, before any implementation edits.
-    helper = 'tools/change_inventory.py'
-    changed['new'] = sorted(set(changed['new']) | {helper})
-    changed['modified'] = [name for name in changed['modified'] if name != helper]
     changed['generated_evidence'] = sorted(str(p.relative_to(ROOT)).replace('\\', '/')
                                            for p in OUTPUT.iterdir() if p.is_file())
     (OUTPUT / 'changed_files.json').write_text(json.dumps(changed, indent=2), encoding='utf-8')

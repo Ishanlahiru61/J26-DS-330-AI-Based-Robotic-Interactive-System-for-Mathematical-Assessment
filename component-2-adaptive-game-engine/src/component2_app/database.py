@@ -1,14 +1,17 @@
 from __future__ import annotations
+
 import json
 import sqlite3
 import uuid
 from contextlib import contextmanager
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
+
 from integration_ready.errors import IntegrationError
 from integration_ready.event_store import parse_timestamp, validate_event
 from .coverage import GAME_ORDER, GAME_TO_AREA
 from .paths import DEFAULT_DB_PATH, MIGRATION_PATH
+
 
 def now_iso() -> str:
     return datetime.now(timezone.utc).isoformat()
@@ -117,6 +120,30 @@ class Database:
                            'last_assessed_at': rows[-1]['timestamp'] if n else None})
         return result
 
+    def recommendation_history(self, learner_id: str, session_id: str | None = None) -> list[dict]:
+        """Return stored public decision metadata; answer keys are never selected."""
+        query = "SELECT recommendation_id,session_id,activity_id,game_type,area,tier,mode,reason_code,fallback_rule,policy_version,created_at,payload_json FROM recommendations WHERE learner_id=?"
+        params: list[str] = [learner_id]
+        if session_id is not None:
+            query += " AND session_id=?"
+            params.append(session_id)
+        query += " ORDER BY created_at,recommendation_id"
+        with self.connect() as db:
+            rows = db.execute(query, params).fetchall()
+        result = []
+        for row in rows:
+            payload = json.loads(row["payload_json"])
+            result.append({
+                "recommendation_id": row["recommendation_id"], "session_id": row["session_id"],
+                "activity_id": row["activity_id"], "game_type": row["game_type"],
+                "area": row["area"], "tier": row["tier"], "mode": row["mode"],
+                "decision_type": payload.get("decision_type"), "reason_code": row["reason_code"],
+                "fallback_reason": payload.get("abstention_reason"),
+                "predicted_probability": payload.get("predicted_probability"),
+                "model_version": payload.get("model_version"), "created_at": row["created_at"],
+            })
+        return result
+
     def active_question(self, session_id: str) -> dict | None:
         with self.connect() as db:
             row = db.execute("SELECT q.*,r.payload_json AS recommendation_payload FROM question_instances q JOIN recommendations r USING(recommendation_id) WHERE q.session_id=? AND q.status='ACTIVE'", (session_id,)).fetchone()
@@ -200,10 +227,9 @@ class Database:
         self.reset_synthetic()
         for lid, name, grade in (("DEMO_001","Cold start",3),("DEMO_002","Strong history",3),("DEMO_003","Needs reinforcement",3),("DEMO_004","Uneven profile",4)):
             self.upsert_learner(lid, name, grade, True)
-        all_correct = [(game, 1) for game in GAME_ORDER for _ in range(3)]
         patterns = {
-            "DEMO_002": all_correct,
-            "DEMO_003": all_correct + [("COMPARISON",0)] * 3 + [('COUNTING',1)],
+            "DEMO_002": [("COUNTING", 1)] * 3,
+            "DEMO_003": [("COUNTING", 1)] * 3 + [("COMPARISON", 0)] * 3,
             "DEMO_004": [(game, int(game in {"COUNTING","PLACE_VALUE","ADDITION","MULTIPLICATION"})) for game in GAME_ORDER for _ in range(3)],
         }
         base = datetime.now(timezone.utc) - timedelta(days=1)
