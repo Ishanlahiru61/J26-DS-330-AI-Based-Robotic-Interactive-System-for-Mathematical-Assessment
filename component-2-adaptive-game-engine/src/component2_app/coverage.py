@@ -6,7 +6,6 @@ AREA_IDS = {'Number sense': 'A1', 'Number relationships': 'A2',
             'Arithmetic calculation': 'A3', 'Multiplicative reasoning': 'A4'}
 GAME_TO_SKILL = {"COUNTING":"Counting / subitizing","COMPARISON":"Quantity comparison","ORDERING":"Ordering / sequencing","PLACE_VALUE":"Place value / building","ADDITION":"Addition","SUBTRACTION":"Subtraction","MULTIPLICATION":"Multiplication / grouping","DIVISION":"Division / sharing"}
 
-
 def choose_game(profiles: list[dict], eligible_games: set[str], recent: list[dict]) -> tuple[str, str]:
     """Coverage before personalization; eligibility is never bypassed."""
     by_game = {p["game_type"]: p for p in profiles}

@@ -1,15 +1,12 @@
 from __future__ import annotations
-
 from datetime import datetime, timezone
 from pathlib import Path
-
 from .abstention import abstention_decision
 from .candidate_catalog import load_catalog
 from .curriculum_filter import generate_candidates
 from .fallback import select_fallback
 from .feature_adapter import candidate_model_support
 from .progression_rules import transition_reason
-
 
 VERSIONS = {
     "model_version": "H2_GB_RT_OFF_v1",
@@ -19,7 +16,6 @@ VERSIONS = {
     "activity_catalog_version": "c2_eight_game_catalog_v2",
     "recommendation_policy_version": "C2_COVERAGE_PROGRESS_v2",
 }
-
 
 class RecommendationEngine:
     def __init__(self, catalog_path: str | Path):
