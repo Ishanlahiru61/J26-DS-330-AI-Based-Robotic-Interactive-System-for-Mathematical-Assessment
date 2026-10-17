@@ -1,5 +1,6 @@
-from __future__ import annotations
+#Improve chronological history handling / validation
 
+from __future__ import annotations
 from dataclasses import dataclass, field, asdict
 from typing import Any
 

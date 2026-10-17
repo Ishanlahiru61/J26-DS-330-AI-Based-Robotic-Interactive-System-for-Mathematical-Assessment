@@ -1,17 +1,14 @@
 from __future__ import annotations
-
 import json
 import sqlite3
 import uuid
 from contextlib import contextmanager
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-
 from integration_ready.errors import IntegrationError
 from integration_ready.event_store import parse_timestamp, validate_event
 from .coverage import GAME_ORDER, GAME_TO_AREA
 from .paths import DEFAULT_DB_PATH, MIGRATION_PATH
-
 
 def now_iso() -> str:
     return datetime.now(timezone.utc).isoformat()
