@@ -1,5 +1,7 @@
 # Adaptive ML feasibility audit
 
+> Historical 16 October audit. Superseded on 17 October 2026 by `TRAINED_MODEL_DEPLOYMENT_AUDIT.md`, which audits all eight models and documents the implemented transferable trained predictor. The Beta-Bernoulli-only conclusion below is retained as provenance, not the current architecture.
+
 ## Baseline inspected
 
 The authoritative baseline was extracted from component-2-adaptive-game-engine-github-16-oct-11PM.zip into a new refinement workspace. The ZIP already contained SQLite history, Grade 1–5 curriculum filtering, eight games/two tiers, coverage-first selection, C1/C4 contracts, a frozen XGBoost scorer, research replay and tests. Its live service always emitted rule fallback with null probability. The archived streamlit_app.py was zero bytes, explaining the baseline UI failures despite a stale verification report claiming 60 passes.

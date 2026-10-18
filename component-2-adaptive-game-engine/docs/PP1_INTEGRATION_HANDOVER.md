@@ -1,6 +1,6 @@
 # Component 2 PP1 integration handover
 
-> Superseded for the 20 October adaptive-ML refinement by `ADAPTIVE_ML_FEASIBILITY_AUDIT.md`, `ADAPTIVE_ML_GITHUB_TRANSFER.md`, and `ADAPTIVE_ML_PP1_EXPLANATION.md`. Historical commands/evidence below describe the earlier rule-fallback build.
+> Historical handover. Superseded on 17 October 2026 by `TRAINED_MODEL_DEPLOYMENT_AUDIT.md`, `TRAINED_ML_GITHUB_TRANSFER.md`, and `TRAINED_ML_INTEGRATION_CHANGE_LOG.md`. Historical commands/evidence below describe the earlier rule/Beta-fallback build.
 
 ## Scope and implementation
 

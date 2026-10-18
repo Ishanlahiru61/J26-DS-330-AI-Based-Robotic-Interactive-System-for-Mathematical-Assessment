@@ -51,8 +51,8 @@ class LiveAdaptiveAssessmentTests(unittest.TestCase):
             self._answer(strong, task, True)
         self.assertEqual(strong_tasks[3]["recommendation"]["decision_type"], "ADVANCE")
         self.assertEqual(strong_tasks[3]["recommendation"]["tier"], "Tier B")
-        self.assertEqual(strong_tasks[3]["recommendation"]["recommendation_mode"], "EXPERIMENTAL_MODEL_ASSISTED")
-        self.assertEqual(strong_tasks[3]["recommendation"]["model_version"], "LOCAL_BETA_BERNOULLI_v1")
+        self.assertEqual(strong_tasks[3]["recommendation"]["recommendation_mode"], "TRAINED_ML_ASSISTED")
+        self.assertEqual(strong_tasks[3]["recommendation"]["model_version"], "TRANSFER_H2_GB_RT_OFF_v1")
         self.assertNotEqual(strong_tasks[3]["recommendation"]["model_version"], "H2_GB_RT_OFF_v1")
 
         weak = self._new("WEAK")
@@ -85,7 +85,7 @@ class LiveAdaptiveAssessmentTests(unittest.TestCase):
                 self.assertTrue(all(s["evidence_status"] == "SUFFICIENT" for s in summary["assessment"]["skills"]))
                 self.assertEqual(len(summary["recommendation_history"]), len(decisions))
                 self.assertIn("SWITCH", {d["decision_type"] for d in decisions})
-                self.assertTrue(any(d["recommendation_mode"] == "EXPERIMENTAL_MODEL_ASSISTED" for d in decisions))
+                self.assertTrue(any(d["recommendation_mode"] == "TRAINED_ML_ASSISTED" for d in decisions))
                 self.assertIn("ADVANCE" if correct else "REINFORCE", {d["decision_type"] for d in decisions})
 
     def test_sessions_and_histories_remain_isolated(self):

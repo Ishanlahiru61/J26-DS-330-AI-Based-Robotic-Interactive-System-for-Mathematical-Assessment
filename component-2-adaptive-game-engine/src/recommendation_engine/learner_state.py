@@ -1,6 +1,5 @@
-#Improve chronological history handling / validation
-
 from __future__ import annotations
+
 from dataclasses import dataclass, field, asdict
 from typing import Any
 
@@ -11,6 +10,7 @@ class LearnerState:
     current_grade: int
     allowed_grade_band: tuple[int, int]
     prior_interaction_count: int = 0
+    prior_correct_count: int = 0
     current_skill_context: str | None = None
     recent_outcomes: tuple[int, ...] = ()
     recent_skill_outcomes: tuple[int, ...] = ()
@@ -29,6 +29,7 @@ class LearnerState:
     timestamp_valid: bool = True
     validation_warnings: tuple[str, ...] = ()
     ignored_event_count: int = 0
+    interactions_since_last_correct: int | None = None
 
     def to_dict(self) -> dict[str, Any]:
         value = asdict(self)

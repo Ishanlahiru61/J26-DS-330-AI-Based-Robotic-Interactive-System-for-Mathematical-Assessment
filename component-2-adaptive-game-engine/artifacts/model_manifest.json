@@ -1,12 +1,38 @@
 {
-  "manifest_version":"1.0.0",
-  "model_identity":"H2_GB_RT_OFF_v1",
-  "purpose":"First-attempt correctness probability for supported ASSISTments observations only",
-  "local_robot_ranking_authorized":false,
-  "external_workspace_relative_artifacts":[
-    {"path":"03_Experimental_Modeling/models/gradient_boosting/H2_GB_RT_OFF_v1.json","bytes":2165039,"sha256":"d14c7051e3babb04ff604c0d7363abb8cdac9429015ef3393d2526daf819b26e"},
-    {"path":"03_Experimental_Modeling/models/preprocessors/step3_h2_rt_on_preprocessor_v1.joblib","bytes":209120,"sha256":"ccca56b31d896770aa2a5f7ffa99662c7b05c04443c7f3c5acd5415879a94f8d","portability_note":"Requires __main__.RTStats compatibility shim"},
-    {"path":"03_Experimental_Modeling/models/calibration/H2_GB_RT_OFF_platt_v1.joblib","bytes":567,"sha256":"bfd8998aac872445b10faab07310e2d01117578f25ee879e6afc9f42f5f635ca"}
+  "manifest_version": "2.0.0",
+  "model_identity": "H2_GB_RT_OFF_v1",
+  "external_workspace_relative_artifacts": [
+    {"path": "03_Experimental_Modeling/models/gradient_boosting/H2_GB_RT_OFF_v1.json", "bytes": 2165039, "sha256": "d14c7051e3babb04ff604c0d7363abb8cdac9429015ef3393d2526daf819b26e"},
+    {"path": "03_Experimental_Modeling/models/preprocessors/step3_h2_rt_on_preprocessor_v1.joblib", "bytes": 209120, "sha256": "ccca56b31d896770aa2a5f7ffa99662c7b05c04443c7f3c5acd5415879a94f8d"},
+    {"path": "03_Experimental_Modeling/models/calibration/H2_GB_RT_OFF_platt_v1.joblib", "bytes": 567, "sha256": "bfd8998aac872445b10faab07310e2d01117578f25ee879e6afc9f42f5f635ca"}
   ],
-  "verified_example":{"problem_log_id":139863777,"split":"test","y_true":0,"fresh_probability":0.6981496423483683,"saved_probability":0.6981496214866638,"absolute_difference":2.086170447945789e-8,"tolerance":2e-6,"status":"PASS"}
+  "research_benchmark": {
+    "model_identity": "H2_GB_RT_OFF_v1",
+    "purpose": "First-attempt correctness probability for supported ASSISTments observations only",
+    "local_robot_ranking_authorized": false,
+    "reason": "Every frozen configuration requires ASSISTments candidate/platform context that is not validly available for local cube games.",
+    "external_workspace_relative_artifacts": [
+      {"path": "03_Experimental_Modeling/models/gradient_boosting/H2_GB_RT_OFF_v1.json", "bytes": 2165039, "sha256": "d14c7051e3babb04ff604c0d7363abb8cdac9429015ef3393d2526daf819b26e"},
+      {"path": "03_Experimental_Modeling/models/preprocessors/step3_h2_rt_on_preprocessor_v1.joblib", "bytes": 209120, "sha256": "ccca56b31d896770aa2a5f7ffa99662c7b05c04443c7f3c5acd5415879a94f8d"},
+      {"path": "03_Experimental_Modeling/models/calibration/H2_GB_RT_OFF_platt_v1.joblib", "bytes": 567, "sha256": "bfd8998aac872445b10faab07310e2d01117578f25ee879e6afc9f42f5f635ca"}
+    ]
+  },
+  "live_deployment_model": {
+    "model_identity": "TRANSFER_H2_GB_RT_OFF_v1",
+    "purpose": "Primary live estimate using only strictly-prior transferable learner and candidate-skill history",
+    "local_robot_ranking_authorized": true,
+    "domain_validation": "held-out ASSISTments only; no local-child validation",
+    "calibration": "native probabilities; attempted Platt calibration was rejected by the validation rule",
+    "files": [
+      {"path": "artifacts/transferable/model.json", "bytes": 1233236, "sha256": "dc31acb1307568b9f7886d98cf163650ba2eb86ed59c938f28af183cc93403f2"},
+      {"path": "artifacts/transferable/metadata.json", "bytes": 2053, "sha256": "c55f1049eb3e27dfffca169ef0ff6cede5ea0565d1c45294b2442fa54d3850a3"},
+      {"path": "artifacts/transferable/evaluation.json", "bytes": 1062, "sha256": "2bc6a95291a2ec1a6984524a8ef36a508382dc4832f3d7640d739fd62a6a865b"},
+      {"path": "artifacts/transferable/manifest.json"}
+    ]
+  },
+  "fallback": {
+    "model_identity": "LOCAL_BETA_BERNOULLI_v1",
+    "trained_supervised_model": false,
+    "role": "Per-skill local-history baseline and safe fallback when trained inference is unavailable or invalid; abstains below two same-skill observations."
+  }
 }

@@ -1,0 +1,21 @@
+{
+  "model_version": "TRANSFER_H2_GB_RT_OFF_v1",
+  "files": {
+    "model.json": {
+      "bytes": 1233236,
+      "sha256": "dc31acb1307568b9f7886d98cf163650ba2eb86ed59c938f28af183cc93403f2"
+    },
+    "calibrator.joblib": {
+      "bytes": 831,
+      "sha256": "b4d889b0cd99b572e0ed7ba25fde1cc05e8522994f69a15d2fd6c5608032a003"
+    },
+    "metadata.json": {
+      "bytes": 2053,
+      "sha256": "c55f1049eb3e27dfffca169ef0ff6cede5ea0565d1c45294b2442fa54d3850a3"
+    },
+    "evaluation.json": {
+      "bytes": 1062,
+      "sha256": "2bc6a95291a2ec1a6984524a8ef36a508382dc4832f3d7640d739fd62a6a865b"
+    }
+  }
+}

@@ -98,7 +98,13 @@ class RecommendationEngine:
         model_output = decision.get("model_output") or {}
         probability = model_output.get("success_probability")
         model_used = probability is not None
-        mode = "EXPERIMENTAL_MODEL_ASSISTED" if model_used else ("RULE_FALLBACK" if selected else "NO_ELIGIBLE_ACTIVITY")
+        source = model_output.get("source")
+        if model_used and source == "TRAINED_ML":
+            mode = "TRAINED_ML_ASSISTED"
+        elif model_used:
+            mode = "BETA_BERNOULLI_FALLBACK"
+        else:
+            mode = "RULE_FALLBACK" if selected else "NO_ELIGIBLE_ACTIVITY"
         fallback_reason = None if model_used else (model_output.get("abstention_reason") or "LOCAL_MODEL_EVIDENCE_UNAVAILABLE")
         candidate_trace = [{
             "activity_id": c["activity_id"], "game_type": c["game_type"], "tier": c["tier"],
@@ -113,14 +119,14 @@ class RecommendationEngine:
             "project_skill": selected["project_skill"] if selected else None,
             "tier": selected["tier"] if selected else None,
             "predicted_probability": probability,
-            "model_support_status": "experimental_local_state" if model_used else "abstained",
+            "model_support_status": ("transferable_features_valid" if source == "TRAINED_ML" else "fallback_local_state") if model_used else "abstained",
             "model_provenance": model_output if model_output else None,
             "curriculum_eligible": bool(selected),
             "recommendation_mode": mode,
             "decision_type": action,
             "reason_code": decision["reason_code"],
-            "fallback_used": bool(selected and not model_used),
-            "fallback_rule": action if selected and not model_used else None,
+            "fallback_used": bool(selected and source != "TRAINED_ML"),
+            "fallback_rule": (source or action) if selected and source != "TRAINED_ML" else None,
             "abstained": not model_used,
             "abstention_reason": fallback_reason,
             "previous_activity_id": state.last_activity,

@@ -13,6 +13,7 @@ from recommendation_engine.recommender import RecommendationEngine
 from .coverage import GAME_ORDER, GAME_TO_AREA, GAME_TO_SKILL, AREA_IDS, choose_adaptive_focus
 from recommendation_engine.curriculum import grade_support, curriculum_details
 from recommendation_engine.local_state_model import load_adaptive_settings
+from recommendation_engine.predictor import PredictorRouter
 from integration_ready.errors import IntegrationError
 from integration_ready.event_store import validate_event
 from .database import Database, now_iso
@@ -24,6 +25,7 @@ class Component2Service:
     def __init__(self, db_path: str | Path = DEFAULT_DB_PATH):
         self.db = Database(db_path)
         self.engine = RecommendationEngine(CATALOG_PATH)
+        self.predictor = PredictorRouter()
         with CATALOG_PATH.open(encoding="utf-8-sig", newline="") as handle:
             self.catalog = list(csv.DictReader(handle))
         self.lookup = {row["activity_id"]: row for row in self.catalog}
@@ -99,7 +101,8 @@ class Component2Service:
             if event["correct"]: successes.append(event["activity_id"])
         return make_learner_state(
             learner_id=learner_id, current_grade=grade, current_skill_context=current_skill,
-            prior_interaction_count=len(history), recent_outcomes=tuple(e["correct"] for e in history[-3:]),
+            prior_interaction_count=len(history), prior_correct_count=sum(e["correct"] for e in history),
+            recent_outcomes=tuple(e["correct"] for e in history[-5:]),
             recent_skill_outcomes=tuple(by_skill.get(current_skill, [])[-3:]),
             recent_skill_outcomes_by_skill={k:tuple(v[-3:]) for k,v in by_skill.items()},
             prior_skill_exposures=dict(exposure), prior_skill_correct=dict(correct),
@@ -108,6 +111,10 @@ class Component2Service:
             successfully_attempted_activities=tuple(dict.fromkeys(successes)),
             last_activity=history[-1]["activity_id"] if history else None,
             last_tier=self.lookup[history[-1]["activity_id"]]["tier"] if history else None,
+            interactions_since_last_correct=(
+                len(history) - 1 - max(i for i, e in enumerate(history) if e["correct"])
+                if any(e["correct"] for e in history) else None
+            ),
         )
 
     def next_task(self, session_id: str, seed: int | str | None = None) -> dict:
@@ -127,7 +134,8 @@ class Component2Service:
         if not eligible_games:
             return self._terminal_task(learner, session_id, status, "NO_ELIGIBLE_CANDIDATE")
         recent = self.db.recent_game_history(learner["learner_id"])
-        adaptive = choose_adaptive_focus(self.db.profiles(learner["learner_id"]), eligible, recent, base)
+        predictions = self.predictor.predict_many(base, [c["project_skill"] for c in eligible])
+        adaptive = choose_adaptive_focus(self.db.profiles(learner["learner_id"]), eligible, recent, base, predictions)
         game = adaptive["game_type"]
         if not game:
             updated = self.assessment_status(learner["learner_id"])
@@ -271,7 +279,7 @@ class Component2Service:
         profile = self.profile(learner_id)
         if session_id:
             profile['assessment']['session_status'] = self.db.session(session_id)['status']
-        payload = {"schema_version":"C2_TO_C4_v2.0.0","scoring_policy_version":"C2_DESCRIPTIVE_INDEX_v2.0.0","exported_at":now_iso(),"learner_id":learner_id,"session_id":session_id,"source_component":"C2","profile":profile,"semantics":{"null_index":"not assessed","confidence":"evidence counts only; no clinical cutoffs","not_a_diagnosis":True,"experimental_local_model":"LOCAL_BETA_BERNOULLI_v1 is unvalidated for real children"}}
+        payload = {"schema_version":"C2_TO_C4_v2.0.0","scoring_policy_version":"C2_DESCRIPTIVE_INDEX_v2.0.0","exported_at":now_iso(),"learner_id":learner_id,"session_id":session_id,"source_component":"C2","profile":profile,"semantics":{"null_index":"not assessed","confidence":"evidence counts only; no clinical cutoffs","not_a_diagnosis":True,"trained_model":"TRANSFER_H2_GB_RT_OFF_v1 has held-out ASSISTments evidence only and is not validated for local children","fallback":"LOCAL_BETA_BERNOULLI_v1 is a local-history baseline, not a separately trained supervised model"}}
         with self.db.connect() as db:
             db.execute("INSERT INTO profile_exports VALUES(?,?,?,?,?,?)", (str(uuid.uuid4()),learner_id,session_id,payload["exported_at"],payload["schema_version"],json.dumps(payload,sort_keys=True)))
         return payload

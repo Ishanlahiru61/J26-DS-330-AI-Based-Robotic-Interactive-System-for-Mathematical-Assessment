@@ -49,9 +49,15 @@ def _consecutive_game_count(recent: list[dict], game: str) -> int:
     return count
 
 
-def choose_adaptive_focus(profiles: list[dict], eligible_candidates: list[dict], recent: list[dict], state) -> dict:
+def choose_adaptive_focus(profiles: list[dict], eligible_candidates: list[dict], recent: list[dict], state,
+                          predictions: dict[str, dict] | None = None) -> dict:
     """Choose continue/advance/reinforce/switch without bypassing hard eligibility."""
     settings = load_adaptive_settings()
+    predictions = predictions or {}
+
+    def prediction_for(game: str) -> dict:
+        skill = GAME_TO_SKILL[game]
+        return predictions.get(skill) or estimate_skill_success(state, skill, settings)
     games = [g for g in GAME_ORDER if any(c["game_type"] == g for c in eligible_candidates)]
     if not games:
         return {"game_type": None, "decision_type": "NO_ELIGIBLE_ACTIVITY", "reason_code": "NO_ELIGIBLE_CANDIDATE", "model_output": None}
@@ -63,7 +69,7 @@ def choose_adaptive_focus(profiles: list[dict], eligible_candidates: list[dict],
     last_game = recent[-1]["game_type"] if recent and recent[-1]["game_type"] in games else None
     if last_game:
         skill = GAME_TO_SKILL[last_game]
-        estimate = estimate_skill_success(state, skill, settings)
+        estimate = prediction_for(last_game)
         attempts = int(by_game[last_game]["valid_interactions"])
         consecutive = _consecutive_game_count(recent, last_game)
         probability = estimate["success_probability"]
@@ -87,6 +93,27 @@ def choose_adaptive_focus(profiles: list[dict], eligible_candidates: list[dict],
         area_last = {area: -1 for area in set(GAME_TO_AREA.values())}
         for index, event in enumerate(recent):
             area_last[GAME_TO_AREA[event["game_type"]]] = index
-        selected = min(tied, key=lambda g: (area_last[GAME_TO_AREA[g]], GAME_ORDER.index(g)))
-        return {"game_type": selected, "decision_type": "SWITCH" if last_game else "START", "reason_code": "COVERAGE_UNDERASSESSED", "model_output": estimate_skill_success(state, GAME_TO_SKILL[last_game], settings) if last_game else None}
-    return {"game_type": None, "decision_type": "COMPLETE", "reason_code": "MINIMUM_GRADE_APPLICABLE_COVERAGE_REACHED", "model_output": estimate_skill_success(state, GAME_TO_SKILL[last_game], settings) if last_game else None}
+        # Coverage defines the admissible tied set.  Within it, valid model
+        # evidence chooses the activity nearest the explicit 0.65 challenge
+        # target; deterministic curriculum ordering breaks exact ties.
+        valid = {g: prediction_for(g) for g in tied}
+        scored = [g for g in tied if valid[g].get("success_probability") is not None]
+        if scored:
+            selected = min(scored, key=lambda g: (
+                abs(float(valid[g]["success_probability"]) - 0.65),
+                area_last[GAME_TO_AREA[g]], GAME_ORDER.index(g)))
+            reason = "MODEL_RANKED_COVERAGE_CANDIDATE"
+        else:
+            selected = min(tied, key=lambda g: (area_last[GAME_TO_AREA[g]], GAME_ORDER.index(g)))
+            reason = "COVERAGE_UNDERASSESSED"
+        output = dict(valid[selected])
+        output["candidate_skill_predictions"] = {
+            GAME_TO_SKILL[g]: {
+                "success_probability": valid[g].get("success_probability"),
+                "source": valid[g].get("source", "LOCAL_BETA_BERNOULLI"),
+                "valid": valid[g].get("valid", valid[g].get("success_probability") is not None),
+            } for g in tied
+        }
+        return {"game_type": selected, "decision_type": "SWITCH" if last_game else "START",
+                "reason_code": reason, "model_output": output}
+    return {"game_type": None, "decision_type": "COMPLETE", "reason_code": "MINIMUM_GRADE_APPLICABLE_COVERAGE_REACHED", "model_output": prediction_for(last_game) if last_game else None}

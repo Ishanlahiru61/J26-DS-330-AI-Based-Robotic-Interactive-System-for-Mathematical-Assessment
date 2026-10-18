@@ -46,7 +46,7 @@ def run_pattern(label: str, always_correct: bool) -> dict:
 def run_demo() -> dict:
     return {"stronger_learner": run_pattern("STRONGER", True),
             "reinforcement_learner": run_pattern("REINFORCEMENT", False),
-            "claim_boundary": "The live local model is an experimental per-child Beta-Bernoulli state estimator, not the frozen ASSISTments XGBoost model and not validated for real children."}
+            "claim_boundary": "The live primary model is TRANSFER_H2_GB_RT_OFF_v1, trained on transferable strict-prior ASSISTments features; Beta-Bernoulli is fallback. Neither is validated for real local children."}
 
 
 def main() -> int:
@@ -75,4 +75,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
