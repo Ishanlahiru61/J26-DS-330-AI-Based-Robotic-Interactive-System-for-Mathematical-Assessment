@@ -1,4 +1,5 @@
 # Recommendation infrastructure
 
-Adapters combine predicted success with curriculum, age, and task constraints to
+Policy code combines model/fallback evidence with Grade 1–5 curriculum,
+prerequisite, coverage, question-budget, and physical-task constraints to
 produce an explainable recommendation.

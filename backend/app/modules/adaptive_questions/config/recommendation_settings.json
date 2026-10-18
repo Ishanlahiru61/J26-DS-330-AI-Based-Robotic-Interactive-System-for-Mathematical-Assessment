@@ -1,0 +1,13 @@
+{
+  "policy_version": "STEP4_POLICY_v1.0.0",
+  "curriculum_grade_min": 1,
+  "curriculum_grade_max": 5,
+  "full_model_min_prior_interactions": 11,
+  "tier_b_min_exposures": 3,
+  "tier_b_min_accumulated_correct_rate": 0.75,
+  "tier_b_recent_window": 3,
+  "tier_b_min_recent_correct": 2,
+  "repetition_cooldown_activities": 1,
+  "target_success_bands_for_sensitivity_only": [[0.55, 0.75], [0.60, 0.80], [0.65, 0.85]],
+  "target_success_band_status": "design heuristic only; disabled until local candidate adapter validation"
+}

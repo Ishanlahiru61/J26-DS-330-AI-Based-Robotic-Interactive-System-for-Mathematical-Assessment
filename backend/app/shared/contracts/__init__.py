@@ -7,6 +7,7 @@ from .schemas import (
     CubeAssessmentResult,
     ObservationStatus,
     QuestionRecommendation,
+    RecommendationDecisionStatus,
     ScreeningProfile,
     ScreeningRiskLevel,
 )
@@ -18,6 +19,7 @@ __all__ = [
     "CubeAssessmentResult",
     "ObservationStatus",
     "QuestionRecommendation",
+    "RecommendationDecisionStatus",
     "ScreeningProfile",
     "ScreeningRiskLevel",
 ]
