@@ -1,8 +1,0 @@
-﻿rule_id,condition,reason,action,fallback_rule,severity,notes
-AB-01,prior_interaction_count <= 10,Step-3 first/2-4/5-10 groups had weaker predictive loss than 11+,abstain from model ranking,FB-01..FB-06,safety,Exact bins carried from Step 3; not a diagnosis rule.
-AB-02,skill history unavailable,Skill-specific progression cannot be supported; Step-3 missing-skill loss was weaker,retain learner history but abstain from skill-specific model ranking,FB-01..FB-06,safety,Do not discard learner-level history.
-AB-03,no candidate has supported local-to-ASSISTments encoding,No defensible identity map for required current-candidate fields,do not fabricate probability,FB-01..FB-06,critical,"Current catalog is partially supported conceptually, not scoreable."
-AB-04,no curriculum-eligible candidate,Grade/prerequisite/tier/active/robot filters removed all candidates,return no activity,FB-06,critical,Teacher selection required.
-AB-05,timestamp/history anomaly,Leakage-safe order cannot be established,abstain and log anomaly,FB-01..FB-06,critical,Never use same-event outcome.
-AB-06,"invalid model artifact, feature width, NaN/inf, or probability outside [0,1]",Invalid scoring contract,reject model result,FB-01..FB-06,critical,Fail loudly in validation; fail safely at runtime.
-AB-07,conflicting or missing curriculum trace,Eligibility cannot be audited,filter candidate and abstain if none remain,FB-06,critical,No trace-free activity may be selected.

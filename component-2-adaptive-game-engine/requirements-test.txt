@@ -1,2 +1,0 @@
--r requirements-runtime.txt
-jsonschema==4.26.0
