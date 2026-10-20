@@ -22,3 +22,12 @@ runs/
 node_modules/
 build/
 .DS_Store
+
+# C2 
+/backend/training/adaptive_questions/temporary_data/
+*.sqlite3
+*.sqlite3-shm
+*.sqlite3-wal
+
+# Temporary simulation helper backups
+*.py.bak
