@@ -1,0 +1,29 @@
+{
+  "base_seed": 20261018,
+  "profiles": {
+    "Strong": {
+      "rule": "Bernoulli probability 0.90 on every question",
+      "probability": 0.9
+    },
+    "Struggling": {
+      "rule": "Bernoulli probability 0.25 on every question",
+      "probability": 0.25
+    },
+    "Average": {
+      "rule": "Bernoulli probability 0.60 on every question",
+      "probability": 0.6
+    },
+    "Inconsistent": {
+      "rule": "Deterministic repeating correctness pattern [1, 0, 1, 0, 0, 1]",
+      "pattern": [1, 0, 1, 0, 0, 1]
+    },
+    "Improving": {
+      "rule": "Bernoulli probability rises linearly from 0.20 at question 1 to 0.90 at question 24",
+      "start_probability": 0.2,
+      "end_probability": 0.9,
+      "horizon": 24
+    }
+  },
+  "learner_seed_formula": "base_seed + grade * 100 + profile_index",
+  "question_seed_rule": "<learner_seed>-question-<one_based_question_number>"
+}

@@ -1,0 +1,18 @@
+{
+  "policy_version": "C2_ADAPTIVE_ASSESSMENT_v2_16_24",
+  "local_state_model_version": "LOCAL_BETA_BERNOULLI_v1",
+  "minimum_total_valid_responses": 16,
+  "maximum_total_interactions": 24,
+  "minimum_game_observations": 2,
+  "minimum_area_observations": 3,
+  "inconsistent_game_observations": 3,
+  "minimum_model_observations": 2,
+  "beta_prior_alpha": 1.0,
+  "beta_prior_beta": 1.0,
+  "advance_probability_threshold": 0.75,
+  "reinforce_probability_threshold": 0.40,
+  "maximum_consecutive_same_game": 4,
+  "maximum_task_issuances": 36,
+  "maximum_session_minutes": 60,
+  "status": "engineering and assessment-design proposal for supervised validation; not a clinically validated test length or diagnostic rule"
+}

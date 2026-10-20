@@ -31,6 +31,12 @@ class ScreeningRiskLevel(str, Enum):
     HIGH = "high"
 
 
+class RecommendationDecisionStatus(str, Enum):
+    MODEL_SCORED = "model_scored"
+    FALLBACK_SCORED = "fallback_scored"
+    ABSTAINED = "abstained"
+
+
 class CubePosition(ContractModel):
     """A cube centre in an implementation-defined coordinate space."""
 
@@ -69,10 +75,11 @@ class CubeAssessmentResult(ContractModel):
 class QuestionRecommendation(ContractModel):
     recommended_task_type: str = Field(min_length=1)
     recommended_difficulty: str = Field(min_length=1)
-    predicted_success_probability: float = Field(ge=0.0, le=1.0)
+    predicted_success_probability: float | None = Field(default=None, ge=0.0, le=1.0)
+    decision_status: RecommendationDecisionStatus = RecommendationDecisionStatus.MODEL_SCORED
     recommendation_reason: str = Field(min_length=1)
     history_window_size: int = Field(ge=0)
-    model_version: str = Field(min_length=1)
+    model_version: str | None = Field(default=None, min_length=1)
 
 
 class BehaviorObservation(ContractModel):
