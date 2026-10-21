@@ -1,0 +1,110 @@
+{
+  "model": "XGBoost v1",
+  "explainer": "shap.TreeExplainer 0.51.0",
+  "units": "log-odds",
+  "children_explained": 445,
+  "base_value_log_odds": 0.097,
+  "additivity_max_error": 1e-06,
+  "global_importance_validation": {
+    "per_feature": {
+      "z_f3_arithmetic_acc": 0.3632,
+      "z_f5_counting_rt": 0.325,
+      "z_f1_symbolic_comparison_acc": 0.3223,
+      "z_f6_counting_acc": 0.303,
+      "z_f4_arithmetic_rt": 0.2386,
+      "z_f2_symbolic_comparison_rt": 0.1737,
+      "z_f8_nonsymbolic_comparison_rt": 0.146,
+      "z_f7_nonsymbolic_comparison_acc": 0.0473,
+      "missing_z_f7_nonsymbolic_comparison_acc": 0.0203,
+      "missing_z_f5_counting_rt": 0.0,
+      "missing_z_f1_symbolic_comparison_acc": 0.0,
+      "missing_z_f2_symbolic_comparison_rt": 0.0,
+      "missing_z_f6_counting_acc": 0.0,
+      "missing_z_f4_arithmetic_rt": 0.0,
+      "missing_z_f8_nonsymbolic_comparison_rt": 0.0
+    },
+    "per_skill": {
+      "arithmetic": 0.4593,
+      "counting": 0.4139,
+      "number_comparison": 0.3403,
+      "quantity_comparison": 0.1743
+    }
+  },
+  "agreement_with_evidence_weights": {
+    "spearman_rho": 0.667,
+    "p_value": 0.071,
+    "n_features": 8,
+    "ranking_xgboost": [
+      "z_f3_arithmetic_acc",
+      "z_f5_counting_rt",
+      "z_f1_symbolic_comparison_acc",
+      "z_f6_counting_acc",
+      "z_f4_arithmetic_rt",
+      "z_f2_symbolic_comparison_rt",
+      "z_f8_nonsymbolic_comparison_rt",
+      "z_f7_nonsymbolic_comparison_acc"
+    ],
+    "ranking_evidence": [
+      "z_f1_symbolic_comparison_acc",
+      "z_f3_arithmetic_acc",
+      "z_f5_counting_rt",
+      "z_f2_symbolic_comparison_rt",
+      "z_f7_nonsymbolic_comparison_acc",
+      "z_f6_counting_acc",
+      "z_f4_arithmetic_rt",
+      "z_f8_nonsymbolic_comparison_rt"
+    ]
+  },
+  "direction_check_spearman": {
+    "z_f1_symbolic_comparison_acc": 0.99,
+    "z_f3_arithmetic_acc": 0.984,
+    "z_f5_counting_rt": 0.945,
+    "z_f2_symbolic_comparison_rt": 0.902,
+    "z_f7_nonsymbolic_comparison_acc": 0.769,
+    "z_f6_counting_acc": 0.982,
+    "z_f4_arithmetic_rt": 0.5,
+    "z_f8_nonsymbolic_comparison_rt": 0.954
+  },
+  "example_child": {
+    "student_id": "SYN-03092",
+    "grade": 1,
+    "band": "high",
+    "probability": 0.78,
+    "base_value_log_odds": 0.097,
+    "z_scores": {
+      "z_f1_symbolic_comparison_acc": null,
+      "z_f3_arithmetic_acc": 2.77,
+      "z_f5_counting_rt": 0.65,
+      "z_f2_symbolic_comparison_rt": null,
+      "z_f7_nonsymbolic_comparison_acc": 0.03,
+      "z_f6_counting_acc": 0.57,
+      "z_f4_arithmetic_rt": 0.08,
+      "z_f8_nonsymbolic_comparison_rt": 0.47
+    },
+    "skills_not_assessed": [
+      "number_comparison"
+    ],
+    "contribution_by_skill_log_odds": {
+      "arithmetic": 0.668,
+      "counting": 0.352,
+      "quantity_comparison": 0.147
+    },
+    "contribution_by_feature_log_odds": {
+      "z_f1_symbolic_comparison_acc": -0.09,
+      "z_f3_arithmetic_acc": 0.893,
+      "z_f5_counting_rt": 0.223,
+      "z_f2_symbolic_comparison_rt": 0.091,
+      "z_f7_nonsymbolic_comparison_acc": -0.003,
+      "z_f6_counting_acc": 0.129,
+      "z_f4_arithmetic_rt": -0.226,
+      "z_f8_nonsymbolic_comparison_rt": 0.143,
+      "missing_z_f1_symbolic_comparison_acc": 0.0,
+      "missing_z_f5_counting_rt": 0.0,
+      "missing_z_f2_symbolic_comparison_rt": 0.0,
+      "missing_z_f7_nonsymbolic_comparison_acc": 0.008,
+      "missing_z_f6_counting_acc": 0.0,
+      "missing_z_f4_arithmetic_rt": 0.0,
+      "missing_z_f8_nonsymbolic_comparison_rt": 0.0
+    }
+  }
+}
