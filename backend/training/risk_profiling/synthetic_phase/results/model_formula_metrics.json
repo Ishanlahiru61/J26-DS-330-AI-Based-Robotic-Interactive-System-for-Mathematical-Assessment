@@ -1,0 +1,105 @@
+{
+  "model": "evidence-weighted formula v1",
+  "weights": {
+    "z_f1_symbolic_comparison_acc": 0.9,
+    "z_f3_arithmetic_acc": 0.87,
+    "z_f5_counting_rt": 0.77,
+    "z_f2_symbolic_comparison_rt": 0.75,
+    "z_f7_nonsymbolic_comparison_acc": 0.69,
+    "z_f6_counting_acc": 0.35,
+    "z_f4_arithmetic_rt": 0.19,
+    "z_f8_nonsymbolic_comparison_rt": 0.12
+  },
+  "synthetic": {
+    "train": {
+      "auc": {
+        "auc": 0.752,
+        "ci95": [
+          0.703,
+          0.8
+        ],
+        "n": 2066,
+        "n_dd": 104
+      },
+      "moderate_or_high": {
+        "sensitivity": 0.471,
+        "specificity": 0.856,
+        "flagged_share": 0.16,
+        "tp": 49,
+        "fn": 55,
+        "fp": 282,
+        "tn": 1680
+      },
+      "high": {
+        "sensitivity": 0.25,
+        "specificity": 0.96,
+        "flagged_share": 0.05,
+        "tp": 26,
+        "fn": 78,
+        "fp": 78,
+        "tn": 1884
+      },
+      "insufficient_children": 34,
+      "auc_by_grade": {
+        "1": 0.763,
+        "2": 0.743,
+        "3": 0.752
+      }
+    },
+    "validation": {
+      "auc": {
+        "auc": 0.686,
+        "ci95": [
+          0.575,
+          0.79
+        ],
+        "n": 445,
+        "n_dd": 23
+      },
+      "moderate_or_high": {
+        "sensitivity": 0.304,
+        "specificity": 0.86,
+        "flagged_share": 0.148,
+        "tp": 7,
+        "fn": 16,
+        "fp": 59,
+        "tn": 363
+      },
+      "high": {
+        "sensitivity": 0.13,
+        "specificity": 0.974,
+        "flagged_share": 0.031,
+        "tp": 3,
+        "fn": 20,
+        "fp": 11,
+        "tn": 411
+      },
+      "insufficient_children": 5,
+      "auc_by_grade": {
+        "1": 0.688,
+        "2": 0.682,
+        "3": 0.685
+      }
+    }
+  },
+  "real_decarli_calibration": {
+    "auc": {
+      "auc": 0.811,
+      "ci95": [
+        0.688,
+        0.928
+      ],
+      "n": 50,
+      "n_dd": 25
+    },
+    "features_available": [
+      "z_f1_symbolic_comparison_acc",
+      "z_f2_symbolic_comparison_rt",
+      "z_f5_counting_rt",
+      "z_f6_counting_acc",
+      "z_f7_nonsymbolic_comparison_acc",
+      "z_f8_nonsymbolic_comparison_rt"
+    ],
+    "note": "Real Italian children aged 7-14, 50% DD; F3/F4 not measured. Cut-offs not applied (norms differ)."
+  }
+}
