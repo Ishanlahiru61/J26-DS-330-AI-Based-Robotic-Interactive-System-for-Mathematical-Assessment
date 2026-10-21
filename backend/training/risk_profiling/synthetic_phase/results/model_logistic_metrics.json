@@ -1,0 +1,390 @@
+{
+  "model": "Logistic regression v1 (L2)",
+  "features": [
+    "z_f1_symbolic_comparison_acc",
+    "z_f3_arithmetic_acc",
+    "z_f5_counting_rt",
+    "z_f2_symbolic_comparison_rt",
+    "z_f7_nonsymbolic_comparison_acc",
+    "z_f6_counting_acc",
+    "z_f4_arithmetic_rt",
+    "z_f8_nonsymbolic_comparison_rt"
+  ],
+  "best_params": {
+    "lr__C": 100
+  },
+  "cv_auc_train": 0.751,
+  "note_train": "train metrics use out-of-fold scores",
+  "coefficients": {
+    "intercept": -0.4691,
+    "weights": {
+      "z_f1_symbolic_comparison_acc": {
+        "learned": 0.8564,
+        "evidence": 0.9,
+        "learned_share": 0.268,
+        "evidence_share": 0.194
+      },
+      "z_f3_arithmetic_acc": {
+        "learned": 0.5286,
+        "evidence": 0.87,
+        "learned_share": 0.165,
+        "evidence_share": 0.187
+      },
+      "z_f5_counting_rt": {
+        "learned": 0.3909,
+        "evidence": 0.77,
+        "learned_share": 0.122,
+        "evidence_share": 0.166
+      },
+      "z_f2_symbolic_comparison_rt": {
+        "learned": 0.3493,
+        "evidence": 0.75,
+        "learned_share": 0.109,
+        "evidence_share": 0.162
+      },
+      "z_f7_nonsymbolic_comparison_acc": {
+        "learned": 0.172,
+        "evidence": 0.69,
+        "learned_share": 0.054,
+        "evidence_share": 0.149
+      },
+      "z_f6_counting_acc": {
+        "learned": 0.4288,
+        "evidence": 0.35,
+        "learned_share": 0.134,
+        "evidence_share": 0.075
+      },
+      "z_f4_arithmetic_rt": {
+        "learned": 0.1777,
+        "evidence": 0.19,
+        "learned_share": 0.056,
+        "evidence_share": 0.041
+      },
+      "z_f8_nonsymbolic_comparison_rt": {
+        "learned": 0.2914,
+        "evidence": 0.12,
+        "learned_share": 0.091,
+        "evidence_share": 0.026
+      }
+    },
+    "missing_indicators": {
+      "missing_z_f1_symbolic_comparison_acc": 1.108,
+      "missing_z_f5_counting_rt": 0.0447,
+      "missing_z_f2_symbolic_comparison_rt": -1.0094,
+      "missing_z_f7_nonsymbolic_comparison_acc": -1.5248,
+      "missing_z_f6_counting_acc": -6.5086,
+      "missing_z_f4_arithmetic_rt": -2.1752,
+      "missing_z_f8_nonsymbolic_comparison_rt": 0.21
+    },
+    "spearman_learned_vs_evidence": {
+      "rho": 0.714,
+      "p_value": 0.047
+    }
+  },
+  "synthetic": {
+    "train": {
+      "auc": {
+        "auc": 0.741,
+        "ci95": [
+          0.686,
+          0.793
+        ],
+        "n": 2066,
+        "n_dd": 104
+      },
+      "moderate_or_high": {
+        "sensitivity": 0.519,
+        "specificity": 0.857,
+        "flagged_share": 0.162,
+        "tp": 54,
+        "fn": 50,
+        "fp": 281,
+        "tn": 1681
+      },
+      "high": {
+        "sensitivity": 0.25,
+        "specificity": 0.96,
+        "flagged_share": 0.05,
+        "tp": 26,
+        "fn": 78,
+        "fp": 78,
+        "tn": 1884
+      },
+      "auc_by_grade": {
+        "1": 0.768,
+        "2": 0.758,
+        "3": 0.712
+      }
+    },
+    "validation": {
+      "auc": {
+        "auc": 0.693,
+        "ci95": [
+          0.577,
+          0.797
+        ],
+        "n": 445,
+        "n_dd": 23
+      },
+      "moderate_or_high": {
+        "sensitivity": 0.304,
+        "specificity": 0.891,
+        "flagged_share": 0.119,
+        "tp": 7,
+        "fn": 16,
+        "fp": 46,
+        "tn": 376
+      },
+      "high": {
+        "sensitivity": 0.087,
+        "specificity": 0.974,
+        "flagged_share": 0.029,
+        "tp": 2,
+        "fn": 21,
+        "fp": 11,
+        "tn": 411
+      },
+      "auc_by_grade": {
+        "1": 0.754,
+        "2": 0.69,
+        "3": 0.648
+      }
+    }
+  },
+  "screening_cutoff": {
+    "flag_worst_pct": 40,
+    "validation": {
+      "sensitivity": 0.652,
+      "specificity": 0.623,
+      "flagged_share": 0.391,
+      "tp": 15,
+      "fn": 8,
+      "fp": 159,
+      "tn": 263
+    }
+  },
+  "screening_sweep": [
+    {
+      "flag_worst_pct": 5,
+      "train": {
+        "sensitivity": 0.25,
+        "specificity": 0.96,
+        "flagged_share": 0.05,
+        "tp": 26,
+        "fn": 78,
+        "fp": 78,
+        "tn": 1884
+      },
+      "validation": {
+        "sensitivity": 0.087,
+        "specificity": 0.974,
+        "flagged_share": 0.029,
+        "tp": 2,
+        "fn": 21,
+        "fp": 11,
+        "tn": 411
+      }
+    },
+    {
+      "flag_worst_pct": 10,
+      "train": {
+        "sensitivity": 0.385,
+        "specificity": 0.914,
+        "flagged_share": 0.101,
+        "tp": 40,
+        "fn": 64,
+        "fp": 168,
+        "tn": 1794
+      },
+      "validation": {
+        "sensitivity": 0.217,
+        "specificity": 0.938,
+        "flagged_share": 0.07,
+        "tp": 5,
+        "fn": 18,
+        "fp": 26,
+        "tn": 396
+      }
+    },
+    {
+      "flag_worst_pct": 16,
+      "train": {
+        "sensitivity": 0.51,
+        "specificity": 0.858,
+        "flagged_share": 0.161,
+        "tp": 53,
+        "fn": 51,
+        "fp": 279,
+        "tn": 1683
+      },
+      "validation": {
+        "sensitivity": 0.304,
+        "specificity": 0.891,
+        "flagged_share": 0.119,
+        "tp": 7,
+        "fn": 16,
+        "fp": 46,
+        "tn": 376
+      }
+    },
+    {
+      "flag_worst_pct": 20,
+      "train": {
+        "sensitivity": 0.567,
+        "specificity": 0.819,
+        "flagged_share": 0.2,
+        "tp": 59,
+        "fn": 45,
+        "fp": 355,
+        "tn": 1607
+      },
+      "validation": {
+        "sensitivity": 0.348,
+        "specificity": 0.839,
+        "flagged_share": 0.171,
+        "tp": 8,
+        "fn": 15,
+        "fp": 68,
+        "tn": 354
+      }
+    },
+    {
+      "flag_worst_pct": 25,
+      "train": {
+        "sensitivity": 0.596,
+        "specificity": 0.768,
+        "flagged_share": 0.251,
+        "tp": 62,
+        "fn": 42,
+        "fp": 456,
+        "tn": 1506
+      },
+      "validation": {
+        "sensitivity": 0.435,
+        "specificity": 0.775,
+        "flagged_share": 0.236,
+        "tp": 10,
+        "fn": 13,
+        "fp": 95,
+        "tn": 327
+      }
+    },
+    {
+      "flag_worst_pct": 30,
+      "train": {
+        "sensitivity": 0.635,
+        "specificity": 0.717,
+        "flagged_share": 0.301,
+        "tp": 66,
+        "fn": 38,
+        "fp": 555,
+        "tn": 1407
+      },
+      "validation": {
+        "sensitivity": 0.565,
+        "specificity": 0.709,
+        "flagged_share": 0.306,
+        "tp": 13,
+        "fn": 10,
+        "fp": 123,
+        "tn": 299
+      }
+    },
+    {
+      "flag_worst_pct": 35,
+      "train": {
+        "sensitivity": 0.692,
+        "specificity": 0.668,
+        "flagged_share": 0.35,
+        "tp": 72,
+        "fn": 32,
+        "fp": 651,
+        "tn": 1311
+      },
+      "validation": {
+        "sensitivity": 0.652,
+        "specificity": 0.671,
+        "flagged_share": 0.346,
+        "tp": 15,
+        "fn": 8,
+        "fp": 139,
+        "tn": 283
+      }
+    },
+    {
+      "flag_worst_pct": 40,
+      "train": {
+        "sensitivity": 0.721,
+        "specificity": 0.617,
+        "flagged_share": 0.4,
+        "tp": 75,
+        "fn": 29,
+        "fp": 751,
+        "tn": 1211
+      },
+      "validation": {
+        "sensitivity": 0.652,
+        "specificity": 0.623,
+        "flagged_share": 0.391,
+        "tp": 15,
+        "fn": 8,
+        "fp": 159,
+        "tn": 263
+      }
+    },
+    {
+      "flag_worst_pct": 45,
+      "train": {
+        "sensitivity": 0.75,
+        "specificity": 0.566,
+        "flagged_share": 0.45,
+        "tp": 78,
+        "fn": 26,
+        "fp": 852,
+        "tn": 1110
+      },
+      "validation": {
+        "sensitivity": 0.826,
+        "specificity": 0.592,
+        "flagged_share": 0.429,
+        "tp": 19,
+        "fn": 4,
+        "fp": 172,
+        "tn": 250
+      }
+    },
+    {
+      "flag_worst_pct": 50,
+      "train": {
+        "sensitivity": 0.798,
+        "specificity": 0.515,
+        "flagged_share": 0.5,
+        "tp": 83,
+        "fn": 21,
+        "fp": 951,
+        "tn": 1011
+      },
+      "validation": {
+        "sensitivity": 0.826,
+        "specificity": 0.536,
+        "flagged_share": 0.483,
+        "tp": 19,
+        "fn": 4,
+        "fp": 196,
+        "tn": 226
+      }
+    }
+  ],
+  "real_decarli_calibration": {
+    "auc": {
+      "auc": 0.779,
+      "ci95": [
+        0.646,
+        0.902
+      ],
+      "n": 50,
+      "n_dd": 25
+    },
+    "note": "F3/F4 not measured in Decarli; imputed as 0. Cut-offs not applied (norms differ)."
+  }
+}
