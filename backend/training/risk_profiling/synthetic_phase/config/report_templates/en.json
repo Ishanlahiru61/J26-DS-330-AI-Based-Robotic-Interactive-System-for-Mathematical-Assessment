@@ -1,0 +1,75 @@
+{
+  "language": "en",
+  "list_and": "and",
+  "skill_names": {
+    "number_comparison": "comparing written numbers",
+    "quantity_comparison": "comparing amounts of objects",
+    "counting": "counting objects",
+    "arithmetic": "addition/subtraction",
+    "arithmetic_grade3": "the four operations (+, −, ×, ÷)"
+  },
+  "skill_names_parent": {
+    "number_comparison": "comparing numbers",
+    "quantity_comparison": "comparing groups of objects",
+    "counting": "counting",
+    "arithmetic": "sums (adding, taking away)",
+    "arithmetic_grade3": "sums (adding, taking away, times, sharing)"
+  },
+  "levels": {
+    "needs_extra_help": "needs extra help",
+    "needs_practice": "needs more practice"
+  },
+  "activity_names": {
+    "counting": "Counting",
+    "comparison": "Comparison",
+    "ordering": "Ordering",
+    "place_value": "Place value",
+    "addition": "Addition",
+    "subtraction": "Subtraction",
+    "multiplication": "Multiplication",
+    "division": "Division"
+  },
+  "teacher": {
+    "title": "{name}, Grade {grade}: {band}",
+    "band": {
+      "low": "no concern found",
+      "monitor": "worth monitoring",
+      "moderate": "needs a closer look",
+      "high": "needs a closer look (priority)",
+      "insufficient": "not enough data yet"
+    },
+    "strengths": "Strengths: {skills}.",
+    "on_track": "As expected for age and grade: {skills}.",
+    "support": "Needs support: {items}.",
+    "support_item": "{skill} ({level})",
+    "profile": "Difficulty profile: {profile}.",
+    "profile_names": {
+      "number_sense": "mainly number sense (counting, place value)",
+      "number_relationships": "mainly number relationships (comparison, ordering)",
+      "arithmetic": "mainly calculation (addition, subtraction)",
+      "multiple_areas": "difficulties in several areas",
+      "no_single_area": "mild difficulties overall; no single area stands out"
+    },
+    "main_reasons": "Main reasons for this result: {skills}.",
+    "practise": "Suggested robot activities: {activities}.",
+    "next_step": {
+      "low": "No overall concern. Continue normal classroom activities; extra practice in any suggested activity may help.",
+      "monitor": "Give some practice in the suggested activities and re-check after further sessions.",
+      "moderate": "Give more practice in the suggested activities and re-check after further sessions.",
+      "high": "Give more practice in the suggested activities and re-check after further sessions. If the difficulties continue, consider referral for a specialist assessment."
+    },
+    "not_assessed": "Not assessed at this grade: {skills}.",
+    "data_note": "Based on {n_sessions} sessions ({n_questions} questions), compared with children of the same age and grade. This is a screening result, not a diagnosis.",
+    "insufficient": "There is not enough data to give a result yet. Please complete another session with the robot."
+  },
+  "parent": {
+    "low": "{name} is doing as expected for their age in the number games.",
+    "strengths": "{name} is doing well with {skills}.",
+    "on_track": "{name} is doing as expected with {skills}.",
+    "support": "{name} finds {skills} harder than most children of the same age at the moment.",
+    "help": "You can help at home with short, playful games about {skills}, for example using small objects such as beads or stones.",
+    "next_step": "The teacher will practise this in class and check progress again soon.",
+    "insufficient": "{name} needs to play a few more number games before we can share results.",
+    "note": "This is a short check of number skills, not a diagnosis. Children develop at different speeds."
+  }
+}

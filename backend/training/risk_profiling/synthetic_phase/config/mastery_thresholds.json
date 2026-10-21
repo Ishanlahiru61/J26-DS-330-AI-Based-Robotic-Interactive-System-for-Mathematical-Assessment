@@ -1,0 +1,11 @@
+{
+  "_status": "UNVALIDATED. Placeholder cut-offs; no published source gives percentages for the NIE levels. Replace after agreement with teachers/supervisor and validation on pilot data (evidence register C6, M1).",
+  "version": "0.1-unvalidated",
+  "validated": false,
+  "levels": {
+    "successful": {"label_si": "සාර්ථකව කරයි", "label_en": "Does it successfully", "min_accuracy_rate": 0.8},
+    "shows_difficulty": {"label_si": "දුෂ්කරතා පෙන්නුම් කරයි", "label_en": "Shows difficulty", "min_accuracy_rate": 0.5},
+    "needs_further_help": {"label_si": "තවදුරටත් උදව් අවශ්‍යයි", "label_en": "Needs further help", "min_accuracy_rate": 0.0}
+  },
+  "min_valid_trials": 2
+}
