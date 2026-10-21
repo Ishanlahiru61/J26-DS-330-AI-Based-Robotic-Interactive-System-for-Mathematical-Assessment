@@ -1,0 +1,216 @@
+{
+  "model": "formula",
+  "frozen_config": "config/selected_model.json",
+  "test_data_opened": "2026-10-21",
+  "code_commit": "859d763",
+  "synthetic_test": {
+    "children": 450,
+    "dd": 22,
+    "insufficient": {
+      "n": 14,
+      "share": 0.031
+    },
+    "auc": {
+      "auc": 0.664,
+      "ci95": [
+        0.549,
+        0.774
+      ],
+      "n": 436,
+      "n_dd": 22
+    },
+    "rules": {
+      "high": {
+        "sensitivity": 0.136,
+        "sensitivity_ci95": [
+          0.047,
+          0.333
+        ],
+        "specificity": 0.947,
+        "specificity_ci95": [
+          0.921,
+          0.965
+        ],
+        "flagged_share": 0.057,
+        "tp": 3,
+        "fn": 19,
+        "fp": 22,
+        "tn": 392
+      },
+      "moderate_or_high": {
+        "sensitivity": 0.273,
+        "sensitivity_ci95": [
+          0.132,
+          0.482
+        ],
+        "specificity": 0.853,
+        "specificity_ci95": [
+          0.815,
+          0.884
+        ],
+        "flagged_share": 0.154,
+        "tp": 6,
+        "fn": 16,
+        "fp": 61,
+        "tn": 353
+      },
+      "screening_flag": {
+        "sensitivity": 0.591,
+        "sensitivity_ci95": [
+          0.387,
+          0.767
+        ],
+        "specificity": 0.693,
+        "specificity_ci95": [
+          0.647,
+          0.736
+        ],
+        "flagged_share": 0.321,
+        "tp": 13,
+        "fn": 9,
+        "fp": 127,
+        "tn": 287
+      }
+    },
+    "calibration_flag_rates_pct": {
+      "high": {
+        "nominal": 5,
+        "observed_all": 5.7,
+        "observed_typical_children": 5.3
+      },
+      "moderate_or_high": {
+        "nominal": 16,
+        "observed_all": 15.4,
+        "observed_typical_children": 14.7
+      },
+      "screening_flag": {
+        "nominal": 35,
+        "observed_all": 32.1,
+        "observed_typical_children": 30.7
+      }
+    },
+    "by_grade": {
+      "1": {
+        "n": 150,
+        "n_dd": 7,
+        "auc": {
+          "auc": 0.866,
+          "ci95": [
+            0.716,
+            0.993
+          ],
+          "n": 150,
+          "n_dd": 7
+        },
+        "screening_flag": {
+          "sensitivity": 0.714,
+          "sensitivity_ci95": [
+            0.359,
+            0.918
+          ],
+          "specificity": 0.727,
+          "specificity_ci95": [
+            0.649,
+            0.794
+          ],
+          "flagged_share": 0.293,
+          "tp": 5,
+          "fn": 2,
+          "fp": 39,
+          "tn": 104
+        },
+        "flag_rate_typical_children_pct": 27.3
+      },
+      "2": {
+        "n": 146,
+        "n_dd": 7,
+        "auc": {
+          "auc": 0.695,
+          "ci95": [
+            0.568,
+            0.806
+          ],
+          "n": 146,
+          "n_dd": 7
+        },
+        "screening_flag": {
+          "sensitivity": 0.714,
+          "sensitivity_ci95": [
+            0.359,
+            0.918
+          ],
+          "specificity": 0.691,
+          "specificity_ci95": [
+            0.61,
+            0.761
+          ],
+          "flagged_share": 0.329,
+          "tp": 5,
+          "fn": 2,
+          "fp": 43,
+          "tn": 96
+        },
+        "flag_rate_typical_children_pct": 30.9
+      },
+      "3": {
+        "n": 140,
+        "n_dd": 8,
+        "auc": {
+          "auc": 0.429,
+          "ci95": [
+            0.251,
+            0.593
+          ],
+          "n": 140,
+          "n_dd": 8
+        },
+        "screening_flag": {
+          "sensitivity": 0.375,
+          "sensitivity_ci95": [
+            0.137,
+            0.694
+          ],
+          "specificity": 0.659,
+          "specificity_ci95": [
+            0.575,
+            0.734
+          ],
+          "flagged_share": 0.343,
+          "tp": 3,
+          "fn": 5,
+          "fp": 45,
+          "tn": 87
+        },
+        "flag_rate_typical_children_pct": 34.1
+      }
+    }
+  },
+  "real_decarli_test": {
+    "auc": {
+      "auc": 0.735,
+      "ci95": [
+        0.449,
+        0.98
+      ],
+      "n": 14,
+      "n_dd": 7
+    },
+    "n": 14,
+    "n_dd": 7,
+    "mean_score_dd": 0.613,
+    "mean_score_typical": -0.056,
+    "note": "Real Italian children aged 7-14; F3/F4 not measured; cut-offs not applied (norms differ)."
+  },
+  "child_report_safety": {
+    "reports_generated": 900,
+    "problems": [],
+    "report_levels": {
+      "low": 296,
+      "monitor": 73,
+      "moderate": 42,
+      "high": 25,
+      "insufficient": 14
+    }
+  },
+  "note": "Single evaluation of the frozen model; no changes after this point without new test data (pilot)."
+}
