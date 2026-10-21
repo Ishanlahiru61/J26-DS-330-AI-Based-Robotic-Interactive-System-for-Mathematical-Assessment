@@ -1,0 +1,114 @@
+{
+  "children": {
+    "flagged_train": 725,
+    "used_train_complete_areas": 666,
+    "used_validation": 119,
+    "flag_worst_pct": 35
+  },
+  "bic": {
+    "full": {
+      "1": 11167.4,
+      "2": 11193.2,
+      "3": 11270.0,
+      "4": 11391.3,
+      "5": 11519.0,
+      "6": 11658.1
+    },
+    "diag": {
+      "1": 11344.5,
+      "2": 11282.1,
+      "3": 11254.1,
+      "4": 11265.4,
+      "5": 11286.5,
+      "6": 11342.5
+    }
+  },
+  "bic_choice": {
+    "k": 1,
+    "covariance": "full"
+  },
+  "kmeans_silhouette": {
+    "2": 0.157,
+    "3": 0.152,
+    "4": 0.146,
+    "5": 0.146,
+    "6": 0.142
+  },
+  "chosen_gmm": {
+    "k": 1,
+    "k_evaluated": 2,
+    "covariance": "full",
+    "silhouette": 0.091,
+    "davies_bouldin": 3.696,
+    "calinski_harabasz": 42.5,
+    "shares": [
+      0.661,
+      0.339
+    ],
+    "min_share": 0.339,
+    "mean_assignment_probability": 0.859,
+    "bootstrap_ari_mean": 0.194,
+    "bootstrap_ari_ci95": [
+      -0.011,
+      0.577
+    ],
+    "ari_vs_kmeans": -0.0,
+    "ari_vs_rule_based": 0.251,
+    "grade_chi2_p": 0.923,
+    "names": [
+      "no_single_area",
+      "no_single_area"
+    ],
+    "centres_area_z_train": {
+      "0": {
+        "number_sense": 0.08,
+        "number_relationships": 0.27,
+        "arithmetic": 0.25
+      },
+      "1": {
+        "number_sense": 0.69,
+        "number_relationships": 0.65,
+        "arithmetic": 0.51
+      }
+    },
+    "centres_area_z_validation": {
+      "0": {
+        "number_sense": 0.2,
+        "number_relationships": 0.25,
+        "arithmetic": 0.11
+      },
+      "1": {
+        "number_sense": 0.39,
+        "number_relationships": 0.65,
+        "arithmetic": 0.43
+      }
+    },
+    "dd_share_per_cluster": {
+      "0": 0.077,
+      "1": 0.15
+    }
+  },
+  "rule_based": {
+    "weak_z": 1.0,
+    "train_counts": {
+      "no_single_area": 384,
+      "number_relationships": 106,
+      "number_sense": 106,
+      "arithmetic": 88,
+      "multiple_areas": 41
+    },
+    "dd_share": {
+      "arithmetic": 0.091,
+      "multiple_areas": 0.415,
+      "no_single_area": 0.081,
+      "number_relationships": 0.085,
+      "number_sense": 0.104
+    }
+  },
+  "criteria": {
+    "silhouette": 0.25,
+    "bootstrap_ari": 0.8,
+    "min_share": 0.05
+  },
+  "decision": "rule_based"
+}
