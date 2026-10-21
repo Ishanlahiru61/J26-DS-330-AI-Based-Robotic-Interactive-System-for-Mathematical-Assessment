@@ -1,0 +1,37 @@
+metric_name,category,value,numerator,denominator,evidence_category,source,interpretation,limitation
+Research winner ROC-AUC,Prediction,0.7501579955024732,,937043,A,Frozen Step-3 model results,Discrimination on held-out ASSISTments interactions,Not recommendation quality or local-child validity
+Research winner Average Precision,Prediction,0.851203211919309,,937043,A,Frozen Step-3 model results,Positive-class ranking quality; AP definition,Depends on prevalence
+Research winner Log Loss,Prediction,0.5344418770242123,,937043,A,Frozen Step-3 model results,Probability error; lower is better,Held-out ASSISTments only
+Research winner Brier Score,Prediction,0.1789547233408418,,937043,A,Frozen Step-3 model results,Mean squared probability error; lower is better,Held-out ASSISTments only
+Research winner ECE-10,Calibration,0.0038469301194627,,937043,A,Frozen Step-3 model results,Equal-frequency calibration gap; lower is better,ECE depends on binning
+Threshold-0.5 accuracy,Prediction,0.7341050517425561,,937043,B,External prediction-level Parquet,Classification accuracy at specified threshold,Requires external prediction rows; not a recommendation metric
+Threshold-0.5 F1,Prediction,0.8219073507936633,,937043,B,External prediction-level Parquet,Harmonic mean of precision and recall at threshold 0.5,Requires external prediction rows and depends on threshold
+Deployed transferable ROC-AUC,Prediction,0.712076978740801,,937043,A,Tracked deployed evaluation metadata,Discrimination of TRANSFER_H2_GB_RT_OFF_v1,Source-domain result; not the 0.750158 research model
+Deployed transferable Log Loss,Prediction,0.5631999558404069,,937043,A,Tracked deployed evaluation metadata,Native probability error for deployed artifact,Runtime calibration is disabled
+Deployed transferable Brier Score,Prediction,0.19029769698436066,,937043,A,Tracked deployed evaluation metadata,Native squared probability error for deployed artifact,Not locally calibrated on children
+Curriculum Compliance Rate,Recommendation safety,1.0,18,18,C,Controlled frozen-policy scenarios,Adherence to encoded grade/curriculum rules,Does not independently validate curriculum mapping
+Tier-Policy Compliance,Recommendation safety,1.0,18,18,C,Controlled frozen-policy scenarios,Adherence to internal Tier A/B rules,Not independent difficulty appropriateness
+History Sensitivity,Adaptivity,0.16666666666666666,1,6,C,Original six matched-history pairs,Historical final-activity change rate,Small original experiment; retained separately
+Expanded final activity change,Adaptivity,0.18333333333333332,22,120,C,Predeclared expanded matched histories,Final activity changed after all constraints,Higher is not automatically better
+Expanded equal-eligibility activity change,Adaptivity,0.17708333333333334,17,96,C,Strict identical-candidate subset,Final activity changed without candidate-set differences,Synthetic histories
+Expanded XGBoost score change,Adaptivity,0.925,111,120,C,Predeclared expanded matched histories,At least one common candidate-skill score changed,Source-domain probabilities
+Expanded candidate-ranking change,Adaptivity,0.625,75,120,C,Predeclared expanded matched histories,Candidate order around the policy target changed,Internal behavioral measure
+Expanded pre-constraint preferred-skill change,Adaptivity,0.5416666666666666,65,120,C,Predeclared expanded matched histories,Top model-preferred skill changed before coverage allocation,Internal behavioral measure
+Expanded tier change,Adaptivity,0.016666666666666666,2,120,C,Predeclared expanded matched histories,Final selected tier changed,Conservative tier policy intentionally limits changes
+Expanded Curriculum Compliance Rate,Recommendation safety,1.0,280,280,C,Expanded synthetic scenarios,Adherence to encoded curriculum rules,Not independent pedagogical validation
+Expanded Tier-Policy Compliance,Recommendation safety,1.0,280,280,C,Expanded synthetic scenarios,Adherence to implemented tier rules,Not independent difficulty appropriateness
+Expanded invariant stability,Reliability,1.0,20,20,C,Predeclared invariant controls,Equivalent histories yielded identical observable decisions,Deterministic synthetic controls
+Policy-Expectation Agreement,Specification agreement,0.9476190476190476,398,420,C,Predeclared implementation-specification rubric,"Combined direction, coverage and invariance agreement",Not recommendation accuracy; components must be shown
+Prediction-direction agreement,Specification agreement,0.8166666666666667,98,120,C,Predeclared implementation-specification rubric,Expected probability direction under history contrast,Synthetic histories
+Coverage expectation agreement,Specification agreement,1.0,280,280,C,Predeclared implementation-specification rubric,Selection belonged to independently computed admissible set,Agreement with internal specification
+Expanded invariant expectation agreement,Specification agreement,1.0,20,20,C,Predeclared implementation-specification rubric,Equivalent-history expectation met,Synthetic invariant controls
+Expanded mean skill coverage,Coverage,1.0,25,25,C,25 expanded controlled sessions,Mean applicable-skill coverage at stopping,Programmed synthetic responses
+Expanded session completion,End-to-end,1.0,25,25,C,25 expanded controlled sessions,Completion within frozen evidence budget,Programmed synthetic responses
+Deterministic repeat stability,Reliability,1.0,18,18,C,Repeated scenario execution,Equivalent input gives same decision,Only deterministic execution conditions tested
+Hybrid valid session completion,End-to-end,1.0,15,15,C,Controlled sessions,Completion within 16-24 valid responses,Programmed synthetic responses
+Existing 25-session completion,End-to-end,1.0,25,25,A/C,Existing 25-learner simulation,Software completion under fictional profiles,Not educational effectiveness
+Existing simulation ML-assisted rate,End-to-end,0.9488752556237219,464,489,A/C,Existing 25-learner simulation,Trained-ML-assisted recommendations among scored interactions,Synthetic fictional learners
+Existing simulation cold-start fallback rate,End-to-end,0.05112474437627812,25,489,A/C,Existing 25-learner simulation,Cold-start fallback decisions among scored interactions,Synthetic fictional learners
+Existing simulation Curriculum Compliance Rate,End-to-end,1.0,489,489,A/C,Existing 25-learner simulation,Curriculum-valid selections in preserved trace,Internal rules and synthetic learners
+C4 export validity,Integration,1.0,25,25,A/C,Existing 25-learner simulation,C4-compatible exports passed schema/consistency checks,Synthetic data only
+Real-child recommendation utility,Educational outcome,,,,D,Missing randomized/counterfactual evidence,Causal learning or correctness benefit,Not causally estimable from current evidence

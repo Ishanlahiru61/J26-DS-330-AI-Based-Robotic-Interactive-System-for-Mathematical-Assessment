@@ -1,0 +1,39 @@
+{
+  "schema_version": "C2_EXPANDED_HISTORY_EVALUATION_v1",
+  "frozen_policy": "C2_ADAPTIVE_ASSESSMENT_v2_16_24",
+  "seed": 20261022,
+  "grades": [1, 2, 3, 4, 5],
+  "stages": {
+    "early": 4,
+    "middle": 12,
+    "late": 20
+  },
+  "history_contrasts": [
+    "strong_vs_struggling",
+    "improving_vs_declining",
+    "skill_specific_strength_swap",
+    "recent_correct_vs_recent_incorrect"
+  ],
+  "replicates_per_cell": 2,
+  "history_pair_count": 120,
+  "invariant_control_stages": ["middle", "late"],
+  "invariant_replicates_per_cell": 2,
+  "invariant_pair_count": 20,
+  "total_pair_count": 140,
+  "challenge_target_probability": 0.65,
+  "score_change_tolerance": 1e-12,
+  "policy_expectations_predeclared": {
+    "strong_vs_struggling": "Mean trained probability across common eligible skills is higher for the strong history.",
+    "improving_vs_declining": "Mean trained probability across common eligible skills is higher for the improving history when total correctness is held approximately constant.",
+    "skill_specific_strength_swap": "The trained probability for the predeclared focus skill is higher when that skill is strong than when it is weak.",
+    "recent_correct_vs_recent_incorrect": "Mean trained probability is higher when the same number of correct responses is concentrated recently rather than early.",
+    "coverage": "The selected game belongs to the admissible coverage/stopping set specified before observing the recommendation.",
+    "invariant": "Equivalent histories differing only in learner identifier produce identical task, tier, reason, score and candidate ranking."
+  },
+  "interpretation_boundaries": [
+    "Policy-Expectation Agreement is agreement with an implementation-specification rubric, not recommendation accuracy or independent pedagogical appropriateness.",
+    "Candidate eligibility is expected to remain equal except when the intended outcome contrast activates documented Tier B evidence rules.",
+    "Synthetic response histories do not establish learning benefit, screening accuracy or clinical validity.",
+    "No pair is selected or removed based on whether its recommendation changes."
+  ]
+}

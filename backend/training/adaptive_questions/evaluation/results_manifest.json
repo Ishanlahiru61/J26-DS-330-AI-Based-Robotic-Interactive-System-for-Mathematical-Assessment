@@ -1,0 +1,2685 @@
+{
+  "command": "python evaluation_runner.py [--historical-root <external ASSISTments evidence>] [--research-root <external simulation evidence>]",
+  "configuration": {
+    "bootstrap_replicates": 200,
+    "cluster_unit": "learner/user_id",
+    "ece_binning": "equal-frequency",
+    "ece_bins": 10,
+    "expanded_config": "expanded_config.json",
+    "threshold": 0.5
+  },
+  "generated_at": "2026-10-21T05:56:35.211555+00:00",
+  "limitations": [
+    "No causal recommendation-utility estimate is supported.",
+    "Synthetic and controlled outcomes are not real-child outcomes.",
+    "Curriculum and tier compliance are internal-policy measures.",
+    "The deployed transferable model differs from the 0.7502 research winner and is not locally calibrated."
+  ],
+  "package_files": {
+    "01_Predictive_Model_Evaluation.ipynb": {
+      "bytes": 21154,
+      "sha256": "e18a135124d08bacad7603a8d477b1f427c93bb1911b817a20f26a14fa338f38"
+    },
+    "02_Recommendation_Policy_Evaluation.ipynb": {
+      "bytes": 40332,
+      "sha256": "26c12004c3f2c8cf381d0edeaa064cd5c4cf1e00051ca3671bc934833c7dc849"
+    },
+    "03_End_to_End_C2_Evaluation.ipynb": {
+      "bytes": 21727,
+      "sha256": "431504b4b77b94e7c591353524337164a23ecb93f805b7b723ed910c5a691bc8"
+    },
+    "C2_Final_Evaluation_Report.pdf": {
+      "bytes": 23998,
+      "sha256": "5cd031f177f9246a51e96280957808803b21a1aee42fe12d4f1693ac2ed0e175"
+    },
+    "README.md": {
+      "bytes": 8175,
+      "sha256": "230e45ce2711af13a1e7cfcbc9be72948ea0281ed3bab5748b0d1de3a0eebddc"
+    },
+    "evaluation_metrics.py": {
+      "bytes": 9305,
+      "sha256": "a502a36c77918ef6ecc0b6ecdc3b68fd53a6d4cb321c3ff3cdf168045da6c0f7"
+    },
+    "evaluation_runner.py": {
+      "bytes": 73211,
+      "sha256": "182b62ed4810576a81dcf59d9b77fcf263c23b1eb107a0531508108cfab3eacc"
+    },
+    "expanded_config.json": {
+      "bytes": 2152,
+      "sha256": "386bf5516a25185939b15ac7752ea79107761b31b7273a99985dcf703f282098"
+    },
+    "expanded_evaluation.py": {
+      "bytes": 43912,
+      "sha256": "7790c84f46aa17103b00506b2b00cfc47e761359c0cf435a57ed7dc41f94e4b1"
+    },
+    "requirements-evaluation.txt": {
+      "bytes": 186,
+      "sha256": "65bb2e6d5ecaffdf51e57cad9781ea1d5f28dc32b8432a3d64385b1270a86d04"
+    },
+    "results_summary.csv": {
+      "bytes": 6759,
+      "sha256": "2129343b86b8e204c0b4111b255961632f33a425816723de2c911d94f8385578"
+    },
+    "scenario_definitions.json": {
+      "bytes": 6384,
+      "sha256": "550bae30b7d5d520050e97ff05863d0c501a388671742ec2975dd2ea5dd3d51f"
+    }
+  },
+  "results": {
+    "educational_utility": {
+      "evidence_category": "D",
+      "missing_evidence": [
+        "randomized or defensible counterfactual allocation",
+        "outcomes for alternative recommendations",
+        "local child validation",
+        "expert relevance/difficulty labels"
+      ],
+      "status": "NOT_CAUSALLY_ESTIMABLE"
+    },
+    "environment": {
+      "numpy": "2.5.4",
+      "pandas": "3.0.6",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]"
+    },
+    "evidence_hierarchy": {
+      "A": "Previously measured and reproducible",
+      "B": "Newly measured against frozen implementation",
+      "C": "Scenario-based or synthetic",
+      "D": "Proposed future measurement"
+    },
+    "existing_simulation": {
+      "available": true,
+      "evidence_category": "A/C",
+      "limitations": "Fictional learners with programmed response generation; reliability and behavior evidence only.",
+      "recomputed": {
+        "c4_exports": 25,
+        "curriculum_valid": 489,
+        "learners": 25,
+        "rule_fallback": 25,
+        "scored_questions": 489,
+        "selected_from_eligible": 489,
+        "trained_ml_assisted": 464
+      },
+      "reconciliation": {
+        "fallback_count_match": true,
+        "learners_match": true,
+        "ml_count_match": true,
+        "questions_match": true
+      },
+      "reported": {
+        "all_c4_exports_valid": true,
+        "all_sessions_16_to_24": true,
+        "beta_bernoulli_recommendations": 0,
+        "complete_assessments": 25,
+        "counterfactual_support": "Supplied tests passed: changing only prediction probabilities changes selected game and tier action.",
+        "deterministic_fallback_or_abstention": 25,
+        "distinct_recommendation_sequences_per_grade": {
+          "1": 5,
+          "2": 5,
+          "3": 5,
+          "4": 5,
+          "5": 5
+        },
+        "grade_inappropriate_recommendations": 0,
+        "incomplete_assessments": 0,
+        "learners_executed": 25,
+        "learners_passed_all_validations": 25,
+        "learners_requested": 25,
+        "maximum_session_length": 23,
+        "mean_session_length": 19.56,
+        "minimum_session_length": 16,
+        "non_scoring_events": 0,
+        "operational_stops": 0,
+        "profiles_produced_different_recommendations": true,
+        "selected_outside_eligible_set": 0,
+        "total_scored_questions": 489,
+        "xgboost_recommendations": 464
+      },
+      "source_hashes": {
+        "c4_exports": "3d88b2c5977e76960899b2d57c36f12d0472fd9ee85cc1afebff827f94b759e7",
+        "trace": "2fbf7d40243f62e0632047f35025efd32b872b68557b5d7c5fa3d174d6d5d115",
+        "validation": "0b8f62405dacc8b0dc5e519619b225617c8239a99a1f8205e336030f4e7bf2b1"
+      }
+    },
+    "expanded_history": {
+      "all_predeclared_pairs_retained": true,
+      "config_sha256": "386bf5516a25185939b15ac7752ea79107761b31b7273a99985dcf703f282098",
+      "design_counts": {
+        "history_pairs": 120,
+        "invariant_pairs": 20,
+        "total_pairs": 140
+      },
+      "design_frozen_before_evaluation": true,
+      "environment": {
+        "platform": "Windows-11-10.0.26200-SP0",
+        "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]"
+      },
+      "evaluation_code_sha256": "7790c84f46aa17103b00506b2b00cfc47e761359c0cf435a57ed7dc41f94e4b1",
+      "generated_at": "2026-10-21T06:02:30.640123+00:00",
+      "limitations": [
+        "Policy-Expectation Agreement is agreement with an implementation-specification rubric, not recommendation accuracy or independent pedagogical appropriateness.",
+        "Candidate eligibility is expected to remain equal except when the intended outcome contrast activates documented Tier B evidence rules.",
+        "Synthetic response histories do not establish learning benefit, screening accuracy or clinical validity.",
+        "No pair is selected or removed based on whether its recommendation changes."
+      ],
+      "metric_rows": [
+        {
+          "denominator": 120,
+          "evidence": "Synthetic matched histories",
+          "interpretation": "Final catalog activity changed",
+          "metric": "Expanded final activity-change rate",
+          "numerator": 22,
+          "value": 0.18333333333333332
+        },
+        {
+          "denominator": 120,
+          "evidence": "Synthetic matched histories",
+          "interpretation": "At least one common candidate-skill score changed",
+          "metric": "Expanded XGBoost score-change rate",
+          "numerator": 111,
+          "value": 0.925
+        },
+        {
+          "denominator": 120,
+          "evidence": "Synthetic matched histories",
+          "interpretation": "Ordering by distance to 0.65 target changed",
+          "metric": "Candidate-ranking change rate",
+          "numerator": 75,
+          "value": 0.625
+        },
+        {
+          "denominator": 120,
+          "evidence": "Synthetic matched histories",
+          "interpretation": "Top model-preferred eligible skill changed before coverage allocation",
+          "metric": "Pre-coverage preferred-skill change rate",
+          "numerator": 65,
+          "value": 0.5416666666666666
+        },
+        {
+          "denominator": 120,
+          "evidence": "Synthetic matched histories",
+          "interpretation": "Final tier changed",
+          "metric": "Tier-change rate",
+          "numerator": 2,
+          "value": 0.016666666666666666
+        },
+        {
+          "denominator": 96,
+          "evidence": "Synthetic matched histories with identical candidate IDs",
+          "interpretation": "Final activity changed without candidate-set differences",
+          "metric": "Strict equal-eligibility activity-change rate",
+          "numerator": 17,
+          "value": 0.17708333333333334
+        },
+        {
+          "denominator": 280,
+          "evidence": "Internal encoded rules",
+          "interpretation": "Selected activity passed frozen curriculum eligibility",
+          "metric": "Curriculum Compliance Rate",
+          "numerator": 280,
+          "value": 1.0
+        },
+        {
+          "denominator": 280,
+          "evidence": "Internal encoded rules",
+          "interpretation": "Tier obeyed frozen tier evidence rules",
+          "metric": "Tier-Policy Compliance",
+          "numerator": 280,
+          "value": 1.0
+        },
+        {
+          "denominator": 20,
+          "evidence": "Synthetic invariant controls",
+          "interpretation": "Equivalent histories produced identical observable decision state",
+          "metric": "Invariant stability",
+          "numerator": 20,
+          "value": 1.0
+        },
+        {
+          "denominator": 420,
+          "evidence": "Predeclared implementation-specification rubric",
+          "interpretation": "Direction, coverage and invariance expectations met",
+          "metric": "Policy-Expectation Agreement",
+          "numerator": 398,
+          "value": 0.9476190476190476
+        },
+        {
+          "denominator": 120,
+          "evidence": "Predeclared implementation-specification rubric",
+          "interpretation": "Expected probability direction under synthetic history contrast",
+          "metric": "Prediction-direction expectation agreement",
+          "numerator": 98,
+          "value": 0.8166666666666667
+        },
+        {
+          "denominator": 280,
+          "evidence": "Predeclared implementation-specification rubric",
+          "interpretation": "Selected game belonged to independently computed admissible coverage set",
+          "metric": "Coverage expectation agreement",
+          "numerator": 280,
+          "value": 1.0
+        },
+        {
+          "denominator": 25,
+          "evidence": "Synthetic sessions",
+          "interpretation": "Completed within frozen evidence budget",
+          "metric": "Expanded session completion",
+          "numerator": 25,
+          "value": 1.0
+        },
+        {
+          "denominator": 25,
+          "evidence": "Synthetic sessions",
+          "interpretation": "Mean applicable game coverage at stop",
+          "metric": "Mean expanded skill coverage",
+          "numerator": "",
+          "value": 1.0
+        }
+      ],
+      "metrics": {
+        "activity_change_rate": 0.18333333333333332,
+        "activity_changes": 22,
+        "all_eligibility_differences_tier_b_only": true,
+        "completed_sessions": 25,
+        "coverage_expectation_agreement": 1.0,
+        "coverage_expectations_met": 280,
+        "coverage_expectations_total": 280,
+        "curriculum_compliance_rate": 1.0,
+        "curriculum_valid": 280,
+        "direction_expectation_agreement": 0.8166666666666667,
+        "direction_expectations_met": 98,
+        "direction_expectations_total": 120,
+        "equal_eligibility_activity_change_rate": 0.17708333333333334,
+        "equal_eligibility_activity_changes": 17,
+        "equal_eligibility_pairs": 96,
+        "equal_eligibility_rate": 0.8,
+        "generated_at": "2026-10-21T06:02:30.640123+00:00",
+        "history_pairs": 120,
+        "invariant_pairs": 20,
+        "invariant_stability_rate": 1.0,
+        "invariant_stable": 20,
+        "mean_absolute_probability_difference": 0.24667685461644498,
+        "mean_skill_coverage": 1.0,
+        "median_absolute_probability_difference": 0.21165607124567032,
+        "policy_expectation_agreement": 0.9476190476190476,
+        "policy_expectations_met": 398,
+        "policy_expectations_total": 420,
+        "preferred_skill_change_rate": 0.5416666666666666,
+        "preferred_skill_changes": 65,
+        "ranking_change_rate": 0.625,
+        "ranking_changes": 75,
+        "scenario_decisions": 280,
+        "score_change_rate": 0.925,
+        "score_changes": 111,
+        "session_completion_rate": 1.0,
+        "session_curriculum_compliance_rate": 1.0,
+        "session_tier_policy_compliance_rate": 1.0,
+        "sessions": 25,
+        "tier_change_rate": 0.016666666666666666,
+        "tier_changes": 2,
+        "tier_policy_compliance_rate": 1.0,
+        "tier_valid": 280,
+        "unequal_eligibility_pairs": 24
+      },
+      "original_six_pair_diagnosis": [
+        {
+          "activity_a": "ORD_A_01",
+          "activity_b": "ORD_A_01",
+          "activity_changed": false,
+          "coverage_set_a": "ORDERING",
+          "coverage_set_b": "ORDERING",
+          "eligible_sets_equal": true,
+          "explanation": "Probability changed, but a singleton foundation/coverage requirement fixed the selected game.",
+          "game_a": "ORDERING",
+          "game_b": "ORDERING",
+          "model_preferred_a": "ADDITION",
+          "model_preferred_b": "PLACE_VALUE",
+          "pair_id": "EXTENDED-HISTORY",
+          "reason_a": "MODEL_RANKED_COVERAGE_CANDIDATE",
+          "reason_b": "MODEL_RANKED_COVERAGE_CANDIDATE",
+          "score_a": 0.8018137216567993,
+          "score_b": 0.3498303294181824
+        },
+        {
+          "activity_a": "CMP_A_01",
+          "activity_b": "ORD_A_01",
+          "activity_changed": true,
+          "coverage_set_a": "ADDITION|COMPARISON|ORDERING|SUBTRACTION",
+          "coverage_set_b": "ORDERING",
+          "eligible_sets_equal": false,
+          "explanation": "The policy state changed from MINIMUM_TOTAL_BUDGET_ALLOCATION to MODEL_RANKED_COVERAGE_CANDIDATE; the admissible set narrowed from 4 skills to 1, and the selected activity changed.",
+          "game_a": "COMPARISON",
+          "game_b": "ORDERING",
+          "model_preferred_a": "COMPARISON",
+          "model_preferred_b": "ORDERING",
+          "pair_id": "G1-PERFORMANCE",
+          "reason_a": "MINIMUM_TOTAL_BUDGET_ALLOCATION",
+          "reason_b": "MODEL_RANKED_COVERAGE_CANDIDATE",
+          "score_a": 0.8955388069152832,
+          "score_b": 0.3479749858379364
+        },
+        {
+          "activity_a": "CMP_A_01",
+          "activity_b": "CMP_A_01",
+          "activity_changed": false,
+          "coverage_set_a": "COMPARISON|ORDERING",
+          "coverage_set_b": "COMPARISON|ORDERING",
+          "eligible_sets_equal": false,
+          "explanation": "The global model preference changed, but ADDITION was outside the independently computed coverage-admissible set; coverage-local ranking retained the same activity.",
+          "game_a": "COMPARISON",
+          "game_b": "COMPARISON",
+          "model_preferred_a": "COMPARISON",
+          "model_preferred_b": "ADDITION",
+          "pair_id": "G2-PERFORMANCE",
+          "reason_a": "MODEL_RANKED_COVERAGE_CANDIDATE",
+          "reason_b": "MODEL_RANKED_COVERAGE_CANDIDATE",
+          "score_a": 0.860203742980957,
+          "score_b": 0.27035796642303467
+        },
+        {
+          "activity_a": "PV_A_01",
+          "activity_b": "PV_A_01",
+          "activity_changed": false,
+          "coverage_set_a": "ADDITION|COMPARISON|DIVISION|ORDERING|PLACE_VALUE|SUBTRACTION",
+          "coverage_set_b": "ADDITION|COMPARISON|DIVISION|ORDERING|PLACE_VALUE|SUBTRACTION",
+          "eligible_sets_equal": false,
+          "explanation": "The global model preference changed, but MULTIPLICATION was outside the independently computed coverage-admissible set; coverage-local ranking retained the same activity.",
+          "game_a": "PLACE_VALUE",
+          "game_b": "PLACE_VALUE",
+          "model_preferred_a": "COMPARISON",
+          "model_preferred_b": "MULTIPLICATION",
+          "pair_id": "G3-PERFORMANCE",
+          "reason_a": "MODEL_RANKED_COVERAGE_CANDIDATE",
+          "reason_b": "MODEL_RANKED_COVERAGE_CANDIDATE",
+          "score_a": 0.860203742980957,
+          "score_b": 0.2586793005466461
+        },
+        {
+          "activity_a": "CNT_A_01",
+          "activity_b": "CNT_A_01",
+          "activity_changed": false,
+          "coverage_set_a": "ADDITION|COMPARISON|COUNTING|MULTIPLICATION|ORDERING|PLACE_VALUE|SUBTRACTION",
+          "coverage_set_b": "ADDITION|COMPARISON|COUNTING|MULTIPLICATION|ORDERING|PLACE_VALUE|SUBTRACTION",
+          "eligible_sets_equal": true,
+          "explanation": "Probability changed, but the model-preferred eligible skill and policy-selected game remained the same.",
+          "game_a": "COUNTING",
+          "game_b": "COUNTING",
+          "model_preferred_a": "COUNTING",
+          "model_preferred_b": "COUNTING",
+          "pair_id": "G5-TREND",
+          "reason_a": "MODEL_RANKED_COVERAGE_CANDIDATE",
+          "reason_b": "MODEL_RANKED_COVERAGE_CANDIDATE",
+          "score_a": 0.6943231225013733,
+          "score_b": 0.3442356288433075
+        },
+        {
+          "activity_a": "ORD_A_01",
+          "activity_b": "ORD_A_01",
+          "activity_changed": false,
+          "coverage_set_a": "ADDITION|MULTIPLICATION|ORDERING|PLACE_VALUE|SUBTRACTION",
+          "coverage_set_b": "ADDITION|MULTIPLICATION|ORDERING|PLACE_VALUE|SUBTRACTION",
+          "eligible_sets_equal": false,
+          "explanation": "Probability changed, but the model-preferred eligible skill and policy-selected game remained the same.",
+          "game_a": "ORDERING",
+          "game_b": "ORDERING",
+          "model_preferred_a": "ORDERING",
+          "model_preferred_b": "ORDERING",
+          "pair_id": "SKILL-SPECIFIC",
+          "reason_a": "MODEL_RANKED_COVERAGE_CANDIDATE",
+          "reason_b": "MODEL_RANKED_COVERAGE_CANDIDATE",
+          "score_a": 0.604023277759552,
+          "score_b": 0.604023277759552
+        }
+      ],
+      "schema_version": "C2_EXPANDED_RESULTS_MANIFEST_v1",
+      "seed": 20261022,
+      "session_decision_count": 500,
+      "source_backend": "backend (repository-relative)",
+      "source_hashes": {
+        "app/modules/adaptive_questions/config/activity_catalog.csv": "9da0d1f2cb4e69c22c43561e8c58498d6d66e8d45ff66b911858e05b5be82e5f",
+        "app/modules/adaptive_questions/config/adaptive_assessment_settings.json": "37c436795a01c36b0eadcf231e616c83d551e2f966063b675f862a97cb699bc1",
+        "app/modules/adaptive_questions/prediction/predictor.py": "1ed1e5880acdde0d579179c5d8f659c9e7febe66e72be0d9ef0b0b7502ea9151",
+        "app/modules/adaptive_questions/recommendation/coverage.py": "18d514a564c0544544d0f0a9bb2c6530c57ed2a5d423337db0458d69616e7e49",
+        "app/modules/adaptive_questions/recommendation/curriculum_filter.py": "a787ed26450485e1efd94dd464d2e015bbf58368c5d0ac900dc4d228a021996b",
+        "app/modules/adaptive_questions/recommendation/progression_rules.py": "472ed31f9ea9784adbec7ec4fded41fddcd60893f3430ac995b4c0a0a6b21003",
+        "app/modules/adaptive_questions/recommendation/recommender.py": "819c5c4100f062115f114ed1a402f0c428aa6ae4a483dad61fc9d3013f8193f1"
+      },
+      "stratified_results": [
+        {
+          "activity_change_rate": 0.125,
+          "direction_agreement": 0.8333333333333334,
+          "equal_eligibility_rate": 0.75,
+          "pairs": 24,
+          "ranking_change_rate": 0.5,
+          "score_change_rate": 1.0,
+          "stratum": "grade",
+          "tier_change_rate": 0.0,
+          "value": 1
+        },
+        {
+          "activity_change_rate": 0.08333333333333333,
+          "direction_agreement": 0.9166666666666666,
+          "equal_eligibility_rate": 0.6666666666666666,
+          "pairs": 24,
+          "ranking_change_rate": 0.6666666666666666,
+          "score_change_rate": 1.0,
+          "stratum": "grade",
+          "tier_change_rate": 0.0,
+          "value": 2
+        },
+        {
+          "activity_change_rate": 0.25,
+          "direction_agreement": 0.8333333333333334,
+          "equal_eligibility_rate": 0.8333333333333334,
+          "pairs": 24,
+          "ranking_change_rate": 0.6666666666666666,
+          "score_change_rate": 0.875,
+          "stratum": "grade",
+          "tier_change_rate": 0.041666666666666664,
+          "value": 3
+        },
+        {
+          "activity_change_rate": 0.25,
+          "direction_agreement": 0.75,
+          "equal_eligibility_rate": 0.875,
+          "pairs": 24,
+          "ranking_change_rate": 0.5833333333333334,
+          "score_change_rate": 0.875,
+          "stratum": "grade",
+          "tier_change_rate": 0.0,
+          "value": 4
+        },
+        {
+          "activity_change_rate": 0.20833333333333334,
+          "direction_agreement": 0.75,
+          "equal_eligibility_rate": 0.875,
+          "pairs": 24,
+          "ranking_change_rate": 0.7083333333333334,
+          "score_change_rate": 0.875,
+          "stratum": "grade",
+          "tier_change_rate": 0.041666666666666664,
+          "value": 5
+        },
+        {
+          "activity_change_rate": 0.0,
+          "direction_agreement": 0.625,
+          "equal_eligibility_rate": 1.0,
+          "pairs": 40,
+          "ranking_change_rate": 0.275,
+          "score_change_rate": 0.85,
+          "stratum": "stage",
+          "tier_change_rate": 0.0,
+          "value": "early"
+        },
+        {
+          "activity_change_rate": 0.125,
+          "direction_agreement": 1.0,
+          "equal_eligibility_rate": 0.425,
+          "pairs": 40,
+          "ranking_change_rate": 0.825,
+          "score_change_rate": 1.0,
+          "stratum": "stage",
+          "tier_change_rate": 0.05,
+          "value": "late"
+        },
+        {
+          "activity_change_rate": 0.425,
+          "direction_agreement": 0.825,
+          "equal_eligibility_rate": 0.975,
+          "pairs": 40,
+          "ranking_change_rate": 0.775,
+          "score_change_rate": 0.925,
+          "stratum": "stage",
+          "tier_change_rate": 0.0,
+          "value": "middle"
+        },
+        {
+          "activity_change_rate": 0.06666666666666667,
+          "direction_agreement": 0.9333333333333333,
+          "equal_eligibility_rate": 0.9,
+          "pairs": 30,
+          "ranking_change_rate": 0.6,
+          "score_change_rate": 1.0,
+          "stratum": "contrast",
+          "tier_change_rate": 0.0,
+          "value": "improving_vs_declining"
+        },
+        {
+          "activity_change_rate": 0.13333333333333333,
+          "direction_agreement": 0.7666666666666667,
+          "equal_eligibility_rate": 0.8333333333333334,
+          "pairs": 30,
+          "ranking_change_rate": 0.5666666666666667,
+          "score_change_rate": 1.0,
+          "stratum": "contrast",
+          "tier_change_rate": 0.0,
+          "value": "recent_correct_vs_recent_incorrect"
+        },
+        {
+          "activity_change_rate": 0.06666666666666667,
+          "direction_agreement": 0.5666666666666667,
+          "equal_eligibility_rate": 0.8,
+          "pairs": 30,
+          "ranking_change_rate": 0.6333333333333333,
+          "score_change_rate": 0.7,
+          "stratum": "contrast",
+          "tier_change_rate": 0.0,
+          "value": "skill_specific_strength_swap"
+        },
+        {
+          "activity_change_rate": 0.4666666666666667,
+          "direction_agreement": 1.0,
+          "equal_eligibility_rate": 0.6666666666666666,
+          "pairs": 30,
+          "ranking_change_rate": 0.7,
+          "score_change_rate": 1.0,
+          "stratum": "contrast",
+          "tier_change_rate": 0.06666666666666667,
+          "value": "strong_vs_struggling"
+        }
+      ]
+    },
+    "external_inputs": {
+      "prediction_parquet_root_supplied": true,
+      "preserved_simulation_root_supplied": true
+    },
+    "generated_at": "2026-10-21T05:56:35.211555+00:00",
+    "predictive": {
+      "artifact_identity": {
+        "algorithm": "XGBoost binary classifier",
+        "all_manifest_files_match": true,
+        "calibration_applied_at_runtime": false,
+        "deployed_model_version": "TRANSFER_H2_GB_RT_OFF_v1",
+        "manifest_integrity": {
+          "calibrator.joblib": {
+            "bytes": 831,
+            "exists": true,
+            "matches_manifest": true,
+            "sha256": "b4d889b0cd99b572e0ed7ba25fde1cc05e8522994f69a15d2fd6c5608032a003"
+          },
+          "evaluation.json": {
+            "bytes": 1062,
+            "exists": true,
+            "matches_manifest": true,
+            "sha256": "2bc6a95291a2ec1a6984524a8ef36a508382dc4832f3d7640d739fd62a6a865b"
+          },
+          "metadata.json": {
+            "bytes": 2053,
+            "exists": true,
+            "matches_manifest": true,
+            "sha256": "c55f1049eb3e27dfffca169ef0ff6cede5ea0565d1c45294b2442fa54d3850a3"
+          },
+          "model.json": {
+            "bytes": 1233236,
+            "exists": true,
+            "matches_manifest": true,
+            "sha256": "dc31acb1307568b9f7886d98cf163650ba2eb86ed59c938f28af183cc93403f2"
+          }
+        }
+      },
+      "deployed_transferable_frozen": {
+        "boundary": "Associational evidence trained on ASSISTments; not validated or calibrated on local cube-game children.",
+        "brier_score": 0.19029769698436066,
+        "evidence_category": "A",
+        "log_loss": 0.5631999558404069,
+        "model_version": "TRANSFER_H2_GB_RT_OFF_v1",
+        "n_rows": 937043,
+        "roc_auc": 0.712076978740801,
+        "runtime_calibration": "native/un-calibrated (calibrator present but disabled)"
+      },
+      "eight_model_registry": {
+        "all_complete": true,
+        "experiment_ids": [
+          "H0_LR_RT_OFF",
+          "H0_LR_RT_ON",
+          "H1_LR_RT_OFF",
+          "H1_LR_RT_ON",
+          "H2_GB_RT_OFF",
+          "H2_GB_RT_ON",
+          "H2_LR_RT_OFF",
+          "H2_LR_RT_ON"
+        ],
+        "source_sha256": "712f8fadb352a6a79e8801cb01d2d90a0ec4f711a0ba40c35769242a91ae3d23",
+        "unique_experiments": 8
+      },
+      "native_vs_platt": {
+        "native": {
+          "average_precision": 0.8512032119337137,
+          "brier_score": 0.1790775011617752,
+          "ece": 0.0100018084976648,
+          "log_loss": 0.534997654095117,
+          "roc_auc": 0.7501579954868649
+        },
+        "platt": {
+          "average_precision": 0.851203211919309,
+          "brier_score": 0.1789547233408418,
+          "ece": 0.0038469301194627,
+          "log_loss": 0.5344418770242123,
+          "roc_auc": 0.7501579955024732
+        }
+      },
+      "prediction_level_recomputation": {
+        "available": true,
+        "evidence_category": "B (recomputation of frozen A evidence)",
+        "history_length_subgroups": [
+          {
+            "accuracy": 0.6860048703624123,
+            "average_precision": 0.7646774385706514,
+            "brier_score": 0.20821118295545066,
+            "history_length": "first",
+            "log_loss": 0.6054391710551974,
+            "n_interactions": 6981,
+            "positive_prevalence": 0.665663944993554,
+            "roc_auc": 0.6467476598496529
+          },
+          {
+            "accuracy": 0.7149064336147731,
+            "average_precision": 0.8327688781664082,
+            "brier_score": 0.18919009603912176,
+            "history_length": "2-4",
+            "log_loss": 0.5596178325754492,
+            "n_interactions": 20253,
+            "positive_prevalence": 0.6717029575865304,
+            "roc_auc": 0.7248701745600554
+          },
+          {
+            "accuracy": 0.7105405113820261,
+            "average_precision": 0.8291766336978255,
+            "brier_score": 0.18964089990339644,
+            "history_length": "5-10",
+            "log_loss": 0.5603992252097184,
+            "n_interactions": 37076,
+            "positive_prevalence": 0.659995684539864,
+            "roc_auc": 0.7317779297758522
+          },
+          {
+            "accuracy": 0.735936420417241,
+            "average_precision": 0.8529179824521943,
+            "brier_score": 0.17802919740863524,
+            "history_length": "11+",
+            "log_loss": 0.5321869888099675,
+            "n_interactions": 872733,
+            "positive_prevalence": 0.6772369097994461,
+            "roc_auc": 0.7521540886695803
+          }
+        ],
+        "inputs": {
+          "platt_predictions": {
+            "file": "predictions_H2_GB_RT_OFF_test_platt_retained.parquet",
+            "sha256": "411c7206d9e7574250eb55d9246a86c24616ffbcf5761a4d3f4552e85f5bd68c"
+          },
+          "supervised_rows": {
+            "file": "test_supervised_rows.parquet",
+            "sha256": "83a2d290b61b5ec323093cf0486d9e7c6e2866fd20c96ea1d2fe7ae4a55cc5a6"
+          }
+        },
+        "metrics": {
+          "accuracy": 0.7341050517425561,
+          "average_precision": 0.8512032108707978,
+          "balanced_accuracy": 0.6398094051389248,
+          "brier_score": 0.1789547233479585,
+          "calibration_bins": [
+            {
+              "absolute_gap": 0.002943863805238228,
+              "bin": 1,
+              "mean_predicted": 0.24611435080444108,
+              "n": 93705,
+              "observed_fraction": 0.2490582146096793
+            },
+            {
+              "absolute_gap": 0.00799445102750529,
+              "bin": 2,
+              "mean_predicted": 0.45631375024243764,
+              "n": 93705,
+              "observed_fraction": 0.46430820126994293
+            },
+            {
+              "absolute_gap": 0.002242405042724105,
+              "bin": 3,
+              "mean_predicted": 0.5645389740625203,
+              "n": 93705,
+              "observed_fraction": 0.5622965690197962
+            },
+            {
+              "absolute_gap": 0.0035786060792094565,
+              "bin": 4,
+              "mean_predicted": 0.639666713310491,
+              "n": 93704,
+              "observed_fraction": 0.6360881072312815
+            },
+            {
+              "absolute_gap": 0.0005394051564366897,
+              "bin": 5,
+              "mean_predicted": 0.6984178308373041,
+              "n": 93704,
+              "observed_fraction": 0.6978784256808674
+            },
+            {
+              "absolute_gap": 0.005978220828691039,
+              "bin": 6,
+              "mean_predicted": 0.7471098694242686,
+              "n": 93704,
+              "observed_fraction": 0.7411316485955776
+            },
+            {
+              "absolute_gap": 0.002850039224172485,
+              "bin": 7,
+              "mean_predicted": 0.7896787765246079,
+              "n": 93704,
+              "observed_fraction": 0.7868287373004355
+            },
+            {
+              "absolute_gap": 0.006749902897916993,
+              "bin": 8,
+              "mean_predicted": 0.8298631104450868,
+              "n": 93704,
+              "observed_fraction": 0.8231132075471698
+            },
+            {
+              "absolute_gap": 0.0011864759452233642,
+              "bin": 9,
+              "mean_predicted": 0.8717469642915052,
+              "n": 93704,
+              "observed_fraction": 0.8705604883462819
+            },
+            {
+              "absolute_gap": 0.004405913526085992,
+              "bin": 10,
+              "mean_predicted": 0.9278275023366307,
+              "n": 93704,
+              "observed_fraction": 0.9322334158627167
+            }
+          ],
+          "clustered_bootstrap_95_ci": {
+            "accuracy": {
+              "cluster_unit": "learner/user_id",
+              "lower_95": 0.7310928473306841,
+              "replicates_requested": 200,
+              "replicates_valid": 200,
+              "seed": 20261021,
+              "upper_95": 0.7371910216215241
+            },
+            "average_precision": {
+              "cluster_unit": "learner/user_id",
+              "lower_95": 0.8477502857992536,
+              "replicates_requested": 200,
+              "replicates_valid": 200,
+              "seed": 20261021,
+              "upper_95": 0.8552238410308662
+            },
+            "brier_score": {
+              "cluster_unit": "learner/user_id",
+              "lower_95": 0.17721714803843694,
+              "replicates_requested": 200,
+              "replicates_valid": 200,
+              "seed": 20261021,
+              "upper_95": 0.1805327785045265
+            },
+            "log_loss": {
+              "cluster_unit": "learner/user_id",
+              "lower_95": 0.5300546089615638,
+              "replicates_requested": 200,
+              "replicates_valid": 200,
+              "seed": 20261021,
+              "upper_95": 0.5381874861156223
+            },
+            "roc_auc": {
+              "cluster_unit": "learner/user_id",
+              "lower_95": 0.7463727153582098,
+              "replicates_requested": 200,
+              "replicates_valid": 200,
+              "seed": 20261021,
+              "upper_95": 0.7544199894292096
+            }
+          },
+          "confusion_matrix": {
+            "fn": 58836,
+            "fp": 190319,
+            "tn": 112956,
+            "tp": 574932
+          },
+          "ece_10_equal_frequency": 0.0038469301034372914,
+          "f1": 0.8219073507936633,
+          "log_loss": 0.5344418770486007,
+          "majority_class_accuracy": 0.6763488975425888,
+          "n_interactions": 937043,
+          "positive_prevalence": 0.6763488975425888,
+          "precision": 0.7512985935333636,
+          "prevalence_probability_brier_score": 0.2189010663355135,
+          "prevalence_probability_log_loss": 0.6295909859733606,
+          "recall_sensitivity": 0.9071647669178627,
+          "roc_auc": 0.7501579955076759,
+          "specificity": 0.37245404335998683,
+          "threshold": 0.5
+        },
+        "native_recomputed": {
+          "accuracy": 0.7339193612246183,
+          "average_precision": 0.8512032119337137,
+          "balanced_accuracy": 0.6338061489797419,
+          "brier_score": 0.17907750115626597,
+          "calibration_bins": [
+            {
+              "absolute_gap": 0.025384112859173524,
+              "bin": 1,
+              "mean_predicted": 0.27444232746885283,
+              "n": 93705,
+              "observed_fraction": 0.2490582146096793
+            },
+            {
+              "absolute_gap": 0.011139542770184696,
+              "bin": 2,
+              "mean_predicted": 0.47544774404012763,
+              "n": 93705,
+              "observed_fraction": 0.46430820126994293
+            },
+            {
+              "absolute_gap": 0.011318580993344818,
+              "bin": 3,
+              "mean_predicted": 0.573615150013141,
+              "n": 93705,
+              "observed_fraction": 0.5622965690197962
+            },
+            {
+              "absolute_gap": 0.005403578168177603,
+              "bin": 4,
+              "mean_predicted": 0.6414916853994591,
+              "n": 93704,
+              "observed_fraction": 0.6360881072312815
+            },
+            {
+              "absolute_gap": 0.0029932042326363817,
+              "bin": 5,
+              "mean_predicted": 0.6948852214482311,
+              "n": 93704,
+              "observed_fraction": 0.6978784256808674
+            },
+            {
+              "absolute_gap": 0.0015180634997334908,
+              "bin": 6,
+              "mean_predicted": 0.7396135850958441,
+              "n": 93704,
+              "observed_fraction": 0.7411316485955776
+            },
+            {
+              "absolute_gap": 0.00754761259755099,
+              "bin": 7,
+              "mean_predicted": 0.7792811247028845,
+              "n": 93704,
+              "observed_fraction": 0.7868287373004355
+            },
+            {
+              "absolute_gap": 0.005696185075034665,
+              "bin": 8,
+              "mean_predicted": 0.8174170224721351,
+              "n": 93704,
+              "observed_fraction": 0.8231132075471698
+            },
+            {
+              "absolute_gap": 0.012374779701991079,
+              "bin": 9,
+              "mean_predicted": 0.8581857086442908,
+              "n": 93704,
+              "observed_fraction": 0.8705604883462819
+            },
+            {
+              "absolute_gap": 0.016642286072092505,
+              "bin": 10,
+              "mean_predicted": 0.9155911297906242,
+              "n": 93704,
+              "observed_fraction": 0.9322334158627167
+            }
+          ],
+          "confusion_matrix": {
+            "fn": 52187,
+            "fp": 197142,
+            "tn": 106133,
+            "tp": 581581
+          },
+          "ece_10_equal_frequency": 0.010001813632247381,
+          "f1": 0.82348276909375,
+          "log_loss": 0.5349976540704605,
+          "majority_class_accuracy": 0.6763488975425888,
+          "n_interactions": 937043,
+          "positive_prevalence": 0.6763488975425888,
+          "precision": 0.7468393767745398,
+          "prevalence_probability_brier_score": 0.2189010663355135,
+          "prevalence_probability_log_loss": 0.6295909859733606,
+          "recall_sensitivity": 0.9176559876800343,
+          "roc_auc": 0.7501579954868649,
+          "specificity": 0.34995631027944935,
+          "threshold": 0.5
+        },
+        "problem_type_subgroups_n_ge_1000": [
+          {
+            "average_precision": 0.8511925181372738,
+            "brier_score": 0.1766653486369425,
+            "log_loss": 0.529179329287825,
+            "n_interactions": 537946,
+            "positive_prevalence": 0.6658251943503624,
+            "problem_type": "algebra",
+            "roc_auc": 0.7631416936505689
+          },
+          {
+            "average_precision": 0.861318521210559,
+            "brier_score": 0.1785374869342753,
+            "log_loss": 0.5328992731354968,
+            "n_interactions": 282556,
+            "positive_prevalence": 0.712630416625377,
+            "problem_type": "choose_1",
+            "roc_auc": 0.7229597347711348
+          },
+          {
+            "average_precision": 0.8155195497719584,
+            "brier_score": 0.19167495193260095,
+            "log_loss": 0.5651910675816637,
+            "n_interactions": 112713,
+            "positive_prevalence": 0.6352328480299522,
+            "problem_type": "fill_in_1",
+            "roc_auc": 0.7379793857630854
+          },
+          {
+            "average_precision": 0.8056275997539827,
+            "brier_score": 0.18181570172090297,
+            "log_loss": 0.5456411729934395,
+            "n_interactions": 1706,
+            "positive_prevalence": 0.6113716295427901,
+            "problem_type": "open_response",
+            "roc_auc": 0.7675048336319557
+          },
+          {
+            "average_precision": 0.9296882591566253,
+            "brier_score": 0.12217911873776788,
+            "log_loss": 0.39637998401606866,
+            "n_interactions": 1696,
+            "positive_prevalence": 0.7783018867924528,
+            "problem_type": "choose_n",
+            "roc_auc": 0.83839055448098
+          }
+        ]
+      },
+      "research_winner_frozen": {
+        "average_precision": 0.851203211919309,
+        "brier_score": 0.1789547233408418,
+        "calibration": "Platt scaling fitted on validation and retained on test",
+        "ece_10_equal_frequency": 0.0038469301194627,
+        "evidence_category": "A",
+        "log_loss": 0.5344418770242123,
+        "model_version": "H2_GB_RT_OFF_v1",
+        "n_interactions": 937043,
+        "n_learners": 7001,
+        "roc_auc": 0.7501579955024732
+      },
+      "response_time_ablation": {
+        "rt_off_platt": {
+          "average_precision": 0.851203211919309,
+          "log_loss": 0.5344418770242123,
+          "roc_auc": 0.7501579955024732
+        },
+        "rt_on_minus_off": {
+          "log_loss": 0.00037235512626099254,
+          "roc_auc": -0.0005261006064107843
+        },
+        "rt_on_platt": {
+          "average_precision": 0.8507595260110447,
+          "log_loss": 0.5348142321504733,
+          "roc_auc": 0.7496318948960624
+        }
+      }
+    },
+    "recommendation": {
+      "baseline_comparison_controlled": {
+        "fixed_sequence": {
+          "curriculum_compliance_rate": 1.0,
+          "curriculum_valid": 18,
+          "curriculum_violations": 0,
+          "distinct_activities": 4,
+          "history_sensitivity": {
+            "details": [
+              {
+                "expect_change": false,
+                "expectation_agreement": true,
+                "left": "COLD-A",
+                "pair_id": "COLD-INVARIANT",
+                "probability_changed": false,
+                "probability_difference": null,
+                "probability_left": null,
+                "probability_right": null,
+                "rationale_changed": false,
+                "recommendation_changed": false,
+                "right": "COLD-B",
+                "tier_changed": false
+              },
+              {
+                "expect_change": true,
+                "expectation_agreement": false,
+                "left": "EXTENDED-EARLY-STRONG",
+                "pair_id": "EXTENDED-HISTORY",
+                "probability_changed": false,
+                "probability_difference": null,
+                "probability_left": null,
+                "probability_right": null,
+                "rationale_changed": false,
+                "recommendation_changed": false,
+                "right": "EXTENDED-EARLY-WEAK",
+                "tier_changed": false
+              },
+              {
+                "expect_change": true,
+                "expectation_agreement": false,
+                "left": "G1-STRONG",
+                "pair_id": "G1-PERFORMANCE",
+                "probability_changed": false,
+                "probability_difference": null,
+                "probability_left": null,
+                "probability_right": null,
+                "rationale_changed": false,
+                "recommendation_changed": false,
+                "right": "G1-STRUGGLING",
+                "tier_changed": false
+              },
+              {
+                "expect_change": true,
+                "expectation_agreement": false,
+                "left": "G2-STRONG",
+                "pair_id": "G2-PERFORMANCE",
+                "probability_changed": false,
+                "probability_difference": null,
+                "probability_left": null,
+                "probability_right": null,
+                "rationale_changed": false,
+                "recommendation_changed": false,
+                "right": "G2-STRUGGLING",
+                "tier_changed": false
+              },
+              {
+                "expect_change": true,
+                "expectation_agreement": false,
+                "left": "G3-STRONG",
+                "pair_id": "G3-PERFORMANCE",
+                "probability_changed": false,
+                "probability_difference": null,
+                "probability_left": null,
+                "probability_right": null,
+                "rationale_changed": false,
+                "recommendation_changed": false,
+                "right": "G3-STRUGGLING",
+                "tier_changed": false
+              },
+              {
+                "expect_change": true,
+                "expectation_agreement": false,
+                "left": "G5-IMPROVING",
+                "pair_id": "G5-TREND",
+                "probability_changed": false,
+                "probability_difference": null,
+                "probability_left": null,
+                "probability_right": null,
+                "rationale_changed": false,
+                "recommendation_changed": false,
+                "right": "G5-DECLINING",
+                "tier_changed": false
+              },
+              {
+                "expect_change": false,
+                "expectation_agreement": true,
+                "left": "INVARIANT-A",
+                "pair_id": "IRRELEVANT-ID",
+                "probability_changed": false,
+                "probability_difference": null,
+                "probability_left": null,
+                "probability_right": null,
+                "rationale_changed": false,
+                "recommendation_changed": false,
+                "right": "INVARIANT-B",
+                "tier_changed": false
+              },
+              {
+                "expect_change": true,
+                "expectation_agreement": false,
+                "left": "SKILL-COUNTING-STRONG",
+                "pair_id": "SKILL-SPECIFIC",
+                "probability_changed": false,
+                "probability_difference": null,
+                "probability_left": null,
+                "probability_right": null,
+                "rationale_changed": false,
+                "recommendation_changed": false,
+                "right": "SKILL-COMPARISON-STRONG",
+                "tier_changed": false
+              },
+              {
+                "expect_change": false,
+                "expectation_agreement": true,
+                "left": "SPARSE-A",
+                "pair_id": "SPARSE-INVARIANT",
+                "probability_changed": false,
+                "probability_difference": null,
+                "probability_left": null,
+                "probability_right": null,
+                "rationale_changed": false,
+                "recommendation_changed": false,
+                "right": "SPARSE-B",
+                "tier_changed": false
+              }
+            ],
+            "invariant_changes": 0,
+            "invariant_pairs": 3,
+            "invariant_stability_rate": 1.0,
+            "matched_pairs": 6,
+            "observable_history_response_rate": 0.0,
+            "policy_expectation_agreement": 0.3333333333333333,
+            "rationale_change_rate": 0.0,
+            "rationale_changes": 0,
+            "recommendation_change_rate": 0.0,
+            "recommendation_changes": 0,
+            "score_change_rate": null,
+            "score_changes": 0,
+            "score_comparable_pairs": 0,
+            "tier_change_rate": 0.0,
+            "tier_changes": 0
+          },
+          "recommendations": 18,
+          "tier_policy_compliance_rate": 1.0,
+          "tier_policy_valid": 18,
+          "tier_policy_violations": 0
+        },
+        "hybrid": {
+          "curriculum_compliance_rate": 1.0,
+          "curriculum_valid": 18,
+          "curriculum_violations": 0,
+          "distinct_activities": 4,
+          "history_sensitivity": {
+            "details": [
+              {
+                "expect_change": false,
+                "expectation_agreement": true,
+                "left": "COLD-A",
+                "pair_id": "COLD-INVARIANT",
+                "probability_changed": false,
+                "probability_difference": null,
+                "probability_left": null,
+                "probability_right": null,
+                "rationale_changed": false,
+                "recommendation_changed": false,
+                "right": "COLD-B",
+                "tier_changed": false
+              },
+              {
+                "expect_change": true,
+                "expectation_agreement": true,
+                "left": "EXTENDED-EARLY-STRONG",
+                "pair_id": "EXTENDED-HISTORY",
+                "probability_changed": true,
+                "probability_difference": 0.45198339223861694,
+                "probability_left": 0.8018137216567993,
+                "probability_right": 0.3498303294181824,
+                "rationale_changed": false,
+                "recommendation_changed": false,
+                "right": "EXTENDED-EARLY-WEAK",
+                "tier_changed": false
+              },
+              {
+                "expect_change": true,
+                "expectation_agreement": true,
+                "left": "G1-STRONG",
+                "pair_id": "G1-PERFORMANCE",
+                "probability_changed": true,
+                "probability_difference": 0.5475638210773468,
+                "probability_left": 0.8955388069152832,
+                "probability_right": 0.3479749858379364,
+                "rationale_changed": true,
+                "recommendation_changed": true,
+                "right": "G1-STRUGGLING",
+                "tier_changed": false
+              },
+              {
+                "expect_change": true,
+                "expectation_agreement": true,
+                "left": "G2-STRONG",
+                "pair_id": "G2-PERFORMANCE",
+                "probability_changed": true,
+                "probability_difference": 0.5898457765579224,
+                "probability_left": 0.860203742980957,
+                "probability_right": 0.27035796642303467,
+                "rationale_changed": false,
+                "recommendation_changed": false,
+                "right": "G2-STRUGGLING",
+                "tier_changed": false
+              },
+              {
+                "expect_change": true,
+                "expectation_agreement": true,
+                "left": "G3-STRONG",
+                "pair_id": "G3-PERFORMANCE",
+                "probability_changed": true,
+                "probability_difference": 0.6015244424343109,
+                "probability_left": 0.860203742980957,
+                "probability_right": 0.2586793005466461,
+                "rationale_changed": false,
+                "recommendation_changed": false,
+                "right": "G3-STRUGGLING",
+                "tier_changed": false
+              },
+              {
+                "expect_change": true,
+                "expectation_agreement": true,
+                "left": "G5-IMPROVING",
+                "pair_id": "G5-TREND",
+                "probability_changed": true,
+                "probability_difference": 0.3500874936580658,
+                "probability_left": 0.6943231225013733,
+                "probability_right": 0.3442356288433075,
+                "rationale_changed": false,
+                "recommendation_changed": false,
+                "right": "G5-DECLINING",
+                "tier_changed": false
+              },
+              {
+                "expect_change": false,
+                "expectation_agreement": true,
+                "left": "INVARIANT-A",
+                "pair_id": "IRRELEVANT-ID",
+                "probability_changed": false,
+                "probability_difference": 0.0,
+                "probability_left": 0.6447636485099792,
+                "probability_right": 0.6447636485099792,
+                "rationale_changed": false,
+                "recommendation_changed": false,
+                "right": "INVARIANT-B",
+                "tier_changed": false
+              },
+              {
+                "expect_change": true,
+                "expectation_agreement": false,
+                "left": "SKILL-COUNTING-STRONG",
+                "pair_id": "SKILL-SPECIFIC",
+                "probability_changed": false,
+                "probability_difference": 0.0,
+                "probability_left": 0.604023277759552,
+                "probability_right": 0.604023277759552,
+                "rationale_changed": false,
+                "recommendation_changed": false,
+                "right": "SKILL-COMPARISON-STRONG",
+                "tier_changed": false
+              },
+              {
+                "expect_change": false,
+                "expectation_agreement": true,
+                "left": "SPARSE-A",
+                "pair_id": "SPARSE-INVARIANT",
+                "probability_changed": false,
+                "probability_difference": 0.0,
+                "probability_left": 0.8042569756507874,
+                "probability_right": 0.8042569756507874,
+                "rationale_changed": false,
+                "recommendation_changed": false,
+                "right": "SPARSE-B",
+                "tier_changed": false
+              }
+            ],
+            "invariant_changes": 0,
+            "invariant_pairs": 3,
+            "invariant_stability_rate": 1.0,
+            "matched_pairs": 6,
+            "observable_history_response_rate": 0.8333333333333334,
+            "policy_expectation_agreement": 0.8888888888888888,
+            "rationale_change_rate": 0.16666666666666666,
+            "rationale_changes": 1,
+            "recommendation_change_rate": 0.16666666666666666,
+            "recommendation_changes": 1,
+            "score_change_rate": 0.8333333333333334,
+            "score_changes": 5,
+            "score_comparable_pairs": 6,
+            "tier_change_rate": 0.0,
+            "tier_changes": 0
+          },
+          "recommendations": 18,
+          "tier_policy_compliance_rate": 1.0,
+          "tier_policy_valid": 18,
+          "tier_policy_violations": 0
+        },
+        "rule_only": {
+          "curriculum_compliance_rate": 1.0,
+          "curriculum_valid": 18,
+          "curriculum_violations": 0,
+          "distinct_activities": 4,
+          "history_sensitivity": {
+            "details": [
+              {
+                "expect_change": false,
+                "expectation_agreement": true,
+                "left": "COLD-A",
+                "pair_id": "COLD-INVARIANT",
+                "probability_changed": false,
+                "probability_difference": null,
+                "probability_left": null,
+                "probability_right": null,
+                "rationale_changed": false,
+                "recommendation_changed": false,
+                "right": "COLD-B",
+                "tier_changed": false
+              },
+              {
+                "expect_change": true,
+                "expectation_agreement": false,
+                "left": "EXTENDED-EARLY-STRONG",
+                "pair_id": "EXTENDED-HISTORY",
+                "probability_changed": false,
+                "probability_difference": null,
+                "probability_left": null,
+                "probability_right": null,
+                "rationale_changed": false,
+                "recommendation_changed": false,
+                "right": "EXTENDED-EARLY-WEAK",
+                "tier_changed": false
+              },
+              {
+                "expect_change": true,
+                "expectation_agreement": true,
+                "left": "G1-STRONG",
+                "pair_id": "G1-PERFORMANCE",
+                "probability_changed": true,
+                "probability_difference": 0.25,
+                "probability_left": 0.75,
+                "probability_right": 0.5,
+                "rationale_changed": true,
+                "recommendation_changed": true,
+                "right": "G1-STRUGGLING",
+                "tier_changed": false
+              },
+              {
+                "expect_change": true,
+                "expectation_agreement": false,
+                "left": "G2-STRONG",
+                "pair_id": "G2-PERFORMANCE",
+                "probability_changed": false,
+                "probability_difference": null,
+                "probability_left": null,
+                "probability_right": null,
+                "rationale_changed": false,
+                "recommendation_changed": false,
+                "right": "G2-STRUGGLING",
+                "tier_changed": false
+              },
+              {
+                "expect_change": true,
+                "expectation_agreement": false,
+                "left": "G3-STRONG",
+                "pair_id": "G3-PERFORMANCE",
+                "probability_changed": false,
+                "probability_difference": null,
+                "probability_left": null,
+                "probability_right": null,
+                "rationale_changed": false,
+                "recommendation_changed": false,
+                "right": "G3-STRUGGLING",
+                "tier_changed": false
+              },
+              {
+                "expect_change": true,
+                "expectation_agreement": false,
+                "left": "G5-IMPROVING",
+                "pair_id": "G5-TREND",
+                "probability_changed": false,
+                "probability_difference": 0.0,
+                "probability_left": 0.5,
+                "probability_right": 0.5,
+                "rationale_changed": false,
+                "recommendation_changed": false,
+                "right": "G5-DECLINING",
+                "tier_changed": false
+              },
+              {
+                "expect_change": false,
+                "expectation_agreement": true,
+                "left": "INVARIANT-A",
+                "pair_id": "IRRELEVANT-ID",
+                "probability_changed": false,
+                "probability_difference": null,
+                "probability_left": null,
+                "probability_right": null,
+                "rationale_changed": false,
+                "recommendation_changed": false,
+                "right": "INVARIANT-B",
+                "tier_changed": false
+              },
+              {
+                "expect_change": true,
+                "expectation_agreement": false,
+                "left": "SKILL-COUNTING-STRONG",
+                "pair_id": "SKILL-SPECIFIC",
+                "probability_changed": false,
+                "probability_difference": null,
+                "probability_left": null,
+                "probability_right": null,
+                "rationale_changed": false,
+                "recommendation_changed": false,
+                "right": "SKILL-COMPARISON-STRONG",
+                "tier_changed": false
+              },
+              {
+                "expect_change": false,
+                "expectation_agreement": true,
+                "left": "SPARSE-A",
+                "pair_id": "SPARSE-INVARIANT",
+                "probability_changed": false,
+                "probability_difference": null,
+                "probability_left": null,
+                "probability_right": null,
+                "rationale_changed": false,
+                "recommendation_changed": false,
+                "right": "SPARSE-B",
+                "tier_changed": false
+              }
+            ],
+            "invariant_changes": 0,
+            "invariant_pairs": 3,
+            "invariant_stability_rate": 1.0,
+            "matched_pairs": 6,
+            "observable_history_response_rate": 0.16666666666666666,
+            "policy_expectation_agreement": 0.4444444444444444,
+            "rationale_change_rate": 0.16666666666666666,
+            "rationale_changes": 1,
+            "recommendation_change_rate": 0.16666666666666666,
+            "recommendation_changes": 1,
+            "score_change_rate": 0.5,
+            "score_changes": 1,
+            "score_comparable_pairs": 2,
+            "tier_change_rate": 0.0,
+            "tier_changes": 0
+          },
+          "recommendations": 18,
+          "tier_policy_compliance_rate": 1.0,
+          "tier_policy_valid": 18,
+          "tier_policy_violations": 0
+        }
+      },
+      "baseline_session_comparison": {
+        "fixed_sequence": {
+          "completed": 5,
+          "curriculum_compliance_rate": 1.0,
+          "mean_skill_coverage": 1.0,
+          "mean_valid_responses": 23.4,
+          "recommendations": 351,
+          "sessions": 15,
+          "tier_policy_compliance_rate": 1.0,
+          "trained_ml_usage_rate": 0.0,
+          "valid_session_completion_rate": 0.3333333333333333
+        },
+        "hybrid": {
+          "completed": 15,
+          "curriculum_compliance_rate": 1.0,
+          "mean_skill_coverage": 1.0,
+          "mean_valid_responses": 19.533333333333335,
+          "recommendations": 293,
+          "sessions": 15,
+          "tier_policy_compliance_rate": 1.0,
+          "trained_ml_usage_rate": 0.9488054607508533,
+          "valid_session_completion_rate": 1.0
+        },
+        "rule_only": {
+          "completed": 15,
+          "curriculum_compliance_rate": 1.0,
+          "mean_skill_coverage": 1.0,
+          "mean_valid_responses": 20.133333333333333,
+          "recommendations": 302,
+          "sessions": 15,
+          "tier_policy_compliance_rate": 1.0,
+          "trained_ml_usage_rate": 0.0,
+          "valid_session_completion_rate": 1.0
+        }
+      },
+      "controlled_scenarios": [
+        {
+          "abstained": false,
+          "activity_id": "CMP_A_01",
+          "curriculum_valid": true,
+          "deterministic_repeat": true,
+          "expect_change": true,
+          "fallback_used": false,
+          "game_type": "COMPARISON",
+          "grade": 1,
+          "history_count": 12,
+          "latency_ms": 74.95090016163886,
+          "pair_id": "G1-PERFORMANCE",
+          "probability": 0.8955388069152832,
+          "reason": "MINIMUM_TOTAL_BUDGET_ALLOCATION",
+          "recommendation_mode": "TRAINED_ML_ASSISTED",
+          "scenario_id": "G1-STRONG",
+          "source": "TRAINED_ML",
+          "tier": "Tier A",
+          "tier_policy_valid": true,
+          "variant": "strong"
+        },
+        {
+          "abstained": false,
+          "activity_id": "ORD_A_01",
+          "curriculum_valid": true,
+          "deterministic_repeat": true,
+          "expect_change": true,
+          "fallback_used": false,
+          "game_type": "ORDERING",
+          "grade": 1,
+          "history_count": 12,
+          "latency_ms": 62.13660002686083,
+          "pair_id": "G1-PERFORMANCE",
+          "probability": 0.3479749858379364,
+          "reason": "MODEL_RANKED_COVERAGE_CANDIDATE",
+          "recommendation_mode": "TRAINED_ML_ASSISTED",
+          "scenario_id": "G1-STRUGGLING",
+          "source": "TRAINED_ML",
+          "tier": "Tier A",
+          "tier_policy_valid": true,
+          "variant": "struggling"
+        },
+        {
+          "abstained": false,
+          "activity_id": "CMP_A_01",
+          "curriculum_valid": true,
+          "deterministic_repeat": true,
+          "expect_change": true,
+          "fallback_used": false,
+          "game_type": "COMPARISON",
+          "grade": 2,
+          "history_count": 12,
+          "latency_ms": 85.52530012093484,
+          "pair_id": "G2-PERFORMANCE",
+          "probability": 0.860203742980957,
+          "reason": "MODEL_RANKED_COVERAGE_CANDIDATE",
+          "recommendation_mode": "TRAINED_ML_ASSISTED",
+          "scenario_id": "G2-STRONG",
+          "source": "TRAINED_ML",
+          "tier": "Tier A",
+          "tier_policy_valid": true,
+          "variant": "strong"
+        },
+        {
+          "abstained": false,
+          "activity_id": "CMP_A_01",
+          "curriculum_valid": true,
+          "deterministic_repeat": true,
+          "expect_change": true,
+          "fallback_used": false,
+          "game_type": "COMPARISON",
+          "grade": 2,
+          "history_count": 12,
+          "latency_ms": 78.04509997367859,
+          "pair_id": "G2-PERFORMANCE",
+          "probability": 0.27035796642303467,
+          "reason": "MODEL_RANKED_COVERAGE_CANDIDATE",
+          "recommendation_mode": "TRAINED_ML_ASSISTED",
+          "scenario_id": "G2-STRUGGLING",
+          "source": "TRAINED_ML",
+          "tier": "Tier A",
+          "tier_policy_valid": true,
+          "variant": "struggling"
+        },
+        {
+          "abstained": false,
+          "activity_id": "PV_A_01",
+          "curriculum_valid": true,
+          "deterministic_repeat": true,
+          "expect_change": true,
+          "fallback_used": false,
+          "game_type": "PLACE_VALUE",
+          "grade": 3,
+          "history_count": 12,
+          "latency_ms": 101.46900010295212,
+          "pair_id": "G3-PERFORMANCE",
+          "probability": 0.860203742980957,
+          "reason": "MODEL_RANKED_COVERAGE_CANDIDATE",
+          "recommendation_mode": "TRAINED_ML_ASSISTED",
+          "scenario_id": "G3-STRONG",
+          "source": "TRAINED_ML",
+          "tier": "Tier A",
+          "tier_policy_valid": true,
+          "variant": "strong"
+        },
+        {
+          "abstained": false,
+          "activity_id": "PV_A_01",
+          "curriculum_valid": true,
+          "deterministic_repeat": true,
+          "expect_change": true,
+          "fallback_used": false,
+          "game_type": "PLACE_VALUE",
+          "grade": 3,
+          "history_count": 12,
+          "latency_ms": 105.6524000596255,
+          "pair_id": "G3-PERFORMANCE",
+          "probability": 0.2586793005466461,
+          "reason": "MODEL_RANKED_COVERAGE_CANDIDATE",
+          "recommendation_mode": "TRAINED_ML_ASSISTED",
+          "scenario_id": "G3-STRUGGLING",
+          "source": "TRAINED_ML",
+          "tier": "Tier A",
+          "tier_policy_valid": true,
+          "variant": "struggling"
+        },
+        {
+          "abstained": false,
+          "activity_id": "CNT_A_01",
+          "curriculum_valid": true,
+          "deterministic_repeat": true,
+          "expect_change": true,
+          "fallback_used": false,
+          "game_type": "COUNTING",
+          "grade": 5,
+          "history_count": 16,
+          "latency_ms": 103.33349998109043,
+          "pair_id": "G5-TREND",
+          "probability": 0.6943231225013733,
+          "reason": "MODEL_RANKED_COVERAGE_CANDIDATE",
+          "recommendation_mode": "TRAINED_ML_ASSISTED",
+          "scenario_id": "G5-IMPROVING",
+          "source": "TRAINED_ML",
+          "tier": "Tier A",
+          "tier_policy_valid": true,
+          "variant": "improving"
+        },
+        {
+          "abstained": false,
+          "activity_id": "CNT_A_01",
+          "curriculum_valid": true,
+          "deterministic_repeat": true,
+          "expect_change": true,
+          "fallback_used": false,
+          "game_type": "COUNTING",
+          "grade": 5,
+          "history_count": 16,
+          "latency_ms": 106.6767000593245,
+          "pair_id": "G5-TREND",
+          "probability": 0.3442356288433075,
+          "reason": "MODEL_RANKED_COVERAGE_CANDIDATE",
+          "recommendation_mode": "TRAINED_ML_ASSISTED",
+          "scenario_id": "G5-DECLINING",
+          "source": "TRAINED_ML",
+          "tier": "Tier A",
+          "tier_policy_valid": true,
+          "variant": "declining"
+        },
+        {
+          "abstained": false,
+          "activity_id": "ORD_A_01",
+          "curriculum_valid": true,
+          "deterministic_repeat": true,
+          "expect_change": true,
+          "fallback_used": false,
+          "game_type": "ORDERING",
+          "grade": 4,
+          "history_count": 15,
+          "latency_ms": 96.820899983868,
+          "pair_id": "EXTENDED-HISTORY",
+          "probability": 0.8018137216567993,
+          "reason": "MODEL_RANKED_COVERAGE_CANDIDATE",
+          "recommendation_mode": "TRAINED_ML_ASSISTED",
+          "scenario_id": "EXTENDED-EARLY-STRONG",
+          "source": "TRAINED_ML",
+          "tier": "Tier A",
+          "tier_policy_valid": true,
+          "variant": "early-strong"
+        },
+        {
+          "abstained": false,
+          "activity_id": "ORD_A_01",
+          "curriculum_valid": true,
+          "deterministic_repeat": true,
+          "expect_change": true,
+          "fallback_used": false,
+          "game_type": "ORDERING",
+          "grade": 4,
+          "history_count": 15,
+          "latency_ms": 90.89479991234839,
+          "pair_id": "EXTENDED-HISTORY",
+          "probability": 0.3498303294181824,
+          "reason": "MODEL_RANKED_COVERAGE_CANDIDATE",
+          "recommendation_mode": "TRAINED_ML_ASSISTED",
+          "scenario_id": "EXTENDED-EARLY-WEAK",
+          "source": "TRAINED_ML",
+          "tier": "Tier A",
+          "tier_policy_valid": true,
+          "variant": "early-weak"
+        },
+        {
+          "abstained": false,
+          "activity_id": "ORD_A_01",
+          "curriculum_valid": true,
+          "deterministic_repeat": true,
+          "expect_change": true,
+          "fallback_used": false,
+          "game_type": "ORDERING",
+          "grade": 3,
+          "history_count": 12,
+          "latency_ms": 94.4978001061827,
+          "pair_id": "SKILL-SPECIFIC",
+          "probability": 0.604023277759552,
+          "reason": "MODEL_RANKED_COVERAGE_CANDIDATE",
+          "recommendation_mode": "TRAINED_ML_ASSISTED",
+          "scenario_id": "SKILL-COUNTING-STRONG",
+          "source": "TRAINED_ML",
+          "tier": "Tier A",
+          "tier_policy_valid": true,
+          "variant": "counting-strong"
+        },
+        {
+          "abstained": false,
+          "activity_id": "ORD_A_01",
+          "curriculum_valid": true,
+          "deterministic_repeat": true,
+          "expect_change": true,
+          "fallback_used": false,
+          "game_type": "ORDERING",
+          "grade": 3,
+          "history_count": 12,
+          "latency_ms": 78.3697001170367,
+          "pair_id": "SKILL-SPECIFIC",
+          "probability": 0.604023277759552,
+          "reason": "MODEL_RANKED_COVERAGE_CANDIDATE",
+          "recommendation_mode": "TRAINED_ML_ASSISTED",
+          "scenario_id": "SKILL-COMPARISON-STRONG",
+          "source": "TRAINED_ML",
+          "tier": "Tier A",
+          "tier_policy_valid": true,
+          "variant": "comparison-strong"
+        },
+        {
+          "abstained": false,
+          "activity_id": "PV_A_01",
+          "curriculum_valid": true,
+          "deterministic_repeat": true,
+          "expect_change": false,
+          "fallback_used": false,
+          "game_type": "PLACE_VALUE",
+          "grade": 3,
+          "history_count": 12,
+          "latency_ms": 85.81040007993579,
+          "pair_id": "IRRELEVANT-ID",
+          "probability": 0.6447636485099792,
+          "reason": "MODEL_RANKED_COVERAGE_CANDIDATE",
+          "recommendation_mode": "TRAINED_ML_ASSISTED",
+          "scenario_id": "INVARIANT-A",
+          "source": "TRAINED_ML",
+          "tier": "Tier A",
+          "tier_policy_valid": true,
+          "variant": "id-a"
+        },
+        {
+          "abstained": false,
+          "activity_id": "PV_A_01",
+          "curriculum_valid": true,
+          "deterministic_repeat": true,
+          "expect_change": false,
+          "fallback_used": false,
+          "game_type": "PLACE_VALUE",
+          "grade": 3,
+          "history_count": 12,
+          "latency_ms": 84.40369996242225,
+          "pair_id": "IRRELEVANT-ID",
+          "probability": 0.6447636485099792,
+          "reason": "MODEL_RANKED_COVERAGE_CANDIDATE",
+          "recommendation_mode": "TRAINED_ML_ASSISTED",
+          "scenario_id": "INVARIANT-B",
+          "source": "TRAINED_ML",
+          "tier": "Tier A",
+          "tier_policy_valid": true,
+          "variant": "id-b"
+        },
+        {
+          "abstained": true,
+          "activity_id": "CNT_A_01",
+          "curriculum_valid": true,
+          "deterministic_repeat": true,
+          "expect_change": false,
+          "fallback_used": true,
+          "game_type": "COUNTING",
+          "grade": 2,
+          "history_count": 0,
+          "latency_ms": 9.957100031897426,
+          "pair_id": "COLD-INVARIANT",
+          "probability": null,
+          "reason": "FOUNDATIONAL_GRADE_APPROPRIATE_START",
+          "recommendation_mode": "RULE_FALLBACK",
+          "scenario_id": "COLD-A",
+          "source": "ABSTAIN",
+          "tier": "Tier A",
+          "tier_policy_valid": true,
+          "variant": "cold-a"
+        },
+        {
+          "abstained": true,
+          "activity_id": "CNT_A_01",
+          "curriculum_valid": true,
+          "deterministic_repeat": true,
+          "expect_change": false,
+          "fallback_used": true,
+          "game_type": "COUNTING",
+          "grade": 2,
+          "history_count": 0,
+          "latency_ms": 10.584200033918023,
+          "pair_id": "COLD-INVARIANT",
+          "probability": null,
+          "reason": "FOUNDATIONAL_GRADE_APPROPRIATE_START",
+          "recommendation_mode": "RULE_FALLBACK",
+          "scenario_id": "COLD-B",
+          "source": "ABSTAIN",
+          "tier": "Tier A",
+          "tier_policy_valid": true,
+          "variant": "cold-b"
+        },
+        {
+          "abstained": false,
+          "activity_id": "CNT_A_01",
+          "curriculum_valid": true,
+          "deterministic_repeat": true,
+          "expect_change": false,
+          "fallback_used": false,
+          "game_type": "COUNTING",
+          "grade": 5,
+          "history_count": 1,
+          "latency_ms": 33.10520015656948,
+          "pair_id": "SPARSE-INVARIANT",
+          "probability": 0.8042569756507874,
+          "reason": "FOUNDATIONAL_EVIDENCE_BLOCK",
+          "recommendation_mode": "TRAINED_ML_ASSISTED",
+          "scenario_id": "SPARSE-A",
+          "source": "TRAINED_ML",
+          "tier": "Tier A",
+          "tier_policy_valid": true,
+          "variant": "sparse-a"
+        },
+        {
+          "abstained": false,
+          "activity_id": "CNT_A_01",
+          "curriculum_valid": true,
+          "deterministic_repeat": true,
+          "expect_change": false,
+          "fallback_used": false,
+          "game_type": "COUNTING",
+          "grade": 5,
+          "history_count": 1,
+          "latency_ms": 31.333699822425842,
+          "pair_id": "SPARSE-INVARIANT",
+          "probability": 0.8042569756507874,
+          "reason": "FOUNDATIONAL_EVIDENCE_BLOCK",
+          "recommendation_mode": "TRAINED_ML_ASSISTED",
+          "scenario_id": "SPARSE-B",
+          "source": "TRAINED_ML",
+          "tier": "Tier A",
+          "tier_policy_valid": true,
+          "variant": "sparse-b"
+        }
+      ],
+      "evidence_category": "C",
+      "limitations": "Outcomes are deterministic scenario inputs and do not estimate learning benefit or counterfactual recommendation utility.",
+      "overall": {
+        "curriculum_compliance_rate": 1.0,
+        "curriculum_valid": 18,
+        "curriculum_violations": 0,
+        "deterministic_repeat_rate": 1.0,
+        "distinct_activities": 4,
+        "fallback_or_abstention_rate": 0.1111111111111111,
+        "history_sensitivity": {
+          "details": [
+            {
+              "expect_change": false,
+              "expectation_agreement": true,
+              "left": "COLD-A",
+              "pair_id": "COLD-INVARIANT",
+              "probability_changed": false,
+              "probability_difference": null,
+              "probability_left": null,
+              "probability_right": null,
+              "rationale_changed": false,
+              "recommendation_changed": false,
+              "right": "COLD-B",
+              "tier_changed": false
+            },
+            {
+              "expect_change": true,
+              "expectation_agreement": true,
+              "left": "EXTENDED-EARLY-STRONG",
+              "pair_id": "EXTENDED-HISTORY",
+              "probability_changed": true,
+              "probability_difference": 0.45198339223861694,
+              "probability_left": 0.8018137216567993,
+              "probability_right": 0.3498303294181824,
+              "rationale_changed": false,
+              "recommendation_changed": false,
+              "right": "EXTENDED-EARLY-WEAK",
+              "tier_changed": false
+            },
+            {
+              "expect_change": true,
+              "expectation_agreement": true,
+              "left": "G1-STRONG",
+              "pair_id": "G1-PERFORMANCE",
+              "probability_changed": true,
+              "probability_difference": 0.5475638210773468,
+              "probability_left": 0.8955388069152832,
+              "probability_right": 0.3479749858379364,
+              "rationale_changed": true,
+              "recommendation_changed": true,
+              "right": "G1-STRUGGLING",
+              "tier_changed": false
+            },
+            {
+              "expect_change": true,
+              "expectation_agreement": true,
+              "left": "G2-STRONG",
+              "pair_id": "G2-PERFORMANCE",
+              "probability_changed": true,
+              "probability_difference": 0.5898457765579224,
+              "probability_left": 0.860203742980957,
+              "probability_right": 0.27035796642303467,
+              "rationale_changed": false,
+              "recommendation_changed": false,
+              "right": "G2-STRUGGLING",
+              "tier_changed": false
+            },
+            {
+              "expect_change": true,
+              "expectation_agreement": true,
+              "left": "G3-STRONG",
+              "pair_id": "G3-PERFORMANCE",
+              "probability_changed": true,
+              "probability_difference": 0.6015244424343109,
+              "probability_left": 0.860203742980957,
+              "probability_right": 0.2586793005466461,
+              "rationale_changed": false,
+              "recommendation_changed": false,
+              "right": "G3-STRUGGLING",
+              "tier_changed": false
+            },
+            {
+              "expect_change": true,
+              "expectation_agreement": true,
+              "left": "G5-IMPROVING",
+              "pair_id": "G5-TREND",
+              "probability_changed": true,
+              "probability_difference": 0.3500874936580658,
+              "probability_left": 0.6943231225013733,
+              "probability_right": 0.3442356288433075,
+              "rationale_changed": false,
+              "recommendation_changed": false,
+              "right": "G5-DECLINING",
+              "tier_changed": false
+            },
+            {
+              "expect_change": false,
+              "expectation_agreement": true,
+              "left": "INVARIANT-A",
+              "pair_id": "IRRELEVANT-ID",
+              "probability_changed": false,
+              "probability_difference": 0.0,
+              "probability_left": 0.6447636485099792,
+              "probability_right": 0.6447636485099792,
+              "rationale_changed": false,
+              "recommendation_changed": false,
+              "right": "INVARIANT-B",
+              "tier_changed": false
+            },
+            {
+              "expect_change": true,
+              "expectation_agreement": false,
+              "left": "SKILL-COUNTING-STRONG",
+              "pair_id": "SKILL-SPECIFIC",
+              "probability_changed": false,
+              "probability_difference": 0.0,
+              "probability_left": 0.604023277759552,
+              "probability_right": 0.604023277759552,
+              "rationale_changed": false,
+              "recommendation_changed": false,
+              "right": "SKILL-COMPARISON-STRONG",
+              "tier_changed": false
+            },
+            {
+              "expect_change": false,
+              "expectation_agreement": true,
+              "left": "SPARSE-A",
+              "pair_id": "SPARSE-INVARIANT",
+              "probability_changed": false,
+              "probability_difference": 0.0,
+              "probability_left": 0.8042569756507874,
+              "probability_right": 0.8042569756507874,
+              "rationale_changed": false,
+              "recommendation_changed": false,
+              "right": "SPARSE-B",
+              "tier_changed": false
+            }
+          ],
+          "invariant_changes": 0,
+          "invariant_pairs": 3,
+          "invariant_stability_rate": 1.0,
+          "matched_pairs": 6,
+          "observable_history_response_rate": 0.8333333333333334,
+          "policy_expectation_agreement": 0.8888888888888888,
+          "rationale_change_rate": 0.16666666666666666,
+          "rationale_changes": 1,
+          "recommendation_change_rate": 0.16666666666666666,
+          "recommendation_changes": 1,
+          "score_change_rate": 0.8333333333333334,
+          "score_changes": 5,
+          "score_comparable_pairs": 6,
+          "tier_change_rate": 0.0,
+          "tier_changes": 0
+        },
+        "inference_source_counts": {
+          "ABSTAIN": 2,
+          "TRAINED_ML": 16
+        },
+        "latency_ms": {
+          "mean": 74.08705559403946,
+          "n": 18,
+          "p95": 105.80604505958036
+        },
+        "recommendations": 18,
+        "tier_policy_compliance_rate": 1.0,
+        "tier_policy_valid": 18,
+        "tier_policy_violations": 0,
+        "trained_ml_usage_rate": 0.8888888888888888
+      },
+      "per_grade": {
+        "1": {
+          "curriculum_compliance_rate": 1.0,
+          "curriculum_valid": 2,
+          "curriculum_violations": 0,
+          "distinct_activities": 2,
+          "recommendations": 2,
+          "tier_policy_compliance_rate": 1.0,
+          "tier_policy_valid": 2,
+          "tier_policy_violations": 0
+        },
+        "2": {
+          "curriculum_compliance_rate": 1.0,
+          "curriculum_valid": 4,
+          "curriculum_violations": 0,
+          "distinct_activities": 2,
+          "recommendations": 4,
+          "tier_policy_compliance_rate": 1.0,
+          "tier_policy_valid": 4,
+          "tier_policy_violations": 0
+        },
+        "3": {
+          "curriculum_compliance_rate": 1.0,
+          "curriculum_valid": 6,
+          "curriculum_violations": 0,
+          "distinct_activities": 2,
+          "recommendations": 6,
+          "tier_policy_compliance_rate": 1.0,
+          "tier_policy_valid": 6,
+          "tier_policy_violations": 0
+        },
+        "4": {
+          "curriculum_compliance_rate": 1.0,
+          "curriculum_valid": 2,
+          "curriculum_violations": 0,
+          "distinct_activities": 1,
+          "recommendations": 2,
+          "tier_policy_compliance_rate": 1.0,
+          "tier_policy_valid": 2,
+          "tier_policy_violations": 0
+        },
+        "5": {
+          "curriculum_compliance_rate": 1.0,
+          "curriculum_valid": 4,
+          "curriculum_violations": 0,
+          "distinct_activities": 1,
+          "recommendations": 4,
+          "tier_policy_compliance_rate": 1.0,
+          "tier_policy_valid": 4,
+          "tier_policy_violations": 0
+        }
+      },
+      "session_details": [
+        {
+          "complete": false,
+          "distinct_games": 5,
+          "eligible_games": 5,
+          "grade": 1,
+          "profile": "strong",
+          "skill_coverage": 1.0,
+          "system": "fixed_sequence",
+          "valid_responses": 24
+        },
+        {
+          "complete": true,
+          "distinct_games": 5,
+          "eligible_games": 5,
+          "grade": 1,
+          "profile": "mixed",
+          "skill_coverage": 1.0,
+          "system": "fixed_sequence",
+          "valid_responses": 18
+        },
+        {
+          "complete": false,
+          "distinct_games": 5,
+          "eligible_games": 5,
+          "grade": 1,
+          "profile": "struggling",
+          "skill_coverage": 1.0,
+          "system": "fixed_sequence",
+          "valid_responses": 24
+        },
+        {
+          "complete": false,
+          "distinct_games": 6,
+          "eligible_games": 6,
+          "grade": 2,
+          "profile": "strong",
+          "skill_coverage": 1.0,
+          "system": "fixed_sequence",
+          "valid_responses": 24
+        },
+        {
+          "complete": true,
+          "distinct_games": 6,
+          "eligible_games": 6,
+          "grade": 2,
+          "profile": "mixed",
+          "skill_coverage": 1.0,
+          "system": "fixed_sequence",
+          "valid_responses": 21
+        },
+        {
+          "complete": false,
+          "distinct_games": 6,
+          "eligible_games": 6,
+          "grade": 2,
+          "profile": "struggling",
+          "skill_coverage": 1.0,
+          "system": "fixed_sequence",
+          "valid_responses": 24
+        },
+        {
+          "complete": false,
+          "distinct_games": 8,
+          "eligible_games": 8,
+          "grade": 3,
+          "profile": "strong",
+          "skill_coverage": 1.0,
+          "system": "fixed_sequence",
+          "valid_responses": 24
+        },
+        {
+          "complete": true,
+          "distinct_games": 8,
+          "eligible_games": 8,
+          "grade": 3,
+          "profile": "mixed",
+          "skill_coverage": 1.0,
+          "system": "fixed_sequence",
+          "valid_responses": 24
+        },
+        {
+          "complete": false,
+          "distinct_games": 8,
+          "eligible_games": 8,
+          "grade": 3,
+          "profile": "struggling",
+          "skill_coverage": 1.0,
+          "system": "fixed_sequence",
+          "valid_responses": 24
+        },
+        {
+          "complete": false,
+          "distinct_games": 8,
+          "eligible_games": 8,
+          "grade": 4,
+          "profile": "strong",
+          "skill_coverage": 1.0,
+          "system": "fixed_sequence",
+          "valid_responses": 24
+        },
+        {
+          "complete": true,
+          "distinct_games": 8,
+          "eligible_games": 8,
+          "grade": 4,
+          "profile": "mixed",
+          "skill_coverage": 1.0,
+          "system": "fixed_sequence",
+          "valid_responses": 24
+        },
+        {
+          "complete": false,
+          "distinct_games": 8,
+          "eligible_games": 8,
+          "grade": 4,
+          "profile": "struggling",
+          "skill_coverage": 1.0,
+          "system": "fixed_sequence",
+          "valid_responses": 24
+        },
+        {
+          "complete": false,
+          "distinct_games": 8,
+          "eligible_games": 8,
+          "grade": 5,
+          "profile": "strong",
+          "skill_coverage": 1.0,
+          "system": "fixed_sequence",
+          "valid_responses": 24
+        },
+        {
+          "complete": true,
+          "distinct_games": 8,
+          "eligible_games": 8,
+          "grade": 5,
+          "profile": "mixed",
+          "skill_coverage": 1.0,
+          "system": "fixed_sequence",
+          "valid_responses": 24
+        },
+        {
+          "complete": false,
+          "distinct_games": 8,
+          "eligible_games": 8,
+          "grade": 5,
+          "profile": "struggling",
+          "skill_coverage": 1.0,
+          "system": "fixed_sequence",
+          "valid_responses": 24
+        },
+        {
+          "complete": true,
+          "distinct_games": 5,
+          "eligible_games": 5,
+          "grade": 1,
+          "profile": "strong",
+          "skill_coverage": 1.0,
+          "system": "rule_only",
+          "valid_responses": 16
+        },
+        {
+          "complete": true,
+          "distinct_games": 5,
+          "eligible_games": 5,
+          "grade": 1,
+          "profile": "mixed",
+          "skill_coverage": 1.0,
+          "system": "rule_only",
+          "valid_responses": 16
+        },
+        {
+          "complete": true,
+          "distinct_games": 5,
+          "eligible_games": 5,
+          "grade": 1,
+          "profile": "struggling",
+          "skill_coverage": 1.0,
+          "system": "rule_only",
+          "valid_responses": 16
+        },
+        {
+          "complete": true,
+          "distinct_games": 6,
+          "eligible_games": 6,
+          "grade": 2,
+          "profile": "strong",
+          "skill_coverage": 1.0,
+          "system": "rule_only",
+          "valid_responses": 16
+        },
+        {
+          "complete": true,
+          "distinct_games": 6,
+          "eligible_games": 6,
+          "grade": 2,
+          "profile": "mixed",
+          "skill_coverage": 1.0,
+          "system": "rule_only",
+          "valid_responses": 19
+        },
+        {
+          "complete": true,
+          "distinct_games": 6,
+          "eligible_games": 6,
+          "grade": 2,
+          "profile": "struggling",
+          "skill_coverage": 1.0,
+          "system": "rule_only",
+          "valid_responses": 18
+        },
+        {
+          "complete": true,
+          "distinct_games": 8,
+          "eligible_games": 8,
+          "grade": 3,
+          "profile": "strong",
+          "skill_coverage": 1.0,
+          "system": "rule_only",
+          "valid_responses": 21
+        },
+        {
+          "complete": true,
+          "distinct_games": 8,
+          "eligible_games": 8,
+          "grade": 3,
+          "profile": "mixed",
+          "skill_coverage": 1.0,
+          "system": "rule_only",
+          "valid_responses": 22
+        },
+        {
+          "complete": true,
+          "distinct_games": 8,
+          "eligible_games": 8,
+          "grade": 3,
+          "profile": "struggling",
+          "skill_coverage": 1.0,
+          "system": "rule_only",
+          "valid_responses": 24
+        },
+        {
+          "complete": true,
+          "distinct_games": 8,
+          "eligible_games": 8,
+          "grade": 4,
+          "profile": "strong",
+          "skill_coverage": 1.0,
+          "system": "rule_only",
+          "valid_responses": 21
+        },
+        {
+          "complete": true,
+          "distinct_games": 8,
+          "eligible_games": 8,
+          "grade": 4,
+          "profile": "mixed",
+          "skill_coverage": 1.0,
+          "system": "rule_only",
+          "valid_responses": 22
+        },
+        {
+          "complete": true,
+          "distinct_games": 8,
+          "eligible_games": 8,
+          "grade": 4,
+          "profile": "struggling",
+          "skill_coverage": 1.0,
+          "system": "rule_only",
+          "valid_responses": 24
+        },
+        {
+          "complete": true,
+          "distinct_games": 8,
+          "eligible_games": 8,
+          "grade": 5,
+          "profile": "strong",
+          "skill_coverage": 1.0,
+          "system": "rule_only",
+          "valid_responses": 21
+        },
+        {
+          "complete": true,
+          "distinct_games": 8,
+          "eligible_games": 8,
+          "grade": 5,
+          "profile": "mixed",
+          "skill_coverage": 1.0,
+          "system": "rule_only",
+          "valid_responses": 22
+        },
+        {
+          "complete": true,
+          "distinct_games": 8,
+          "eligible_games": 8,
+          "grade": 5,
+          "profile": "struggling",
+          "skill_coverage": 1.0,
+          "system": "rule_only",
+          "valid_responses": 24
+        },
+        {
+          "complete": true,
+          "distinct_games": 5,
+          "eligible_games": 5,
+          "grade": 1,
+          "profile": "strong",
+          "skill_coverage": 1.0,
+          "system": "hybrid",
+          "valid_responses": 16
+        },
+        {
+          "complete": true,
+          "distinct_games": 5,
+          "eligible_games": 5,
+          "grade": 1,
+          "profile": "mixed",
+          "skill_coverage": 1.0,
+          "system": "hybrid",
+          "valid_responses": 16
+        },
+        {
+          "complete": true,
+          "distinct_games": 5,
+          "eligible_games": 5,
+          "grade": 1,
+          "profile": "struggling",
+          "skill_coverage": 1.0,
+          "system": "hybrid",
+          "valid_responses": 16
+        },
+        {
+          "complete": true,
+          "distinct_games": 6,
+          "eligible_games": 6,
+          "grade": 2,
+          "profile": "strong",
+          "skill_coverage": 1.0,
+          "system": "hybrid",
+          "valid_responses": 16
+        },
+        {
+          "complete": true,
+          "distinct_games": 6,
+          "eligible_games": 6,
+          "grade": 2,
+          "profile": "mixed",
+          "skill_coverage": 1.0,
+          "system": "hybrid",
+          "valid_responses": 17
+        },
+        {
+          "complete": true,
+          "distinct_games": 6,
+          "eligible_games": 6,
+          "grade": 2,
+          "profile": "struggling",
+          "skill_coverage": 1.0,
+          "system": "hybrid",
+          "valid_responses": 17
+        },
+        {
+          "complete": true,
+          "distinct_games": 8,
+          "eligible_games": 8,
+          "grade": 3,
+          "profile": "strong",
+          "skill_coverage": 1.0,
+          "system": "hybrid",
+          "valid_responses": 21
+        },
+        {
+          "complete": true,
+          "distinct_games": 8,
+          "eligible_games": 8,
+          "grade": 3,
+          "profile": "mixed",
+          "skill_coverage": 1.0,
+          "system": "hybrid",
+          "valid_responses": 22
+        },
+        {
+          "complete": true,
+          "distinct_games": 8,
+          "eligible_games": 8,
+          "grade": 3,
+          "profile": "struggling",
+          "skill_coverage": 1.0,
+          "system": "hybrid",
+          "valid_responses": 22
+        },
+        {
+          "complete": true,
+          "distinct_games": 8,
+          "eligible_games": 8,
+          "grade": 4,
+          "profile": "strong",
+          "skill_coverage": 1.0,
+          "system": "hybrid",
+          "valid_responses": 21
+        },
+        {
+          "complete": true,
+          "distinct_games": 8,
+          "eligible_games": 8,
+          "grade": 4,
+          "profile": "mixed",
+          "skill_coverage": 1.0,
+          "system": "hybrid",
+          "valid_responses": 22
+        },
+        {
+          "complete": true,
+          "distinct_games": 8,
+          "eligible_games": 8,
+          "grade": 4,
+          "profile": "struggling",
+          "skill_coverage": 1.0,
+          "system": "hybrid",
+          "valid_responses": 22
+        },
+        {
+          "complete": true,
+          "distinct_games": 8,
+          "eligible_games": 8,
+          "grade": 5,
+          "profile": "strong",
+          "skill_coverage": 1.0,
+          "system": "hybrid",
+          "valid_responses": 21
+        },
+        {
+          "complete": true,
+          "distinct_games": 8,
+          "eligible_games": 8,
+          "grade": 5,
+          "profile": "mixed",
+          "skill_coverage": 1.0,
+          "system": "hybrid",
+          "valid_responses": 22
+        },
+        {
+          "complete": true,
+          "distinct_games": 8,
+          "eligible_games": 8,
+          "grade": 5,
+          "profile": "struggling",
+          "skill_coverage": 1.0,
+          "system": "hybrid",
+          "valid_responses": 22
+        }
+      ]
+    },
+    "repository": {
+      "branch": "feature/component-2-adaptive-game-engine",
+      "head": "f449d5d9899a9444d63c72bcbe2e5e9c3791cb8c",
+      "repository_root": ".",
+      "working_tree_clean_at_run_start": false
+    },
+    "runtime_seconds": 357.89918088912964,
+    "seed": 20261021,
+    "source_backend": "backend (repository-relative)"
+  },
+  "schema_version": "C2_EVALUATION_MANIFEST_v2",
+  "seed": 20261021,
+  "source_files": {
+    "app/modules/adaptive_questions/config/activity_catalog.csv": {
+      "bytes": 3786,
+      "sha256": "9da0d1f2cb4e69c22c43561e8c58498d6d66e8d45ff66b911858e05b5be82e5f"
+    },
+    "app/modules/adaptive_questions/core_service.py": {
+      "bytes": 22105,
+      "sha256": "e8203080841adfc87e1ca4203bf939cb99f714f1cdeefe99d9a9fcb05b4ff8a1"
+    },
+    "app/modules/adaptive_questions/models/transferable/manifest.json": {
+      "bytes": 627,
+      "sha256": "4701d363b18ea629ea67fa18b7bc8e6b3369ee30624d5fe5a6d23c6df1abbd71"
+    },
+    "app/modules/adaptive_questions/prediction/predictor.py": {
+      "bytes": 7637,
+      "sha256": "1ed1e5880acdde0d579179c5d8f659c9e7febe66e72be0d9ef0b0b7502ea9151"
+    },
+    "app/modules/adaptive_questions/recommendation/coverage.py": {
+      "bytes": 12074,
+      "sha256": "18d514a564c0544544d0f0a9bb2c6530c57ed2a5d423337db0458d69616e7e49"
+    },
+    "app/modules/adaptive_questions/recommendation/recommender.py": {
+      "bytes": 8897,
+      "sha256": "819c5c4100f062115f114ed1a402f0c428aa6ae4a483dad61fc9d3013f8193f1"
+    }
+  },
+  "summary_row_count": 36,
+  "verification": {
+    "backend_tests": {
+      "command": "python -B -m pytest backend/tests/adaptive_questions -q -p no:cacheprovider",
+      "failed": 0,
+      "passed": 70,
+      "runtime_seconds": 69.15,
+      "warnings": 1
+    },
+    "expanded_runner": {
+      "all_predeclared_pairs_retained": true,
+      "approved_metrics_reconciled": true,
+      "history_pairs": 120,
+      "invariant_pairs": 20,
+      "repository_relative_execution": true
+    },
+    "main_runner": {
+      "external_prediction_and_simulation_execution": true,
+      "repository_relative_metadata_only_execution": true
+    },
+    "notebooks": {
+      "01_Predictive_Model_Evaluation.ipynb": {
+        "code_cells": 4,
+        "error_outputs": 0,
+        "executed_cells": 4
+      },
+      "02_Recommendation_Policy_Evaluation.ipynb": {
+        "code_cells": 5,
+        "error_outputs": 0,
+        "executed_cells": 5
+      },
+      "03_End_to_End_C2_Evaluation.ipynb": {
+        "code_cells": 4,
+        "error_outputs": 0,
+        "executed_cells": 4
+      }
+    },
+    "package": {
+      "cache_files": 0,
+      "database_files": 0,
+      "essential_file_count_total": 13,
+      "hashed_package_files_excluding_manifest": 12
+    },
+    "pdf": {
+      "expanded_results_present": true,
+      "pages": 8,
+      "rendered_pages_inspected": 8,
+      "visual_defects_found": 0
+    },
+    "reproducibility": {
+      "config_sha256": "386bf5516a25185939b15ac7752ea79107761b31b7273a99985dcf703f282098",
+      "same_seed_full_result_match_excluding_timestamps": true,
+      "seed": 20261022
+    },
+    "source_start": {
+      "branch": "feature/component-2-adaptive-game-engine",
+      "clean_before_integration": true,
+      "head": "f449d5d9899a9444d63c72bcbe2e5e9c3791cb8c"
+    }
+  }
+}
