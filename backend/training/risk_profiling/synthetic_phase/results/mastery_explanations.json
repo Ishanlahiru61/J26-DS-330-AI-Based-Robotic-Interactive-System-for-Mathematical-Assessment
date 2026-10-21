@@ -1,0 +1,115 @@
+{
+  "model": "SVM (selected mastery model)",
+  "target": "P(Needs Urgent Assistance)",
+  "shap_global_mean_abs": {
+    "z_area_number_relationships_acc": 0.0572,
+    "z_f11_attempts": 0.0402,
+    "z_area_number_sense_acc": 0.0302,
+    "z_area_number_sense_rt": 0.023,
+    "z_area_arithmetic_acc": 0.0193,
+    "z_acc_trend": 0.0125,
+    "z_finger_counting_rate": 0.0111,
+    "z_area_number_relationships_rt": 0.0093,
+    "z_f10_relative_error": 0.0086,
+    "z_area_multiplicative_acc": 0.0082,
+    "z_area_arithmetic_rt": 0.0061,
+    "z_f12_rt_variability": 0.0055,
+    "z_area_multiplicative_rt": 0.0055,
+    "z_overall_acc": 0.0052,
+    "z_robot_demo_rate": 0.005,
+    "z_rt_trend": 0.0045,
+    "z_attempts_trend": 0.0039
+  },
+  "direction_check_spearman": {
+    "z_overall_acc": 0.189,
+    "z_area_number_sense_acc": 0.946,
+    "z_area_number_relationships_acc": 0.952,
+    "z_area_arithmetic_acc": 0.946,
+    "z_area_multiplicative_acc": 0.686,
+    "z_f10_relative_error": -0.391,
+    "z_area_number_sense_rt": -0.953,
+    "z_area_number_relationships_rt": -0.794,
+    "z_area_arithmetic_rt": -0.715,
+    "z_area_multiplicative_rt": 0.373,
+    "z_f11_attempts": 0.95,
+    "z_f12_rt_variability": -0.091,
+    "z_robot_demo_rate": 0.669,
+    "z_finger_counting_rate": 0.875,
+    "z_acc_trend": -0.938,
+    "z_rt_trend": 0.087,
+    "z_attempts_trend": 0.56
+  },
+  "examples": {
+    "High Performer": {
+      "student_id": "SYN-00324",
+      "grade": 3,
+      "p_needs_urgent": 0.094,
+      "shap_top5": {
+        "z_area_multiplicative_rt": 0.072,
+        "z_area_number_relationships_acc": -0.046,
+        "z_f11_attempts": -0.038,
+        "z_area_number_sense_acc": -0.024,
+        "z_finger_counting_rate": -0.023
+      },
+      "lime_top5": {
+        "z_area_multiplicative_rt": 0.115,
+        "z_rt_trend": 0.027,
+        "z_area_number_sense_rt": 0.027,
+        "z_area_number_relationships_acc": -0.02,
+        "z_finger_counting_rate": -0.016
+      },
+      "shap_lime_spearman": 0.701
+    },
+    "Progressing": {
+      "student_id": "SYN-00113",
+      "grade": 1,
+      "p_needs_urgent": 0.158,
+      "shap_top5": {
+        "z_acc_trend": 0.034,
+        "z_area_number_sense_acc": 0.032,
+        "z_f11_attempts": -0.025,
+        "z_area_number_sense_rt": -0.025,
+        "z_area_arithmetic_acc": -0.016
+      },
+      "lime_top5": {
+        "z_acc_trend": 0.026,
+        "z_area_number_relationships_acc": 0.02,
+        "z_area_number_sense_acc": 0.019,
+        "z_area_arithmetic_rt": -0.016,
+        "z_rt_trend": 0.014
+      },
+      "shap_lime_spearman": 0.836
+    },
+    "Needs Urgent Assistance": {
+      "student_id": "SYN-00714",
+      "grade": 3,
+      "p_needs_urgent": 0.58,
+      "shap_top5": {
+        "z_f11_attempts": 0.167,
+        "z_area_number_relationships_acc": 0.103,
+        "z_area_number_sense_acc": 0.073,
+        "z_area_arithmetic_acc": 0.054,
+        "z_area_number_sense_rt": 0.033
+      },
+      "lime_top5": {
+        "z_f11_attempts": 0.082,
+        "z_area_number_relationships_acc": 0.067,
+        "z_area_arithmetic_acc": 0.026,
+        "z_area_number_sense_acc": 0.025,
+        "z_f12_rt_variability": -0.022
+      },
+      "shap_lime_spearman": 0.833
+    }
+  },
+  "stability_across_folds": {
+    "mean_pairwise_spearman": 0.884,
+    "min_pairwise_spearman": 0.826,
+    "top5_features_in_all_folds": [
+      "z_area_number_relationships_acc",
+      "z_area_number_sense_acc",
+      "z_area_number_sense_rt",
+      "z_f11_attempts"
+    ]
+  },
+  "note": "Associations with the model output, not causes (proposal 1.2.5). Synthetic data."
+}
