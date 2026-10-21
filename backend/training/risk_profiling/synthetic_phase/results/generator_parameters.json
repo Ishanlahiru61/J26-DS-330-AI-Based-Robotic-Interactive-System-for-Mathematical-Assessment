@@ -1,0 +1,171 @@
+{
+  "dataset_version": "synthetic_children_v1",
+  "seed": 42,
+  "n_children": 10000,
+  "n_dd": 500,
+  "prevalence": 0.05,
+  "sample_size_riley_2020": {
+    "anticipated_r2_cox_snell": 0.0492,
+    "criterion_1_shrinkage": 1425,
+    "criterion_2_optimism": 473,
+    "criterion_3_intercept": 73,
+    "minimum_n": 1425
+  },
+  "features": [
+    {
+      "id": "F1",
+      "column": "z_number_sense_accuracy",
+      "decarli_column": "Accuracy_SymbolicComp",
+      "higher_raw_is_worse": false,
+      "generator_effect_size": 0.9,
+      "source": "[M] g=0.90, p<.001"
+    },
+    {
+      "id": "F2",
+      "column": "z_number_sense_rt",
+      "decarli_column": "RTs_SymbolicComp",
+      "higher_raw_is_worse": true,
+      "generator_effect_size": 0.75,
+      "source": "[S] g=0.75 (CI 0.51-0.99); [M] 1.03 n.s."
+    },
+    {
+      "id": "F3",
+      "column": "z_arithmetic_accuracy",
+      "decarli_column": null,
+      "higher_raw_is_worse": false,
+      "generator_effect_size": 0.87,
+      "source": "[M] g=0.87 fact retrieval, p<.01"
+    },
+    {
+      "id": "F4",
+      "column": "z_arithmetic_rt",
+      "decarli_column": null,
+      "higher_raw_is_worse": true,
+      "generator_effect_size": 0.38,
+      "source": "[M] g=0.38 n.s. (only pooled estimate)"
+    },
+    {
+      "id": "F5",
+      "column": "z_enumeration_4_7_rt",
+      "decarli_column": "MeanRT_47",
+      "higher_raw_is_worse": true,
+      "generator_effect_size": 0.77,
+      "source": "[M] g=0.77, p<.001"
+    },
+    {
+      "id": "F6",
+      "column": "z_enumeration_4_7_accuracy",
+      "decarli_column": "Mean_ACC_47",
+      "higher_raw_is_worse": false,
+      "generator_effect_size": 0.69,
+      "source": "[M] g=0.69 n.s. (only pooled estimate)"
+    },
+    {
+      "id": "F7",
+      "column": "z_nonsymbolic_comparison_accuracy",
+      "decarli_column": "Mean_ACC_ANS",
+      "higher_raw_is_worse": false,
+      "generator_effect_size": 0.69,
+      "source": "[M] g=0.69, p<.001"
+    },
+    {
+      "id": "F8",
+      "column": "z_nonsymbolic_comparison_rt",
+      "decarli_column": "Mean_RTs_ANS",
+      "higher_raw_is_worse": true,
+      "generator_effect_size": 0.24,
+      "source": "[S] g=0.24 (CI 0.13-0.36); [M] 0.27 n.s."
+    }
+  ],
+  "within_group_correlation": {
+    "z_number_sense_accuracy": {
+      "z_number_sense_accuracy": 1.0,
+      "z_number_sense_rt": -0.226,
+      "z_arithmetic_accuracy": 0.0,
+      "z_arithmetic_rt": 0.0,
+      "z_enumeration_4_7_rt": -0.067,
+      "z_enumeration_4_7_accuracy": 0.074,
+      "z_nonsymbolic_comparison_accuracy": 0.146,
+      "z_nonsymbolic_comparison_rt": -0.066
+    },
+    "z_number_sense_rt": {
+      "z_number_sense_accuracy": -0.226,
+      "z_number_sense_rt": 1.0,
+      "z_arithmetic_accuracy": 0.0,
+      "z_arithmetic_rt": 0.0,
+      "z_enumeration_4_7_rt": 0.489,
+      "z_enumeration_4_7_accuracy": 0.16,
+      "z_nonsymbolic_comparison_accuracy": 0.137,
+      "z_nonsymbolic_comparison_rt": 0.388
+    },
+    "z_arithmetic_accuracy": {
+      "z_number_sense_accuracy": 0.0,
+      "z_number_sense_rt": 0.0,
+      "z_arithmetic_accuracy": 1.0,
+      "z_arithmetic_rt": 0.0,
+      "z_enumeration_4_7_rt": 0.0,
+      "z_enumeration_4_7_accuracy": 0.0,
+      "z_nonsymbolic_comparison_accuracy": 0.0,
+      "z_nonsymbolic_comparison_rt": 0.0
+    },
+    "z_arithmetic_rt": {
+      "z_number_sense_accuracy": 0.0,
+      "z_number_sense_rt": 0.0,
+      "z_arithmetic_accuracy": 0.0,
+      "z_arithmetic_rt": 1.0,
+      "z_enumeration_4_7_rt": 0.0,
+      "z_enumeration_4_7_accuracy": 0.0,
+      "z_nonsymbolic_comparison_accuracy": 0.0,
+      "z_nonsymbolic_comparison_rt": 0.0
+    },
+    "z_enumeration_4_7_rt": {
+      "z_number_sense_accuracy": -0.067,
+      "z_number_sense_rt": 0.489,
+      "z_arithmetic_accuracy": 0.0,
+      "z_arithmetic_rt": 0.0,
+      "z_enumeration_4_7_rt": 1.0,
+      "z_enumeration_4_7_accuracy": -0.246,
+      "z_nonsymbolic_comparison_accuracy": -0.244,
+      "z_nonsymbolic_comparison_rt": 0.415
+    },
+    "z_enumeration_4_7_accuracy": {
+      "z_number_sense_accuracy": 0.074,
+      "z_number_sense_rt": 0.16,
+      "z_arithmetic_accuracy": 0.0,
+      "z_arithmetic_rt": 0.0,
+      "z_enumeration_4_7_rt": -0.246,
+      "z_enumeration_4_7_accuracy": 1.0,
+      "z_nonsymbolic_comparison_accuracy": 0.235,
+      "z_nonsymbolic_comparison_rt": -0.046
+    },
+    "z_nonsymbolic_comparison_accuracy": {
+      "z_number_sense_accuracy": 0.146,
+      "z_number_sense_rt": 0.137,
+      "z_arithmetic_accuracy": 0.0,
+      "z_arithmetic_rt": 0.0,
+      "z_enumeration_4_7_rt": -0.244,
+      "z_enumeration_4_7_accuracy": 0.235,
+      "z_nonsymbolic_comparison_accuracy": 1.0,
+      "z_nonsymbolic_comparison_rt": -0.393
+    },
+    "z_nonsymbolic_comparison_rt": {
+      "z_number_sense_accuracy": -0.066,
+      "z_number_sense_rt": 0.388,
+      "z_arithmetic_accuracy": 0.0,
+      "z_arithmetic_rt": 0.0,
+      "z_enumeration_4_7_rt": 0.415,
+      "z_enumeration_4_7_accuracy": -0.046,
+      "z_nonsymbolic_comparison_accuracy": -0.393,
+      "z_nonsymbolic_comparison_rt": 1.0
+    }
+  },
+  "max_abs_correlation_error_synthetic_vs_target": 0.019,
+  "calibration_children": {
+    "n": 50,
+    "dd": 25
+  },
+  "test_children": {
+    "n": 14,
+    "dd": 7
+  }
+}
