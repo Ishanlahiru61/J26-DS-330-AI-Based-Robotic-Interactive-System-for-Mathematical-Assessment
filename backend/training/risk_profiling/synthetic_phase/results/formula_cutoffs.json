@@ -1,0 +1,22 @@
+{
+  "validated": false,
+  "status": "UNVALIDATED: fitted on synthetic train children; replace with pilot norms",
+  "percentiles": {
+    "moderate": 84,
+    "high": 95
+  },
+  "cutoffs_by_grade": {
+    "1": {
+      "moderate": 0.43451383277591954,
+      "high": 0.7332435284280937
+    },
+    "2": {
+      "moderate": 0.40876254482758595,
+      "high": 0.7433288150429922
+    },
+    "3": {
+      "moderate": 0.41789174999999973,
+      "high": 0.731813473143236
+    }
+  }
+}

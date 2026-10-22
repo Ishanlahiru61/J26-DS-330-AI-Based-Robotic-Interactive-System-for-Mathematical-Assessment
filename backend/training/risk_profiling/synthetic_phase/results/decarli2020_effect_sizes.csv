@@ -1,0 +1,14 @@
+column,measure,dd_mean,control_mean,n_dd,n_control,d_dd_worse
+Average_Corsi,"Corsi block span, average",3.594,4.641,32,32,1.2
+wm_K,Visuo-spatial short-term memory (Cowan's K),1.762,2.257,32,32,0.96
+RTs_SymbolicComp,Symbolic digit comparison response time,1139.199,920.042,32,32,0.77
+Accuracy_SymbolicComp,Symbolic digit comparison accuracy,0.947,0.966,32,32,0.69
+MeanRT_47,Enumeration 4-7 response time (counting range),1.361,1.052,32,32,0.68
+w_fraction_def,Weber fraction (ANS acuity),0.322,0.239,28,29,0.68
+Mean_ACC_ANS,Non-symbolic comparison accuracy (ANS),63.843,67.773,32,32,0.54
+Mean_ACC_47,Enumeration 4-7 accuracy (counting range),0.563,0.638,32,32,0.49
+MatrixReas_IQ,WISC Matrix Reasoning (non-verbal IQ),9.103,10.031,29,32,0.37
+Mean_ACC_13,Enumeration 1-3 accuracy (subitizing),0.984,0.994,32,32,0.33
+Mean_RTs_ANS,Non-symbolic comparison response time (ANS),1556.377,1595.793,32,32,-0.06
+Similarities_IQ,WISC Similarities (verbal IQ),10.552,10.344,29,32,-0.08
+MeanRT_13,Enumeration 1-3 response time (subitizing),0.388,0.425,32,32,-0.21

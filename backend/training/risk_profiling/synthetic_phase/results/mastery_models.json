@@ -1,0 +1,389 @@
+{
+  "task": "3-class mastery: High Performer, Progressing, Needs Urgent Assistance",
+  "features": [
+    "z_overall_acc",
+    "z_area_number_sense_acc",
+    "z_area_number_relationships_acc",
+    "z_area_arithmetic_acc",
+    "z_area_multiplicative_acc",
+    "z_f10_relative_error",
+    "z_area_number_sense_rt",
+    "z_area_number_relationships_rt",
+    "z_area_arithmetic_rt",
+    "z_area_multiplicative_rt",
+    "z_f11_attempts",
+    "z_f12_rt_variability",
+    "z_robot_demo_rate",
+    "z_finger_counting_rate",
+    "z_acc_trend",
+    "z_rt_trend",
+    "z_attempts_trend"
+  ],
+  "class_counts": {
+    "test": [
+      73,
+      300,
+      63
+    ],
+    "train": [
+      313,
+      1415,
+      338
+    ],
+    "validation": [
+      60,
+      322,
+      63
+    ]
+  },
+  "tuning": {
+    "random_forest": {
+      "best_params": {
+        "rf__max_depth": 10,
+        "rf__min_samples_leaf": 5
+      },
+      "cv_macro_f1": 0.542
+    },
+    "svm": {
+      "best_params": {
+        "svm__C": 1,
+        "svm__gamma": "scale"
+      },
+      "cv_macro_f1": 0.512
+    },
+    "xgboost": {
+      "best_params": {
+        "xgb__learning_rate": 0.05,
+        "xgb__max_depth": 4,
+        "xgb__n_estimators": 300
+      },
+      "cv_macro_f1": 0.542
+    },
+    "stacking": {
+      "meta_params": {
+        "learning_rate": 0.1,
+        "max_depth": 1,
+        "n_estimators": 150
+      },
+      "meta_weighting": "balanced",
+      "cv_macro_f1_meta_optimistic": 0.591,
+      "nested_cv_macro_f1": 0.476
+    }
+  },
+  "validation": {
+    "accuracy_rule": {
+      "accuracy": 0.622,
+      "macro_precision": 0.469,
+      "macro_recall": 0.479,
+      "macro_f1": 0.473,
+      "recall_per_class": {
+        "High Performer": 0.283,
+        "Progressing": 0.724,
+        "Needs Urgent Assistance": 0.429
+      },
+      "needs_urgent_recall_ci95": [
+        0.314,
+        0.551
+      ],
+      "confusion_matrix": {
+        "rows_true_cols_pred": [
+          "High Performer",
+          "Progressing",
+          "Needs Urgent Assistance"
+        ],
+        "values": [
+          [
+            17,
+            43,
+            0
+          ],
+          [
+            50,
+            233,
+            39
+          ],
+          [
+            2,
+            34,
+            27
+          ]
+        ]
+      }
+    },
+    "random_forest": {
+      "accuracy": 0.584,
+      "macro_precision": 0.494,
+      "macro_recall": 0.584,
+      "macro_f1": 0.513,
+      "recall_per_class": {
+        "High Performer": 0.517,
+        "Progressing": 0.584,
+        "Needs Urgent Assistance": 0.651
+      },
+      "needs_urgent_recall_ci95": [
+        0.528,
+        0.757
+      ],
+      "confusion_matrix": {
+        "rows_true_cols_pred": [
+          "High Performer",
+          "Progressing",
+          "Needs Urgent Assistance"
+        ],
+        "values": [
+          [
+            31,
+            27,
+            2
+          ],
+          [
+            67,
+            188,
+            67
+          ],
+          [
+            1,
+            21,
+            41
+          ]
+        ]
+      },
+      "roc_auc_ovr_macro": 0.738
+    },
+    "xgboost": {
+      "accuracy": 0.629,
+      "macro_precision": 0.502,
+      "macro_recall": 0.556,
+      "macro_f1": 0.519,
+      "recall_per_class": {
+        "High Performer": 0.4,
+        "Progressing": 0.68,
+        "Needs Urgent Assistance": 0.587
+      },
+      "needs_urgent_recall_ci95": [
+        0.464,
+        0.7
+      ],
+      "confusion_matrix": {
+        "rows_true_cols_pred": [
+          "High Performer",
+          "Progressing",
+          "Needs Urgent Assistance"
+        ],
+        "values": [
+          [
+            24,
+            33,
+            3
+          ],
+          [
+            48,
+            219,
+            55
+          ],
+          [
+            3,
+            23,
+            37
+          ]
+        ]
+      },
+      "roc_auc_ovr_macro": 0.727
+    },
+    "svm": {
+      "accuracy": 0.53,
+      "macro_precision": 0.488,
+      "macro_recall": 0.608,
+      "macro_f1": 0.491,
+      "recall_per_class": {
+        "High Performer": 0.65,
+        "Progressing": 0.475,
+        "Needs Urgent Assistance": 0.698
+      },
+      "needs_urgent_recall_ci95": [
+        0.576,
+        0.798
+      ],
+      "confusion_matrix": {
+        "rows_true_cols_pred": [
+          "High Performer",
+          "Progressing",
+          "Needs Urgent Assistance"
+        ],
+        "values": [
+          [
+            39,
+            18,
+            3
+          ],
+          [
+            92,
+            153,
+            77
+          ],
+          [
+            3,
+            16,
+            44
+          ]
+        ]
+      },
+      "roc_auc_ovr_macro": 0.729
+    },
+    "stacking": {
+      "accuracy": 0.472,
+      "macro_precision": 0.471,
+      "macro_recall": 0.603,
+      "macro_f1": 0.453,
+      "recall_per_class": {
+        "High Performer": 0.7,
+        "Progressing": 0.379,
+        "Needs Urgent Assistance": 0.73
+      },
+      "needs_urgent_recall_ci95": [
+        0.61,
+        0.824
+      ],
+      "confusion_matrix": {
+        "rows_true_cols_pred": [
+          "High Performer",
+          "Progressing",
+          "Needs Urgent Assistance"
+        ],
+        "values": [
+          [
+            42,
+            14,
+            4
+          ],
+          [
+            101,
+            122,
+            99
+          ],
+          [
+            4,
+            13,
+            46
+          ]
+        ]
+      },
+      "roc_auc_ovr_macro": 0.744
+    }
+  },
+  "selection": {
+    "criteria": [
+      "macro_f1",
+      "urgent_recall"
+    ],
+    "best": {
+      "macro_f1": "xgboost",
+      "urgent_recall": "stacking"
+    },
+    "models": {
+      "accuracy_rule": {
+        "macro_f1": {
+          "value": 0.473,
+          "diff_from_best": 0.046,
+          "diff_ci95": [
+            -0.011,
+            0.115
+          ],
+          "not_reliably_worse": true
+        },
+        "urgent_recall": {
+          "value": 0.429,
+          "diff_from_best": 0.302,
+          "diff_ci95": [
+            0.19,
+            0.429
+          ],
+          "not_reliably_worse": false
+        }
+      },
+      "random_forest": {
+        "macro_f1": {
+          "value": 0.513,
+          "diff_from_best": 0.007,
+          "diff_ci95": [
+            -0.031,
+            0.046
+          ],
+          "not_reliably_worse": true
+        },
+        "urgent_recall": {
+          "value": 0.651,
+          "diff_from_best": 0.079,
+          "diff_ci95": [
+            0.031,
+            0.159
+          ],
+          "not_reliably_worse": false
+        }
+      },
+      "xgboost": {
+        "macro_f1": {
+          "value": 0.519,
+          "diff_from_best": 0.0,
+          "diff_ci95": [
+            0.0,
+            0.0
+          ],
+          "not_reliably_worse": true
+        },
+        "urgent_recall": {
+          "value": 0.587,
+          "diff_from_best": 0.143,
+          "diff_ci95": [
+            0.063,
+            0.238
+          ],
+          "not_reliably_worse": false
+        }
+      },
+      "svm": {
+        "macro_f1": {
+          "value": 0.491,
+          "diff_from_best": 0.028,
+          "diff_ci95": [
+            -0.018,
+            0.074
+          ],
+          "not_reliably_worse": true
+        },
+        "urgent_recall": {
+          "value": 0.698,
+          "diff_from_best": 0.032,
+          "diff_ci95": [
+            -0.032,
+            0.095
+          ],
+          "not_reliably_worse": true
+        }
+      },
+      "stacking": {
+        "macro_f1": {
+          "value": 0.453,
+          "diff_from_best": 0.067,
+          "diff_ci95": [
+            0.024,
+            0.114
+          ],
+          "not_reliably_worse": false
+        },
+        "urgent_recall": {
+          "value": 0.73,
+          "diff_from_best": 0.0,
+          "diff_ci95": [
+            0.0,
+            0.0
+          ],
+          "not_reliably_worse": true
+        }
+      }
+    },
+    "macro_f1_only_rule_would_select": "accuracy_rule"
+  },
+  "selected": "svm",
+  "note": "Test split not used here (see mastery_final.py). v1 of this script scored the accuracy rule (no trained parameters) on test once; nothing from that run was used for model fitting."
+}

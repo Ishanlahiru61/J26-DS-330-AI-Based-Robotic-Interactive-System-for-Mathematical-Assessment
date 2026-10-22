@@ -1,0 +1,99 @@
+data_origin,student_id,session_id,session_index,age_months,grade,task_type,c2_activity,c2_area,in_curriculum,n_trials,n_valid_trials,accuracy_rate,error_rate,mean_relative_error,median_rt_correct_s,rt_cov,mean_attempts,robot_demo_rate_component1,robot_demo_rate_derived,n_robot_demo_derived,finger_counting_rate,risk_use,age_grade_mismatch,improvement_slope,mastery_level,mastery_thresholds_version
+demo,DEMO-001,DEMO-001-S1,1,76,1,T02,counting,number_sense,1,2,2,0.5,0.5,0.025,7.16,,1.5,0.5,,0,0.5,risk,,,Shows difficulty,0.1-unvalidated
+demo,DEMO-001,DEMO-001-S1,1,76,1,T04,comparison,number_relationships,1,4,4,1.0,0.0,0.0,5.145,0.2972,1.0,0.0,,0,0.5,risk,,,Does it successfully,0.1-unvalidated
+demo,DEMO-001,DEMO-001-S1,1,76,1,T08,place_value,number_sense,1,5,3,0.0,1.0,0.6111,,,3.0,0.6,,0,0.2,record,,,Needs further help,0.1-unvalidated
+demo,DEMO-001,DEMO-001-S1,1,76,1,T10,addition,arithmetic_calculation,1,3,3,1.0,0.0,0.0,5.24,0.3549,1.0,0.0,,0,0.6667,risk,,,Does it successfully,0.1-unvalidated
+demo,DEMO-001,DEMO-001-S1,1,76,1,T12,subtraction,arithmetic_calculation,1,6,6,0.8333,0.1667,0.0278,6.48,0.3016,1.3333,0.1667,,0,0.6667,risk,,,Does it successfully,0.1-unvalidated
+demo,DEMO-001,DEMO-001-S2,2,77,1,T01,counting,number_sense,1,2,2,1.0,0.0,0.0,6.86,0.235,1.0,0.0,,0,,control,,,Does it successfully,0.1-unvalidated
+demo,DEMO-001,DEMO-001-S2,2,77,1,T02,counting,number_sense,1,5,5,1.0,0.0,0.0,4.43,0.5473,1.0,0.0,,0,1.0,risk,,0.5,Does it successfully,0.1-unvalidated
+demo,DEMO-001,DEMO-001-S2,2,77,1,T04,comparison,number_relationships,1,1,1,1.0,0.0,0.0,4.48,,1.0,0.0,,0,,risk,,0.0,,0.1-unvalidated
+demo,DEMO-001,DEMO-001-S2,2,77,1,T08,place_value,number_sense,1,2,2,1.0,0.0,0.0,5.005,0.6513,1.0,0.0,,0,0.5,record,,1.0,Does it successfully,0.1-unvalidated
+demo,DEMO-001,DEMO-001-S2,2,77,1,T10,addition,arithmetic_calculation,1,7,6,1.0,0.0,0.0,5.45,0.6267,1.0,0.0,,0,0.2,risk,,0.0,Does it successfully,0.1-unvalidated
+demo,DEMO-001,DEMO-001-S2,2,77,1,T12,subtraction,arithmetic_calculation,1,3,2,0.5,0.5,0.1111,4.39,,2.0,0.3333,,0,1.0,risk,,-0.3333,Shows difficulty,0.1-unvalidated
+demo,DEMO-002,DEMO-002-S1,1,80,1,T01,counting,number_sense,1,1,1,1.0,0.0,0.0,6.24,,1.0,0.0,,0,1.0,control,,,,0.1-unvalidated
+demo,DEMO-002,DEMO-002-S1,1,80,1,T02,counting,number_sense,1,3,3,0.6667,0.3333,0.1667,3.56,0.5601,1.6667,0.3333,,0,1.0,risk,,,Shows difficulty,0.1-unvalidated
+demo,DEMO-002,DEMO-002-S1,1,80,1,T04,comparison,number_relationships,1,3,3,0.3333,0.6667,0.4286,4.04,,2.0,0.6667,,0,0.5,risk,,,Needs further help,0.1-unvalidated
+demo,DEMO-002,DEMO-002-S1,1,80,1,T08,place_value,number_sense,1,1,1,0.0,1.0,0.125,,,2.0,1.0,,0,,record,,,,0.1-unvalidated
+demo,DEMO-002,DEMO-002-S1,1,80,1,T10,addition,arithmetic_calculation,1,7,7,0.7143,0.2857,0.1667,5.16,0.4752,1.4286,0.2857,,0,0.6,risk,,,Shows difficulty,0.1-unvalidated
+demo,DEMO-002,DEMO-002-S1,1,80,1,T12,subtraction,arithmetic_calculation,1,5,5,0.4,0.6,0.1167,4.135,0.5455,2.0,0.6,,0,0.75,risk,,,Needs further help,0.1-unvalidated
+demo,DEMO-002,DEMO-002-S2,2,81,1,T02,counting,number_sense,1,5,5,0.8,0.2,0.0444,5.31,0.2624,1.2,0.2,,0,0.2,risk,,0.1333,Does it successfully,0.1-unvalidated
+demo,DEMO-002,DEMO-002-S2,2,81,1,T04,comparison,number_relationships,1,4,3,0.6667,0.3333,0.3333,4.79,0.1033,1.6667,0.25,,0,0.3333,risk,,0.3333,Shows difficulty,0.1-unvalidated
+demo,DEMO-002,DEMO-002-S2,2,81,1,T08,place_value,number_sense,1,2,2,0.5,0.5,0.0556,5.08,,1.5,0.5,,0,1.0,record,,0.5,Shows difficulty,0.1-unvalidated
+demo,DEMO-002,DEMO-002-S2,2,81,1,T10,addition,arithmetic_calculation,1,5,4,0.0,1.0,0.3631,,,2.0,0.8,,0,0.3333,risk,,-0.7143,Needs further help,0.1-unvalidated
+demo,DEMO-002,DEMO-002-S2,2,81,1,T12,subtraction,arithmetic_calculation,1,4,3,0.6667,0.3333,0.6667,6.91,0.4687,1.6667,0.5,,0,0.5,risk,,0.2667,Shows difficulty,0.1-unvalidated
+demo,DEMO-003,DEMO-003-S1,1,88,2,T01,counting,number_sense,1,1,1,0.0,1.0,2.0,,,2.0,1.0,,0,0.0,control,,,,0.1-unvalidated
+demo,DEMO-003,DEMO-003-S1,1,88,2,T04,comparison,number_relationships,1,1,1,1.0,0.0,0.0,4.82,,1.0,0.0,,0,1.0,risk,,,,0.1-unvalidated
+demo,DEMO-003,DEMO-003-S1,1,88,2,T05,comparison,number_relationships,1,2,2,0.5,0.5,0.0455,3.08,,1.5,0.5,,0,0.5,risk,,,Shows difficulty,0.1-unvalidated
+demo,DEMO-003,DEMO-003-S1,1,88,2,T06,ordering,number_relationships,1,3,3,0.3333,0.6667,0.2667,3.25,,2.0,0.6667,,0,0.6667,record,,,Needs further help,0.1-unvalidated
+demo,DEMO-003,DEMO-003-S1,1,88,2,T08,place_value,number_sense,1,2,2,0.5,0.5,0.5,4.03,,2.0,0.5,,0,0.0,record,,,Shows difficulty,0.1-unvalidated
+demo,DEMO-003,DEMO-003-S1,1,88,2,T09,place_value,number_sense,1,2,2,0.5,0.5,0.25,5.72,,1.5,0.5,,0,0.5,record,,,Shows difficulty,0.1-unvalidated
+demo,DEMO-003,DEMO-003-S1,1,88,2,T10,addition,arithmetic_calculation,1,1,1,1.0,0.0,0.0,3.24,,1.0,0.0,,0,,risk,,,,0.1-unvalidated
+demo,DEMO-003,DEMO-003-S1,1,88,2,T11,addition,arithmetic_calculation,1,3,3,1.0,0.0,0.0,5.33,0.149,1.0,0.0,,0,0.3333,risk,,,Does it successfully,0.1-unvalidated
+demo,DEMO-003,DEMO-003-S1,1,88,2,T12,subtraction,arithmetic_calculation,1,3,3,0.6667,0.3333,0.3333,4.695,0.122,1.6667,0.3333,,0,1.0,risk,,,Shows difficulty,0.1-unvalidated
+demo,DEMO-003,DEMO-003-S1,1,88,2,T13,subtraction,arithmetic_calculation,1,2,2,0.0,1.0,0.1778,,,2.0,1.0,,0,0.0,risk,,,Needs further help,0.1-unvalidated
+demo,DEMO-003,DEMO-003-S2,2,89,2,T01,counting,number_sense,1,3,3,0.6667,0.3333,0.1667,5.475,0.1976,1.3333,0.3333,,0,1.0,control,,0.6667,Shows difficulty,0.1-unvalidated
+demo,DEMO-003,DEMO-003-S2,2,89,2,T02,counting,number_sense,1,3,3,0.6667,0.3333,0.0333,4.035,0.0648,1.6667,0.3333,,0,0.3333,risk,,,Shows difficulty,0.1-unvalidated
+demo,DEMO-003,DEMO-003-S2,2,89,2,T04,comparison,number_relationships,1,2,2,1.0,0.0,0.0,4.885,0.0246,1.0,0.0,,0,0.5,risk,,0.0,Does it successfully,0.1-unvalidated
+demo,DEMO-003,DEMO-003-S2,2,89,2,T05,comparison,number_relationships,1,2,2,0.5,0.5,0.0714,4.94,,2.0,0.5,,0,1.0,risk,,0.0,Shows difficulty,0.1-unvalidated
+demo,DEMO-003,DEMO-003-S2,2,89,2,T06,ordering,number_relationships,1,2,2,1.0,0.0,0.0,3.105,0.0843,1.0,0.0,,0,1.0,record,,0.6667,Does it successfully,0.1-unvalidated
+demo,DEMO-003,DEMO-003-S2,2,89,2,T08,place_value,number_sense,1,1,1,1.0,0.0,0.0,5.86,,1.0,0.0,,0,0.0,record,,0.5,,0.1-unvalidated
+demo,DEMO-003,DEMO-003-S2,2,89,2,T09,place_value,number_sense,1,1,1,0.0,1.0,0.5,,,3.0,1.0,,0,1.0,record,,-0.5,,0.1-unvalidated
+demo,DEMO-003,DEMO-003-S2,2,89,2,T10,addition,arithmetic_calculation,1,2,2,1.0,0.0,0.0,6.69,0.1036,1.0,0.0,,0,0.0,risk,,0.0,Does it successfully,0.1-unvalidated
+demo,DEMO-003,DEMO-003-S2,2,89,2,T12,subtraction,arithmetic_calculation,1,2,2,1.0,0.0,0.0,4.365,0.2673,1.0,0.0,,0,1.0,risk,,0.3333,Does it successfully,0.1-unvalidated
+demo,DEMO-003,DEMO-003-S2,2,89,2,T13,subtraction,arithmetic_calculation,1,2,2,1.0,0.0,0.0,6.605,0.3672,1.0,0.0,,0,0.0,risk,,1.0,Does it successfully,0.1-unvalidated
+demo,DEMO-004,DEMO-004-S1,1,91,2,T01,counting,number_sense,1,3,3,0.3333,0.6667,0.6667,3.55,,2.3333,0.6667,,0,0.6667,control,,,Needs further help,0.1-unvalidated
+demo,DEMO-004,DEMO-004-S1,1,91,2,T02,counting,number_sense,1,2,2,0.5,0.5,0.0278,8.12,,2.0,0.5,,0,0.0,risk,,,Shows difficulty,0.1-unvalidated
+demo,DEMO-004,DEMO-004-S1,1,91,2,T04,comparison,number_relationships,1,2,2,1.0,0.0,0.0,8.29,0.9348,1.0,0.0,,0,0.0,risk,,,Does it successfully,0.1-unvalidated
+demo,DEMO-004,DEMO-004-S1,1,91,2,T05,comparison,number_relationships,1,2,2,1.0,0.0,0.0,4.89,0.0145,1.0,0.0,,0,0.0,risk,,,Does it successfully,0.1-unvalidated
+demo,DEMO-004,DEMO-004-S1,1,91,2,T06,ordering,number_relationships,1,5,5,0.8,0.2,0.0333,6.64,0.4826,1.2,0.2,,0,0.0,record,,,Does it successfully,0.1-unvalidated
+demo,DEMO-004,DEMO-004-S1,1,91,2,T09,place_value,number_sense,1,1,1,1.0,0.0,0.0,7.8,,1.0,0.0,,0,0.0,record,,,,0.1-unvalidated
+demo,DEMO-004,DEMO-004-S1,1,91,2,T10,addition,arithmetic_calculation,1,2,1,0.0,1.0,0.6667,,,2.0,1.0,,0,0.5,risk,,,,0.1-unvalidated
+demo,DEMO-004,DEMO-004-S1,1,91,2,T11,addition,arithmetic_calculation,1,1,1,0.0,1.0,0.2857,,,3.0,1.0,,0,0.0,risk,,,,0.1-unvalidated
+demo,DEMO-004,DEMO-004-S1,1,91,2,T12,subtraction,arithmetic_calculation,1,2,2,0.0,1.0,0.1056,,,2.0,1.0,,0,0.5,risk,,,Needs further help,0.1-unvalidated
+demo,DEMO-004,DEMO-004-S2,2,92,2,T01,counting,number_sense,1,1,1,1.0,0.0,0.0,3.41,,1.0,0.0,,0,1.0,control,,0.6667,,0.1-unvalidated
+demo,DEMO-004,DEMO-004-S2,2,92,2,T02,counting,number_sense,1,2,2,0.5,0.5,0.0556,5.46,,2.0,0.5,,0,0.0,risk,,0.0,Shows difficulty,0.1-unvalidated
+demo,DEMO-004,DEMO-004-S2,2,92,2,T04,comparison,number_relationships,1,4,4,0.5,0.5,0.2024,5.7,0.1216,1.75,0.5,,0,0.6667,risk,,-0.5,Shows difficulty,0.1-unvalidated
+demo,DEMO-004,DEMO-004-S2,2,92,2,T05,comparison,number_relationships,1,1,1,1.0,0.0,0.0,6.44,,1.0,0.0,,0,,risk,,0.0,,0.1-unvalidated
+demo,DEMO-004,DEMO-004-S2,2,92,2,T06,ordering,number_relationships,1,4,4,0.5,0.5,0.1635,8.155,0.9304,1.5,0.5,,0,0.3333,record,,-0.3,Shows difficulty,0.1-unvalidated
+demo,DEMO-004,DEMO-004-S2,2,92,2,T09,place_value,number_sense,1,3,2,0.0,1.0,0.0607,,,2.5,0.6667,,0,0.0,record,,-1.0,Needs further help,0.1-unvalidated
+demo,DEMO-004,DEMO-004-S2,2,92,2,T10,addition,arithmetic_calculation,1,1,1,1.0,0.0,0.0,3.51,,1.0,0.0,,0,1.0,risk,,1.0,,0.1-unvalidated
+demo,DEMO-004,DEMO-004-S2,2,92,2,T12,subtraction,arithmetic_calculation,1,3,3,0.6667,0.3333,0.1111,3.76,0.5604,1.6667,0.3333,,0,1.0,risk,,0.6667,Shows difficulty,0.1-unvalidated
+demo,DEMO-004,DEMO-004-S2,2,92,2,T13,subtraction,arithmetic_calculation,1,1,1,0.0,1.0,2.0,,,2.0,1.0,,0,,risk,,,,0.1-unvalidated
+demo,DEMO-005,DEMO-005-S1,1,100,3,T01,counting,number_sense,1,1,1,1.0,0.0,0.0,3.4,,1.0,0.0,,0,1.0,control,,,,0.1-unvalidated
+demo,DEMO-005,DEMO-005-S1,1,100,3,T02,counting,number_sense,1,1,1,0.0,1.0,0.2,,,3.0,1.0,,0,1.0,risk,,,,0.1-unvalidated
+demo,DEMO-005,DEMO-005-S1,1,100,3,T04,comparison,number_relationships,1,1,0,,,,,,,0.0,,0,,risk,,,,0.1-unvalidated
+demo,DEMO-005,DEMO-005-S1,1,100,3,T06,ordering,number_relationships,1,1,1,1.0,0.0,0.0,3.27,,1.0,0.0,,0,,record,,,,0.1-unvalidated
+demo,DEMO-005,DEMO-005-S1,1,100,3,T08,place_value,number_sense,1,1,1,1.0,0.0,0.0,8.78,,1.0,0.0,,0,,record,,,,0.1-unvalidated
+demo,DEMO-005,DEMO-005-S1,1,100,3,T09,place_value,number_sense,1,2,2,0.5,0.5,0.0476,7.26,,2.0,0.5,,0,0.5,record,,,Shows difficulty,0.1-unvalidated
+demo,DEMO-005,DEMO-005-S1,1,100,3,T10,addition,arithmetic_calculation,1,2,2,1.0,0.0,0.0,6.025,0.0622,1.0,0.0,,0,0.5,risk,,,Does it successfully,0.1-unvalidated
+demo,DEMO-005,DEMO-005-S1,1,100,3,T11,addition,arithmetic_calculation,1,1,1,1.0,0.0,0.0,6.71,,1.0,0.0,,0,1.0,risk,,,,0.1-unvalidated
+demo,DEMO-005,DEMO-005-S1,1,100,3,T12,subtraction,arithmetic_calculation,1,2,2,0.5,0.5,0.0196,5.17,,2.0,0.5,,0,0.0,risk,,,Shows difficulty,0.1-unvalidated
+demo,DEMO-005,DEMO-005-S1,1,100,3,T13,subtraction,arithmetic_calculation,1,3,3,0.6667,0.3333,0.0152,7.78,0.4944,1.6667,0.3333,,0,0.5,risk,,,Shows difficulty,0.1-unvalidated
+demo,DEMO-005,DEMO-005-S1,1,100,3,T14,multiplication,multiplicative_reasoning,1,1,1,1.0,0.0,0.0,3.22,,1.0,0.0,,0,,risk,,,,0.1-unvalidated
+demo,DEMO-005,DEMO-005-S1,1,100,3,T15,division,multiplicative_reasoning,1,4,3,1.0,0.0,0.0,5.66,0.2065,1.0,0.25,,0,0.3333,record,,,Does it successfully,0.1-unvalidated
+demo,DEMO-005,DEMO-005-S2,2,101,3,T01,counting,number_sense,1,1,1,1.0,0.0,0.0,3.09,,1.0,0.0,,0,1.0,control,,0.0,,0.1-unvalidated
+demo,DEMO-005,DEMO-005-S2,2,101,3,T02,counting,number_sense,1,2,2,0.5,0.5,0.025,3.28,,1.5,0.5,,0,1.0,risk,,0.5,Shows difficulty,0.1-unvalidated
+demo,DEMO-005,DEMO-005-S2,2,101,3,T06,ordering,number_relationships,1,1,1,1.0,0.0,0.0,7.95,,1.0,0.0,,0,0.0,record,,0.0,,0.1-unvalidated
+demo,DEMO-005,DEMO-005-S2,2,101,3,T08,place_value,number_sense,1,2,2,1.0,0.0,0.0,4.385,0.1596,1.0,0.0,,0,0.0,record,,0.0,Does it successfully,0.1-unvalidated
+demo,DEMO-005,DEMO-005-S2,2,101,3,T10,addition,arithmetic_calculation,1,3,3,0.6667,0.3333,0.0046,5.76,0.0025,1.6667,0.3333,,0,0.0,risk,,-0.3333,Shows difficulty,0.1-unvalidated
+demo,DEMO-005,DEMO-005-S2,2,101,3,T12,subtraction,arithmetic_calculation,1,3,3,0.6667,0.3333,0.0108,6.625,0.507,1.3333,0.3333,,0,0.0,risk,,0.1667,Shows difficulty,0.1-unvalidated
+demo,DEMO-005,DEMO-005-S2,2,101,3,T14,multiplication,multiplicative_reasoning,1,5,5,0.8,0.2,0.0444,5.405,0.1797,1.2,0.2,,0,0.25,risk,,-0.2,Does it successfully,0.1-unvalidated
+demo,DEMO-005,DEMO-005-S2,2,101,3,T15,division,multiplicative_reasoning,1,3,3,0.6667,0.3333,0.0208,4.7,0.2828,1.6667,0.3333,,0,1.0,record,,-0.3333,Shows difficulty,0.1-unvalidated
+demo,DEMO-006,DEMO-006-S1,1,103,3,T01,counting,number_sense,1,1,1,0.0,1.0,1.0,,,3.0,,1.0,1,1.0,control,,,,0.1-unvalidated
+demo,DEMO-006,DEMO-006-S1,1,103,3,T02,counting,number_sense,1,2,2,0.0,1.0,0.225,,,2.5,,1.0,2,0.0,risk,,,Needs further help,0.1-unvalidated
+demo,DEMO-006,DEMO-006-S1,1,103,3,T05,comparison,number_relationships,1,1,1,0.0,1.0,0.0253,,,3.0,,1.0,1,0.0,risk,,,,0.1-unvalidated
+demo,DEMO-006,DEMO-006-S1,1,103,3,T06,ordering,number_relationships,1,2,2,0.5,0.5,0.0526,9.55,,2.0,,0.5,2,1.0,record,,,Shows difficulty,0.1-unvalidated
+demo,DEMO-006,DEMO-006-S1,1,103,3,T09,place_value,number_sense,1,2,2,0.5,0.5,0.0196,3.73,,1.5,,0.5,2,0.0,record,,,Shows difficulty,0.1-unvalidated
+demo,DEMO-006,DEMO-006-S1,1,103,3,T11,addition,arithmetic_calculation,1,1,1,1.0,0.0,0.0,7.88,,1.0,,0.0,1,0.0,risk,,,,0.1-unvalidated
+demo,DEMO-006,DEMO-006-S1,1,103,3,T12,subtraction,arithmetic_calculation,1,2,2,0.0,1.0,0.2208,,,2.0,,1.0,2,0.0,risk,,,Needs further help,0.1-unvalidated
+demo,DEMO-006,DEMO-006-S1,1,103,3,T14,multiplication,multiplicative_reasoning,1,1,1,0.0,1.0,0.2,,,2.0,,1.0,1,1.0,risk,,,,0.1-unvalidated
+demo,DEMO-006,DEMO-006-S1,1,103,3,T15,division,multiplicative_reasoning,1,8,8,0.5,0.5,0.0817,5.195,0.0979,1.75,,0.5,8,0.5,record,,,Shows difficulty,0.1-unvalidated
+demo,DEMO-006,DEMO-006-S2,2,104,3,T01,counting,number_sense,1,1,1,1.0,0.0,0.0,9.52,,1.0,,0.0,1,,control,,1.0,,0.1-unvalidated
+demo,DEMO-006,DEMO-006-S2,2,104,3,T02,counting,number_sense,1,1,1,0.0,1.0,0.1,,,2.0,,1.0,1,0.0,risk,,0.0,,0.1-unvalidated
+demo,DEMO-006,DEMO-006-S2,2,104,3,T04,comparison,number_relationships,1,4,4,0.5,0.5,0.0557,8.93,0.9201,2.0,,0.5,4,0.3333,risk,,,Shows difficulty,0.1-unvalidated
+demo,DEMO-006,DEMO-006-S2,2,104,3,T06,ordering,number_relationships,1,5,5,0.4,0.6,0.076,3.905,0.0779,2.0,,0.6,5,0.3333,record,,-0.1,Needs further help,0.1-unvalidated
+demo,DEMO-006,DEMO-006-S2,2,104,3,T08,place_value,number_sense,1,1,1,0.0,1.0,0.027,,,3.0,,1.0,1,1.0,record,,,,0.1-unvalidated
+demo,DEMO-006,DEMO-006-S2,2,104,3,T09,place_value,number_sense,1,1,1,1.0,0.0,0.0,8.3,,1.0,,0.0,1,1.0,record,,0.5,,0.1-unvalidated
+demo,DEMO-006,DEMO-006-S2,2,104,3,T12,subtraction,arithmetic_calculation,1,1,1,1.0,0.0,0.0,3.82,,1.0,,0.0,1,0.0,risk,,1.0,,0.1-unvalidated
+demo,DEMO-006,DEMO-006-S2,2,104,3,T13,subtraction,arithmetic_calculation,1,2,2,1.0,0.0,0.0,4.78,0.6006,1.0,,0.0,2,1.0,risk,,,Does it successfully,0.1-unvalidated
+demo,DEMO-006,DEMO-006-S2,2,104,3,T14,multiplication,multiplicative_reasoning,1,4,4,0.25,0.75,0.1181,8.7,,2.0,,0.75,4,0.3333,risk,,0.25,Needs further help,0.1-unvalidated

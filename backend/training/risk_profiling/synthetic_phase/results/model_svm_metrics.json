@@ -1,0 +1,100 @@
+{
+  "model": "SVM (RBF) v1",
+  "features": [
+    "z_f1_symbolic_comparison_acc",
+    "z_f3_arithmetic_acc",
+    "z_f5_counting_rt",
+    "z_f2_symbolic_comparison_rt",
+    "z_f7_nonsymbolic_comparison_acc",
+    "z_f6_counting_acc",
+    "z_f4_arithmetic_rt",
+    "z_f8_nonsymbolic_comparison_rt"
+  ],
+  "best_params": {
+    "svm__C": 0.1,
+    "svm__gamma": 0.01
+  },
+  "cv_auc_train": 0.754,
+  "synthetic": {
+    "train": {
+      "auc": {
+        "auc": 0.772,
+        "ci95": [
+          0.724,
+          0.818
+        ],
+        "n": 2066,
+        "n_dd": 104
+      },
+      "moderate_or_high": {
+        "sensitivity": 0.538,
+        "specificity": 0.858,
+        "flagged_share": 0.162,
+        "tp": 56,
+        "fn": 48,
+        "fp": 278,
+        "tn": 1684
+      },
+      "high": {
+        "sensitivity": 0.279,
+        "specificity": 0.962,
+        "flagged_share": 0.05,
+        "tp": 29,
+        "fn": 75,
+        "fp": 75,
+        "tn": 1887
+      },
+      "auc_by_grade": {
+        "1": 0.8,
+        "2": 0.774,
+        "3": 0.745
+      }
+    },
+    "validation": {
+      "auc": {
+        "auc": 0.696,
+        "ci95": [
+          0.595,
+          0.79
+        ],
+        "n": 445,
+        "n_dd": 23
+      },
+      "moderate_or_high": {
+        "sensitivity": 0.304,
+        "specificity": 0.87,
+        "flagged_share": 0.139,
+        "tp": 7,
+        "fn": 16,
+        "fp": 55,
+        "tn": 367
+      },
+      "high": {
+        "sensitivity": 0.087,
+        "specificity": 0.981,
+        "flagged_share": 0.022,
+        "tp": 2,
+        "fn": 21,
+        "fp": 8,
+        "tn": 414
+      },
+      "auc_by_grade": {
+        "1": 0.76,
+        "2": 0.663,
+        "3": 0.663
+      }
+    }
+  },
+  "real_decarli_calibration": {
+    "auc": {
+      "auc": 0.79,
+      "ci95": [
+        0.664,
+        0.91
+      ],
+      "n": 50,
+      "n_dd": 25
+    },
+    "note": "F3/F4 not measured in Decarli; imputed as 0. Cut-offs not applied (norms differ)."
+  }
+}

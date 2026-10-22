@@ -1,0 +1,13 @@
+{
+  "validated": false,
+  "status": "UNVALIDATED: chosen on synthetic data; confirm in Step 6 and re-estimate on pilot data",
+  "model": "formula",
+  "script": "src/model_formula.py",
+  "bands_percentiles": {
+    "moderate": 84,
+    "high": 95
+  },
+  "screening_flag_worst_pct": 35,
+  "cutoffs_file": "results/formula_cutoffs.json",
+  "insufficient_rule": "sufficient_data_area == 0 -> 'insufficient'"
+}

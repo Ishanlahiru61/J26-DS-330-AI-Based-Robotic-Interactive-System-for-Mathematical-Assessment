@@ -1,0 +1,619 @@
+{
+  "target_sensitivity": 0.7,
+  "screening_percentile_formula": 65,
+  "A_cutoff_sweep": {
+    "formula": {
+      "sweep": [
+        {
+          "flag_worst_pct": 5,
+          "train": {
+            "sensitivity": 0.25,
+            "specificity": 0.96,
+            "flagged_share": 0.05,
+            "tp": 26,
+            "fn": 78,
+            "fp": 78,
+            "tn": 1884
+          },
+          "validation": {
+            "sensitivity": 0.13,
+            "specificity": 0.974,
+            "flagged_share": 0.031,
+            "tp": 3,
+            "fn": 20,
+            "fp": 11,
+            "tn": 411
+          }
+        },
+        {
+          "flag_worst_pct": 10,
+          "train": {
+            "sensitivity": 0.365,
+            "specificity": 0.913,
+            "flagged_share": 0.101,
+            "tp": 38,
+            "fn": 66,
+            "fp": 170,
+            "tn": 1792
+          },
+          "validation": {
+            "sensitivity": 0.304,
+            "specificity": 0.927,
+            "flagged_share": 0.085,
+            "tp": 7,
+            "fn": 16,
+            "fp": 31,
+            "tn": 391
+          }
+        },
+        {
+          "flag_worst_pct": 16,
+          "train": {
+            "sensitivity": 0.471,
+            "specificity": 0.856,
+            "flagged_share": 0.161,
+            "tp": 49,
+            "fn": 55,
+            "fp": 283,
+            "tn": 1679
+          },
+          "validation": {
+            "sensitivity": 0.304,
+            "specificity": 0.86,
+            "flagged_share": 0.148,
+            "tp": 7,
+            "fn": 16,
+            "fp": 59,
+            "tn": 363
+          }
+        },
+        {
+          "flag_worst_pct": 20,
+          "train": {
+            "sensitivity": 0.529,
+            "specificity": 0.817,
+            "flagged_share": 0.2,
+            "tp": 55,
+            "fn": 49,
+            "fp": 359,
+            "tn": 1603
+          },
+          "validation": {
+            "sensitivity": 0.304,
+            "specificity": 0.827,
+            "flagged_share": 0.18,
+            "tp": 7,
+            "fn": 16,
+            "fp": 73,
+            "tn": 349
+          }
+        },
+        {
+          "flag_worst_pct": 25,
+          "train": {
+            "sensitivity": 0.577,
+            "specificity": 0.767,
+            "flagged_share": 0.251,
+            "tp": 60,
+            "fn": 44,
+            "fp": 458,
+            "tn": 1504
+          },
+          "validation": {
+            "sensitivity": 0.348,
+            "specificity": 0.782,
+            "flagged_share": 0.225,
+            "tp": 8,
+            "fn": 15,
+            "fp": 92,
+            "tn": 330
+          }
+        },
+        {
+          "flag_worst_pct": 30,
+          "train": {
+            "sensitivity": 0.644,
+            "specificity": 0.718,
+            "flagged_share": 0.301,
+            "tp": 67,
+            "fn": 37,
+            "fp": 554,
+            "tn": 1408
+          },
+          "validation": {
+            "sensitivity": 0.522,
+            "specificity": 0.758,
+            "flagged_share": 0.256,
+            "tp": 12,
+            "fn": 11,
+            "fp": 102,
+            "tn": 320
+          }
+        },
+        {
+          "flag_worst_pct": 35,
+          "train": {
+            "sensitivity": 0.731,
+            "specificity": 0.67,
+            "flagged_share": 0.35,
+            "tp": 76,
+            "fn": 28,
+            "fp": 647,
+            "tn": 1315
+          },
+          "validation": {
+            "sensitivity": 0.565,
+            "specificity": 0.713,
+            "flagged_share": 0.301,
+            "tp": 13,
+            "fn": 10,
+            "fp": 121,
+            "tn": 301
+          }
+        },
+        {
+          "flag_worst_pct": 40,
+          "train": {
+            "sensitivity": 0.731,
+            "specificity": 0.618,
+            "flagged_share": 0.4,
+            "tp": 76,
+            "fn": 28,
+            "fp": 750,
+            "tn": 1212
+          },
+          "validation": {
+            "sensitivity": 0.609,
+            "specificity": 0.654,
+            "flagged_share": 0.36,
+            "tp": 14,
+            "fn": 9,
+            "fp": 146,
+            "tn": 276
+          }
+        },
+        {
+          "flag_worst_pct": 45,
+          "train": {
+            "sensitivity": 0.788,
+            "specificity": 0.568,
+            "flagged_share": 0.45,
+            "tp": 82,
+            "fn": 22,
+            "fp": 848,
+            "tn": 1114
+          },
+          "validation": {
+            "sensitivity": 0.652,
+            "specificity": 0.616,
+            "flagged_share": 0.398,
+            "tp": 15,
+            "fn": 8,
+            "fp": 162,
+            "tn": 260
+          }
+        },
+        {
+          "flag_worst_pct": 50,
+          "train": {
+            "sensitivity": 0.808,
+            "specificity": 0.516,
+            "flagged_share": 0.5,
+            "tp": 84,
+            "fn": 20,
+            "fp": 950,
+            "tn": 1012
+          },
+          "validation": {
+            "sensitivity": 0.652,
+            "specificity": 0.566,
+            "flagged_share": 0.445,
+            "tp": 15,
+            "fn": 8,
+            "fp": 183,
+            "tn": 239
+          }
+        }
+      ],
+      "screening_cutoff": {
+        "flag_worst_pct": 35,
+        "train": {
+          "sensitivity": 0.731,
+          "specificity": 0.67,
+          "flagged_share": 0.35,
+          "tp": 76,
+          "fn": 28,
+          "fp": 647,
+          "tn": 1315
+        },
+        "validation": {
+          "sensitivity": 0.565,
+          "specificity": 0.713,
+          "flagged_share": 0.301,
+          "tp": 13,
+          "fn": 10,
+          "fp": 121,
+          "tn": 301
+        }
+      }
+    },
+    "svm": {
+      "sweep": [
+        {
+          "flag_worst_pct": 5,
+          "train": {
+            "sensitivity": 0.269,
+            "specificity": 0.961,
+            "flagged_share": 0.05,
+            "tp": 28,
+            "fn": 76,
+            "fp": 76,
+            "tn": 1886
+          },
+          "validation": {
+            "sensitivity": 0.087,
+            "specificity": 0.974,
+            "flagged_share": 0.029,
+            "tp": 2,
+            "fn": 21,
+            "fp": 11,
+            "tn": 411
+          }
+        },
+        {
+          "flag_worst_pct": 10,
+          "train": {
+            "sensitivity": 0.385,
+            "specificity": 0.914,
+            "flagged_share": 0.101,
+            "tp": 40,
+            "fn": 64,
+            "fp": 168,
+            "tn": 1794
+          },
+          "validation": {
+            "sensitivity": 0.217,
+            "specificity": 0.927,
+            "flagged_share": 0.081,
+            "tp": 5,
+            "fn": 18,
+            "fp": 31,
+            "tn": 391
+          }
+        },
+        {
+          "flag_worst_pct": 16,
+          "train": {
+            "sensitivity": 0.49,
+            "specificity": 0.857,
+            "flagged_share": 0.161,
+            "tp": 51,
+            "fn": 53,
+            "fp": 281,
+            "tn": 1681
+          },
+          "validation": {
+            "sensitivity": 0.304,
+            "specificity": 0.863,
+            "flagged_share": 0.146,
+            "tp": 7,
+            "fn": 16,
+            "fp": 58,
+            "tn": 364
+          }
+        },
+        {
+          "flag_worst_pct": 20,
+          "train": {
+            "sensitivity": 0.538,
+            "specificity": 0.818,
+            "flagged_share": 0.2,
+            "tp": 56,
+            "fn": 48,
+            "fp": 358,
+            "tn": 1604
+          },
+          "validation": {
+            "sensitivity": 0.391,
+            "specificity": 0.813,
+            "flagged_share": 0.198,
+            "tp": 9,
+            "fn": 14,
+            "fp": 79,
+            "tn": 343
+          }
+        },
+        {
+          "flag_worst_pct": 25,
+          "train": {
+            "sensitivity": 0.577,
+            "specificity": 0.767,
+            "flagged_share": 0.251,
+            "tp": 60,
+            "fn": 44,
+            "fp": 458,
+            "tn": 1504
+          },
+          "validation": {
+            "sensitivity": 0.391,
+            "specificity": 0.773,
+            "flagged_share": 0.236,
+            "tp": 9,
+            "fn": 14,
+            "fp": 96,
+            "tn": 326
+          }
+        },
+        {
+          "flag_worst_pct": 30,
+          "train": {
+            "sensitivity": 0.644,
+            "specificity": 0.718,
+            "flagged_share": 0.301,
+            "tp": 67,
+            "fn": 37,
+            "fp": 554,
+            "tn": 1408
+          },
+          "validation": {
+            "sensitivity": 0.435,
+            "specificity": 0.746,
+            "flagged_share": 0.263,
+            "tp": 10,
+            "fn": 13,
+            "fp": 107,
+            "tn": 315
+          }
+        },
+        {
+          "flag_worst_pct": 35,
+          "train": {
+            "sensitivity": 0.644,
+            "specificity": 0.666,
+            "flagged_share": 0.35,
+            "tp": 67,
+            "fn": 37,
+            "fp": 656,
+            "tn": 1306
+          },
+          "validation": {
+            "sensitivity": 0.565,
+            "specificity": 0.697,
+            "flagged_share": 0.317,
+            "tp": 13,
+            "fn": 10,
+            "fp": 128,
+            "tn": 294
+          }
+        },
+        {
+          "flag_worst_pct": 40,
+          "train": {
+            "sensitivity": 0.692,
+            "specificity": 0.616,
+            "flagged_share": 0.4,
+            "tp": 72,
+            "fn": 32,
+            "fp": 754,
+            "tn": 1208
+          },
+          "validation": {
+            "sensitivity": 0.609,
+            "specificity": 0.649,
+            "flagged_share": 0.364,
+            "tp": 14,
+            "fn": 9,
+            "fp": 148,
+            "tn": 274
+          }
+        },
+        {
+          "flag_worst_pct": 45,
+          "train": {
+            "sensitivity": 0.75,
+            "specificity": 0.566,
+            "flagged_share": 0.45,
+            "tp": 78,
+            "fn": 26,
+            "fp": 852,
+            "tn": 1110
+          },
+          "validation": {
+            "sensitivity": 0.696,
+            "specificity": 0.602,
+            "flagged_share": 0.413,
+            "tp": 16,
+            "fn": 7,
+            "fp": 168,
+            "tn": 254
+          }
+        },
+        {
+          "flag_worst_pct": 50,
+          "train": {
+            "sensitivity": 0.779,
+            "specificity": 0.514,
+            "flagged_share": 0.5,
+            "tp": 81,
+            "fn": 23,
+            "fp": 953,
+            "tn": 1009
+          },
+          "validation": {
+            "sensitivity": 0.739,
+            "specificity": 0.559,
+            "flagged_share": 0.456,
+            "tp": 17,
+            "fn": 6,
+            "fp": 186,
+            "tn": 236
+          }
+        }
+      ],
+      "screening_cutoff": {
+        "flag_worst_pct": 45,
+        "train": {
+          "sensitivity": 0.75,
+          "specificity": 0.566,
+          "flagged_share": 0.45,
+          "tp": 78,
+          "fn": 26,
+          "fp": 852,
+          "tn": 1110
+        },
+        "validation": {
+          "sensitivity": 0.696,
+          "specificity": 0.602,
+          "flagged_share": 0.413,
+          "tp": 16,
+          "fn": 7,
+          "fp": 168,
+          "tn": 254
+        }
+      }
+    }
+  },
+  "B_two_stage": {
+    "children": 1779,
+    "dd": 88,
+    "session_1_only": {
+      "auc": 0.724,
+      "sensitivity": 0.67,
+      "specificity": 0.677,
+      "flagged_share": 0.341,
+      "tp": 59,
+      "fn": 29,
+      "fp": 547,
+      "tn": 1144
+    },
+    "both_sessions_pooled": {
+      "auc": 0.741,
+      "sensitivity": 0.67,
+      "specificity": 0.678,
+      "flagged_share": 0.339,
+      "tp": 59,
+      "fn": 29,
+      "fp": 544,
+      "tn": 1147
+    },
+    "two_stage_flag_s1_and_s2": {
+      "auc": 0.741,
+      "sensitivity": 0.409,
+      "specificity": 0.857,
+      "flagged_share": 0.156,
+      "tp": 36,
+      "fn": 52,
+      "fp": 242,
+      "tn": 1449
+    },
+    "flag_s1_or_s2": {
+      "auc": 0.741,
+      "sensitivity": 0.841,
+      "specificity": 0.484,
+      "flagged_share": 0.532,
+      "tp": 74,
+      "fn": 14,
+      "fp": 872,
+      "tn": 819
+    }
+  },
+  "C_more_sessions": [
+    {
+      "sessions": 1,
+      "max_questions_per_child": 24,
+      "at_84th_percentile": {
+        "auc": 0.708,
+        "sensitivity": 0.368,
+        "specificity": 0.852,
+        "flagged_share": 0.159,
+        "tp": 39,
+        "fn": 67,
+        "fp": 296,
+        "tn": 1699
+      },
+      "at_screening_cutoff": {
+        "auc": 0.708,
+        "sensitivity": 0.651,
+        "specificity": 0.666,
+        "flagged_share": 0.35,
+        "tp": 69,
+        "fn": 37,
+        "fp": 667,
+        "tn": 1328
+      }
+    },
+    {
+      "sessions": 2,
+      "max_questions_per_child": 48,
+      "at_84th_percentile": {
+        "auc": 0.739,
+        "sensitivity": 0.441,
+        "specificity": 0.857,
+        "flagged_share": 0.159,
+        "tp": 56,
+        "fn": 71,
+        "fp": 342,
+        "tn": 2042
+      },
+      "at_screening_cutoff": {
+        "auc": 0.739,
+        "sensitivity": 0.701,
+        "specificity": 0.678,
+        "flagged_share": 0.341,
+        "tp": 89,
+        "fn": 38,
+        "fp": 768,
+        "tn": 1616
+      }
+    },
+    {
+      "sessions": 4,
+      "max_questions_per_child": 96,
+      "at_84th_percentile": {
+        "auc": 0.802,
+        "sensitivity": 0.562,
+        "specificity": 0.862,
+        "flagged_share": 0.159,
+        "tp": 72,
+        "fn": 56,
+        "fp": 334,
+        "tn": 2086
+      },
+      "at_screening_cutoff": {
+        "auc": 0.802,
+        "sensitivity": 0.797,
+        "specificity": 0.677,
+        "flagged_share": 0.347,
+        "tp": 102,
+        "fn": 26,
+        "fp": 781,
+        "tn": 1639
+      }
+    },
+    {
+      "sessions": 6,
+      "max_questions_per_child": 144,
+      "at_84th_percentile": {
+        "auc": 0.793,
+        "sensitivity": 0.539,
+        "specificity": 0.866,
+        "flagged_share": 0.154,
+        "tp": 69,
+        "fn": 59,
+        "fp": 324,
+        "tn": 2098
+      },
+      "at_screening_cutoff": {
+        "auc": 0.793,
+        "sensitivity": 0.75,
+        "specificity": 0.675,
+        "flagged_share": 0.347,
+        "tp": 96,
+        "fn": 32,
+        "fp": 788,
+        "tn": 1634
+      }
+    }
+  ],
+  "note": "Synthetic data; test split and real Decarli test children not used. Cut-offs unvalidated."
+}

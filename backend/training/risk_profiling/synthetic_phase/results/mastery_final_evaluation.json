@@ -1,0 +1,118 @@
+{
+  "model": "svm",
+  "test_data_opened": "2026-10-21",
+  "code_commit": "491c88e",
+  "children": 436,
+  "class_counts": [
+    73,
+    300,
+    63
+  ],
+  "selected_model": {
+    "accuracy": 0.509,
+    "macro_precision": 0.473,
+    "macro_recall": 0.561,
+    "macro_f1": 0.476,
+    "recall_per_class": {
+      "High Performer": 0.534,
+      "Progressing": 0.467,
+      "Needs Urgent Assistance": 0.683
+    },
+    "needs_urgent_recall_ci95": [
+      0.56,
+      0.784
+    ],
+    "confusion_matrix": {
+      "rows_true_cols_pred": [
+        "High Performer",
+        "Progressing",
+        "Needs Urgent Assistance"
+      ],
+      "values": [
+        [
+          39,
+          27,
+          7
+        ],
+        [
+          89,
+          140,
+          71
+        ],
+        [
+          5,
+          15,
+          43
+        ]
+      ]
+    },
+    "roc_auc_ovr_macro": 0.706
+  },
+  "accuracy_rule_baseline": {
+    "accuracy": 0.624,
+    "macro_precision": 0.49,
+    "macro_recall": 0.48,
+    "macro_f1": 0.484,
+    "recall_per_class": {
+      "High Performer": 0.274,
+      "Progressing": 0.753,
+      "Needs Urgent Assistance": 0.413
+    },
+    "needs_urgent_recall_ci95": [
+      0.3,
+      0.536
+    ],
+    "confusion_matrix": {
+      "rows_true_cols_pred": [
+        "High Performer",
+        "Progressing",
+        "Needs Urgent Assistance"
+      ],
+      "values": [
+        [
+          20,
+          51,
+          2
+        ],
+        [
+          40,
+          226,
+          34
+        ],
+        [
+          1,
+          36,
+          26
+        ]
+      ]
+    }
+  },
+  "by_grade": {
+    "1": {
+      "n": 150,
+      "macro_f1": 0.483,
+      "urgent_recall": 0.562
+    },
+    "2": {
+      "n": 146,
+      "macro_f1": 0.515,
+      "urgent_recall": 0.75
+    },
+    "3": {
+      "n": 140,
+      "macro_f1": 0.404,
+      "urgent_recall": 0.684
+    }
+  },
+  "by_missing_data": {
+    "none": {
+      "n": 120,
+      "macro_f1": 0.376
+    },
+    "some": {
+      "n": 316,
+      "macro_f1": 0.51
+    }
+  },
+  "note": "Single evaluation of the frozen model on synthetic test children."
+}

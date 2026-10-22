@@ -1,0 +1,24 @@
+{
+  "trials_in": 120187,
+  "removed_invalid_trial": 3592,
+  "removed_unassigned_task_type": 0,
+  "removed_not_in_curriculum": 0,
+  "trials_kept": 116595,
+  "rt_excluded_censored_or_demo": 29911,
+  "rt_used_correct_answers": 86684,
+  "children": 3000,
+  "children_sufficient_data_all_task_types": 2336,
+  "children_sufficient_data_all_areas": 2947,
+  "median_questions_per_child_task": 4.0,
+  "median_questions_per_child_area": 6.0,
+  "split_children": {
+    "train": 2100,
+    "validation": 450,
+    "test": 450
+  },
+  "split_dd": {
+    "test": 22,
+    "train": 105,
+    "validation": 23
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "validated": false,
+  "status": "UNVALIDATED: synthetic data have no built-in subtypes; re-run clustering.py on pilot data",
+  "method": "rule_based",
+  "areas": [
+    "number_sense",
+    "number_relationships",
+    "arithmetic"
+  ],
+  "weak_z": 1.0,
+  "flag_worst_pct": 35,
+  "profiles": [
+    "number_sense",
+    "number_relationships",
+    "arithmetic",
+    "multiple_areas",
+    "no_single_area"
+  ]
+}

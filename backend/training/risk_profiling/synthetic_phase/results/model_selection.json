@@ -1,0 +1,193 @@
+{
+  "rule": "Among models not reliably worse than the best (95% paired-bootstrap CI of the AUC difference includes 0), choose the simplest and most explainable (order: formula > logistic > xgboost > random_forest > svm)",
+  "selected": "formula",
+  "validation": {
+    "n": 445,
+    "n_dd": 23,
+    "best_auc_model": "svm",
+    "models": {
+      "formula": {
+        "auc": 0.686,
+        "auc_ci95": [
+          0.575,
+          0.79
+        ],
+        "diff_from_best": 0.01,
+        "diff_ci95": [
+          -0.041,
+          0.067
+        ],
+        "not_reliably_worse": true
+      },
+      "logistic": {
+        "auc": 0.693,
+        "auc_ci95": [
+          0.577,
+          0.797
+        ],
+        "diff_from_best": 0.003,
+        "diff_ci95": [
+          -0.04,
+          0.056
+        ],
+        "not_reliably_worse": true
+      },
+      "xgboost": {
+        "auc": 0.645,
+        "auc_ci95": [
+          0.516,
+          0.77
+        ],
+        "diff_from_best": 0.05,
+        "diff_ci95": [
+          -0.021,
+          0.125
+        ],
+        "not_reliably_worse": true
+      },
+      "random_forest": {
+        "auc": 0.664,
+        "auc_ci95": [
+          0.552,
+          0.774
+        ],
+        "diff_from_best": 0.031,
+        "diff_ci95": [
+          -0.022,
+          0.088
+        ],
+        "not_reliably_worse": true
+      },
+      "svm": {
+        "auc": 0.696,
+        "auc_ci95": [
+          0.595,
+          0.79
+        ],
+        "diff_from_best": 0.0,
+        "diff_ci95": [
+          0.0,
+          0.0
+        ],
+        "not_reliably_worse": true
+      }
+    }
+  },
+  "train_oof_plus_validation": {
+    "n": 2511,
+    "n_dd": 127,
+    "best_auc_model": "svm",
+    "models": {
+      "formula": {
+        "auc": 0.739,
+        "auc_ci95": [
+          0.695,
+          0.785
+        ],
+        "diff_from_best": 0.018,
+        "diff_ci95": [
+          -0.003,
+          0.04
+        ],
+        "not_reliably_worse": true
+      },
+      "logistic": {
+        "auc": 0.732,
+        "auc_ci95": [
+          0.682,
+          0.78
+        ],
+        "diff_from_best": 0.025,
+        "diff_ci95": [
+          0.006,
+          0.046
+        ],
+        "not_reliably_worse": false
+      },
+      "xgboost": {
+        "auc": 0.726,
+        "auc_ci95": [
+          0.675,
+          0.774
+        ],
+        "diff_from_best": 0.032,
+        "diff_ci95": [
+          0.005,
+          0.06
+        ],
+        "not_reliably_worse": false
+      },
+      "random_forest": {
+        "auc": 0.721,
+        "auc_ci95": [
+          0.671,
+          0.771
+        ],
+        "diff_from_best": 0.037,
+        "diff_ci95": [
+          0.012,
+          0.06
+        ],
+        "not_reliably_worse": false
+      },
+      "svm": {
+        "auc": 0.758,
+        "auc_ci95": [
+          0.714,
+          0.799
+        ],
+        "diff_from_best": 0.0,
+        "diff_ci95": [
+          0.0,
+          0.0
+        ],
+        "not_reliably_worse": true
+      }
+    }
+  },
+  "real_decarli_calibration": {
+    "formula": {
+      "auc": 0.811,
+      "ci95": [
+        0.688,
+        0.928
+      ]
+    },
+    "logistic": {
+      "auc": 0.779,
+      "ci95": [
+        0.646,
+        0.902
+      ]
+    },
+    "xgboost": {
+      "auc": 0.826,
+      "ci95": [
+        0.696,
+        0.936
+      ]
+    },
+    "random_forest": {
+      "auc": 0.808,
+      "ci95": [
+        0.674,
+        0.93
+      ]
+    },
+    "svm": {
+      "auc": 0.79,
+      "ci95": [
+        0.664,
+        0.91
+      ]
+    }
+  },
+  "explanation": {
+    "formula": "exact: weight x z per feature, weights from published evidence; no training",
+    "logistic": "exact: learned weight x z per feature",
+    "xgboost": "SHAP (exact for trees), 100 depth-1 trees",
+    "random_forest": "approximate (permutation importance); 500 trees",
+    "svm": "none per child (RBF kernel)"
+  },
+  "note": "Synthetic data; test split and the 14 real Decarli test children not used (Step 6)."
+}

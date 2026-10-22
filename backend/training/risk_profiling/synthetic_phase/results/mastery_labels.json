@@ -1,0 +1,117 @@
+{
+  "rubric": {
+    "ability": "mean of true accuracy z (4 constructs), standardised; positive = worse",
+    "needs_urgent_assistance": "ability >= 1.0",
+    "high_performer": "ability <= -1.0",
+    "source": "register F1; NIE 3-level mastery scale; independent of model features"
+  },
+  "children": 2947,
+  "class_counts_by_split": {
+    "test": {
+      "Progressing": 300,
+      "High Performer": 73,
+      "Needs Urgent Assistance": 63
+    },
+    "train": {
+      "Progressing": 1415,
+      "Needs Urgent Assistance": 338,
+      "High Performer": 313
+    },
+    "validation": {
+      "Progressing": 322,
+      "Needs Urgent Assistance": 63,
+      "High Performer": 60
+    }
+  },
+  "dd_share_by_tier": {
+    "High Performer": 0.002,
+    "Needs Urgent Assistance": 0.175,
+    "Progressing": 0.033
+  },
+  "feature_sets": {
+    "accuracy_only": [
+      "z_overall_acc"
+    ],
+    "performance": [
+      "z_overall_acc",
+      "z_area_number_sense_acc",
+      "z_area_number_relationships_acc",
+      "z_area_arithmetic_acc",
+      "z_area_multiplicative_acc",
+      "z_f10_relative_error"
+    ],
+    "multimodal": [
+      "z_overall_acc",
+      "z_area_number_sense_acc",
+      "z_area_number_relationships_acc",
+      "z_area_arithmetic_acc",
+      "z_area_multiplicative_acc",
+      "z_f10_relative_error",
+      "z_area_number_sense_rt",
+      "z_area_number_relationships_rt",
+      "z_area_arithmetic_rt",
+      "z_area_multiplicative_rt",
+      "z_f11_attempts",
+      "z_f12_rt_variability",
+      "z_robot_demo_rate",
+      "z_finger_counting_rate"
+    ],
+    "historical": [
+      "z_overall_acc",
+      "z_area_number_sense_acc",
+      "z_area_number_relationships_acc",
+      "z_area_arithmetic_acc",
+      "z_area_multiplicative_acc",
+      "z_f10_relative_error",
+      "z_area_number_sense_rt",
+      "z_area_number_relationships_rt",
+      "z_area_arithmetic_rt",
+      "z_area_multiplicative_rt",
+      "z_f11_attempts",
+      "z_f12_rt_variability",
+      "z_robot_demo_rate",
+      "z_finger_counting_rate",
+      "z_acc_trend",
+      "z_rt_trend",
+      "z_attempts_trend"
+    ]
+  },
+  "missing_share": {
+    "z_overall_acc": 0.0,
+    "z_area_number_sense_acc": 0.0,
+    "z_area_number_relationships_acc": 0.0,
+    "z_area_arithmetic_acc": 0.0,
+    "z_area_multiplicative_acc": 0.675,
+    "z_f10_relative_error": 0.0,
+    "z_area_number_sense_rt": 0.035,
+    "z_area_number_relationships_rt": 0.014,
+    "z_area_arithmetic_rt": 0.001,
+    "z_area_multiplicative_rt": 0.683,
+    "z_f11_attempts": 0.0,
+    "z_f12_rt_variability": 0.001,
+    "z_robot_demo_rate": 0.0,
+    "z_finger_counting_rate": 0.0,
+    "z_acc_trend": 0.0,
+    "z_rt_trend": 0.0,
+    "z_attempts_trend": 0.0
+  },
+  "spearman_with_tier_train": {
+    "z_overall_acc": 0.378,
+    "z_area_number_sense_acc": 0.263,
+    "z_area_number_relationships_acc": 0.333,
+    "z_area_arithmetic_acc": 0.274,
+    "z_area_multiplicative_acc": 0.242,
+    "z_f10_relative_error": 0.334,
+    "z_area_number_sense_rt": -0.152,
+    "z_area_number_relationships_rt": -0.103,
+    "z_area_arithmetic_rt": -0.018,
+    "z_area_multiplicative_rt": -0.002,
+    "z_f11_attempts": 0.46,
+    "z_f12_rt_variability": -0.006,
+    "z_robot_demo_rate": 0.339,
+    "z_finger_counting_rate": 0.047,
+    "z_acc_trend": -0.002,
+    "z_rt_trend": -0.023,
+    "z_attempts_trend": 0.003
+  }
+}

@@ -1,0 +1,9 @@
+feature,column,target_g,synthetic_g,real_calibration_g
+F1,z_number_sense_accuracy,0.9,0.878,0.598
+F2,z_number_sense_rt,0.75,0.725,0.709
+F3,z_arithmetic_accuracy,0.87,0.837,
+F4,z_arithmetic_rt,0.38,0.343,
+F5,z_enumeration_4_7_rt,0.77,0.745,0.738
+F6,z_enumeration_4_7_accuracy,0.69,0.662,0.439
+F7,z_nonsymbolic_comparison_accuracy,0.69,0.707,0.648
+F8,z_nonsymbolic_comparison_rt,0.24,0.256,0.031
