@@ -1,0 +1,85 @@
+{
+  "schema_version": "C2_CONTROLLED_SCENARIOS_v1",
+  "seed": 20261021,
+  "token_format": "GAME_TYPE:CORRECT_0_OR_1:TIER_A_OR_B",
+  "design_notes": [
+    "Each pair fixes grade, catalog, session position and policy version.",
+    "Expected-change pairs vary only historical mathematical outcomes or their skill allocation.",
+    "Invariant pairs repeat equivalent histories under a different scenario identifier.",
+    "Outcomes are fictional test inputs and are not child observations."
+  ],
+  "controlled_scenarios": [
+    {
+      "scenario_id": "G1-STRONG", "pair_id": "G1-PERFORMANCE", "variant": "strong", "expect_change": true, "grade": 1,
+      "history": ["COUNTING:1:A","COUNTING:1:A","COUNTING:1:A","COMPARISON:1:A","COMPARISON:1:A","ORDERING:1:A","ORDERING:1:A","ADDITION:1:A","ADDITION:1:A","SUBTRACTION:1:A","SUBTRACTION:1:A","COUNTING:1:A"]
+    },
+    {
+      "scenario_id": "G1-STRUGGLING", "pair_id": "G1-PERFORMANCE", "variant": "struggling", "expect_change": true, "grade": 1,
+      "history": ["COUNTING:0:A","COUNTING:0:A","COUNTING:1:A","COMPARISON:0:A","COMPARISON:0:A","ORDERING:0:A","ORDERING:1:A","ADDITION:0:A","ADDITION:0:A","SUBTRACTION:0:A","SUBTRACTION:0:A","COUNTING:0:A"]
+    },
+    {
+      "scenario_id": "G2-STRONG", "pair_id": "G2-PERFORMANCE", "variant": "strong", "expect_change": true, "grade": 2,
+      "history": ["COUNTING:1:A","COUNTING:1:A","COUNTING:1:A","COMPARISON:1:A","ORDERING:1:A","PLACE_VALUE:1:A","PLACE_VALUE:1:A","ADDITION:1:A","ADDITION:1:A","SUBTRACTION:1:A","SUBTRACTION:1:A","COUNTING:1:A"]
+    },
+    {
+      "scenario_id": "G2-STRUGGLING", "pair_id": "G2-PERFORMANCE", "variant": "struggling", "expect_change": true, "grade": 2,
+      "history": ["COUNTING:0:A","COUNTING:1:A","COUNTING:0:A","COMPARISON:0:A","ORDERING:0:A","PLACE_VALUE:0:A","PLACE_VALUE:0:A","ADDITION:0:A","ADDITION:1:A","SUBTRACTION:0:A","SUBTRACTION:0:A","COUNTING:0:A"]
+    },
+    {
+      "scenario_id": "G3-STRONG", "pair_id": "G3-PERFORMANCE", "variant": "strong", "expect_change": true, "grade": 3,
+      "history": ["COUNTING:1:A","COUNTING:1:A","COUNTING:1:A","COMPARISON:1:A","ORDERING:1:A","PLACE_VALUE:1:A","ADDITION:1:A","SUBTRACTION:1:A","MULTIPLICATION:1:A","MULTIPLICATION:1:A","DIVISION:1:A","COUNTING:1:A"]
+    },
+    {
+      "scenario_id": "G3-STRUGGLING", "pair_id": "G3-PERFORMANCE", "variant": "struggling", "expect_change": true, "grade": 3,
+      "history": ["COUNTING:0:A","COUNTING:0:A","COUNTING:1:A","COMPARISON:0:A","ORDERING:0:A","PLACE_VALUE:0:A","ADDITION:0:A","SUBTRACTION:0:A","MULTIPLICATION:0:A","MULTIPLICATION:1:A","DIVISION:0:A","COUNTING:0:A"]
+    },
+    {
+      "scenario_id": "G5-IMPROVING", "pair_id": "G5-TREND", "variant": "improving", "expect_change": true, "grade": 5,
+      "history": ["COUNTING:0:A","COMPARISON:0:A","ORDERING:0:A","PLACE_VALUE:0:A","ADDITION:0:A","SUBTRACTION:0:A","MULTIPLICATION:0:A","DIVISION:1:A","COUNTING:1:A","COMPARISON:1:A","ORDERING:1:A","PLACE_VALUE:1:A","ADDITION:1:A","SUBTRACTION:1:A","MULTIPLICATION:1:A","DIVISION:1:A"]
+    },
+    {
+      "scenario_id": "G5-DECLINING", "pair_id": "G5-TREND", "variant": "declining", "expect_change": true, "grade": 5,
+      "history": ["COUNTING:1:A","COMPARISON:1:A","ORDERING:1:A","PLACE_VALUE:1:A","ADDITION:1:A","SUBTRACTION:1:A","MULTIPLICATION:1:A","DIVISION:0:A","COUNTING:0:A","COMPARISON:0:A","ORDERING:0:A","PLACE_VALUE:0:A","ADDITION:0:A","SUBTRACTION:0:A","MULTIPLICATION:0:A","DIVISION:0:A"]
+    },
+    {
+      "scenario_id": "EXTENDED-EARLY-STRONG", "pair_id": "EXTENDED-HISTORY", "variant": "early-strong", "expect_change": true, "grade": 4,
+      "history": ["COUNTING:1:A","COMPARISON:1:A","ORDERING:1:A","PLACE_VALUE:1:A","ADDITION:1:A","SUBTRACTION:1:A","MULTIPLICATION:1:A","DIVISION:1:A","COUNTING:1:A","COMPARISON:1:A","PLACE_VALUE:1:A","ADDITION:0:A","SUBTRACTION:1:A","MULTIPLICATION:0:A","DIVISION:1:A"]
+    },
+    {
+      "scenario_id": "EXTENDED-EARLY-WEAK", "pair_id": "EXTENDED-HISTORY", "variant": "early-weak", "expect_change": true, "grade": 4,
+      "history": ["COUNTING:0:A","COMPARISON:0:A","ORDERING:0:A","PLACE_VALUE:0:A","ADDITION:0:A","SUBTRACTION:0:A","MULTIPLICATION:0:A","DIVISION:0:A","COUNTING:0:A","COMPARISON:0:A","PLACE_VALUE:1:A","ADDITION:0:A","SUBTRACTION:1:A","MULTIPLICATION:0:A","DIVISION:1:A"]
+    },
+    {
+      "scenario_id": "SKILL-COUNTING-STRONG", "pair_id": "SKILL-SPECIFIC", "variant": "counting-strong", "expect_change": true, "grade": 3,
+      "history": ["COUNTING:1:A","COUNTING:1:A","COUNTING:1:A","COMPARISON:0:A","COMPARISON:0:A","COMPARISON:0:A","ORDERING:1:A","PLACE_VALUE:0:A","ADDITION:1:A","SUBTRACTION:0:A","MULTIPLICATION:1:A","DIVISION:0:A"]
+    },
+    {
+      "scenario_id": "SKILL-COMPARISON-STRONG", "pair_id": "SKILL-SPECIFIC", "variant": "comparison-strong", "expect_change": true, "grade": 3,
+      "history": ["COUNTING:0:A","COUNTING:0:A","COUNTING:0:A","COMPARISON:1:A","COMPARISON:1:A","COMPARISON:1:A","ORDERING:1:A","PLACE_VALUE:0:A","ADDITION:1:A","SUBTRACTION:0:A","MULTIPLICATION:1:A","DIVISION:0:A"]
+    },
+    {
+      "scenario_id": "INVARIANT-A", "pair_id": "IRRELEVANT-ID", "variant": "id-a", "expect_change": false, "grade": 3,
+      "history": ["COUNTING:1:A","COUNTING:1:A","COUNTING:0:A","COMPARISON:1:A","ORDERING:0:A","PLACE_VALUE:1:A","ADDITION:0:A","SUBTRACTION:1:A","MULTIPLICATION:0:A","DIVISION:1:A","COUNTING:1:A","COMPARISON:0:A"]
+    },
+    {
+      "scenario_id": "INVARIANT-B", "pair_id": "IRRELEVANT-ID", "variant": "id-b", "expect_change": false, "grade": 3,
+      "history": ["COUNTING:1:A","COUNTING:1:A","COUNTING:0:A","COMPARISON:1:A","ORDERING:0:A","PLACE_VALUE:1:A","ADDITION:0:A","SUBTRACTION:1:A","MULTIPLICATION:0:A","DIVISION:1:A","COUNTING:1:A","COMPARISON:0:A"]
+    },
+    {
+      "scenario_id": "COLD-A", "pair_id": "COLD-INVARIANT", "variant": "cold-a", "expect_change": false, "grade": 2,
+      "history": []
+    },
+    {
+      "scenario_id": "COLD-B", "pair_id": "COLD-INVARIANT", "variant": "cold-b", "expect_change": false, "grade": 2,
+      "history": []
+    },
+    {
+      "scenario_id": "SPARSE-A", "pair_id": "SPARSE-INVARIANT", "variant": "sparse-a", "expect_change": false, "grade": 5,
+      "history": ["COUNTING:1:A"]
+    },
+    {
+      "scenario_id": "SPARSE-B", "pair_id": "SPARSE-INVARIANT", "variant": "sparse-b", "expect_change": false, "grade": 5,
+      "history": ["COUNTING:1:A"]
+    }
+  ]
+}
